@@ -1,0 +1,180 @@
+http://118.194.161.113:8080/service/mission/getMyMission4json
+{
+    "parameter": {
+      "callid": "1234567",
+      "language": "zh_CN",
+      "region": "cn",
+      "client": {
+        "dnum": "1232312",
+        "mac": "aabbccddee",
+        "didtoken": "1234323432432",
+        "devmodel": "HUAN-FREE-LAUNCHER",
+        "systemver": "2.1"
+      },
+      "user": {
+        "userid": "10995222",
+        "token": "35464e54e564f"
+      }
+},
+	"status": "0",
+	"start": "1",
+	"count": "10",
+    "apiversion": "3.0"
+}
+
+{
+  "callid" : "1234567",
+  "servertime" : "2015-10-09 13:39:10",
+  "state" : "0000",
+  "note" : "成功",
+  "apiversion" : "3.0",
+  "missioncnt" : 4,
+  "missioninfo" : [ {
+    "name" : "亚马逊活动赚积分",
+    "type" : "002",
+    "status" : 0,
+    "starttime" : "2015-08-19",
+    "endtime" : "2015-09-30",
+    "opecode" : "ddd",
+    "count" : 0,
+    "totalcnt" : 5,
+    "awardcontent" : "奖品：新世界百货代金券满200减50,积分：330,勋章：观影达人,经验值：2",
+    "dlurl" : "",
+    "dlintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    },
+    "startintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    }
+  }, {
+    "name" : "七夕表白任务",
+    "type" : "001",
+    "status" : 0,
+    "starttime" : "2015-08-20",
+    "endtime" : "2015-09-20",
+    "opecode" : "ccc",
+    "count" : 0,
+    "totalcnt" : 1,
+    "awardcontent" : "积分：450",
+    "dlurl" : "",
+    "dlintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    },
+    "startintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    }
+  }, {
+    "name" : "新世界100-20",
+    "type" : "003",
+    "status" : 0,
+    "starttime" : "2015-07-09",
+    "endtime" : "2015-08-23",
+    "opecode" : "bbb",
+    "count" : 0,
+    "totalcnt" : 50,
+    "awardcontent" : "奖品：新世界百货代金券满200减50",
+    "dlurl" : "",
+    "obslist" : [ {
+      "pkgname" : "com.a"
+    }, {
+      "pkgname" : "com.b"
+    } ],
+    "dlintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    },
+    "startintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    }
+  }, {
+    "name" : "获取物美20购物券",
+    "type" : "001",
+    "status" : 4,
+    "starttime" : "2015-08-21",
+    "endtime" : "2015-09-30",
+    "opecode" : "aaa",
+    "count" : 1,
+    "totalcnt" : 1,
+    "awardcontent" : "奖品：物美超市代金券10元,勋章：观影新兵",
+    "dlurl" : "",
+    "dlintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    },
+    "startintent" : {
+      "action" : "33",
+      "starttype" : "0",
+      "pkgname" : "2323",
+      "clsname" : "23232",
+      "uri" : "23232",
+      "extralist" : [ {
+        "k" : "2323",
+        "t" : "222",
+        "v" : "232"
+      } ]
+    }
+  } ],
+  "versioncode" : 1
+}
+

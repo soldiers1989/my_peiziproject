@@ -1,0 +1,292 @@
+http://118.194.161.113:8080//service/launcher/getdata4json
+{
+    "parameter": {
+      "callid": "1234567",
+      "language": "zh_CN",
+        "region": "ASIA",
+      "client": {
+        "dnum": "1232312",
+        "mac": "aabbccddee",
+        "didtoken": "1234323432432",
+        "devmodel": "HUAN-FREE-LAUNCHER",
+        "systemver": "2.1"
+      },
+      "user": {
+        "userid": "10995222",
+        "token": "35464e54e564f"
+      }
+    },
+	"navid": "9",
+    "apiversion": "3.0"
+}
+
+{
+  "callid" : "1234567",
+  "servertime" : "2015-10-09 13:29:38",
+  "state" : "0000",
+  "note" : "成功",
+  "apiversion" : "3.0",
+  "layoutwidth" : 400,
+  "layoutheight" : 1200,
+  "unitxpixel" : 200,
+  "unitypixel" : 200,
+  "datalist" : [ {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 2,
+    "itemx" : 0,
+    "itemy" : 0,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "com.huan.appstore",
+      "clsname" : "com.huan.appstore.ui.AppDetailActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "packagename:com.slanissue.tv.erge"
+      } ]
+    },
+    "title" : "贝瓦儿歌",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444357730128.jpg",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 1,
+    "itemx" : 0,
+    "itemy" : 1,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "com.huan.appstore",
+      "clsname" : "com.huan.appstore.ui.AppDetailActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "packagename:com.luzacmedia.preschoolfun.app"
+      } ]
+    },
+    "title" : "学前教育",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444357353876.jpg",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 1,
+    "itemx" : 1,
+    "itemy" : 1,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "tv.huan.fitness",
+      "clsname" : "tv.huan.fitness.ui.ShareActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "{\"Fitness\":{\"openType\":\"1\",\"startParam\":\"http:\\/\\/huan.mediacdn.cedock.net\\/ts\\/20150203\\/CDN2015020300007.mp4\"}}"
+      } ]
+    },
+    "title" : "健身-火箭瑜伽707",
+    "url2d" : "http://static.lan.xadev.huantest.com/temp/144047204123_120_cover.png",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 2,
+    "itemx" : 2,
+    "itemy" : 0,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "tv.huan.fitness",
+      "clsname" : "tv.huan.fitness.ui.WelcomeActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "{\"Fitness\":{\"openType\":\"4\"}}"
+      } ]
+    },
+    "title" : "启动健身APk",
+    "url2d" : "http://static.lan.xadev.huantest.com/temp/1443084349707_120_cover.jpeg",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 1,
+    "itemx" : 2,
+    "itemy" : 1,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "tv.huan.ht",
+      "clsname" : "tv.huan.ht.activity.WelcomeHtLove",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "{\"classid\":\"004\",\"otherid\":\"45\"}"
+      } ]
+    },
+    "title" : "婚恋夕阳红",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444358605053.png",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 1,
+    "itemwidth" : 1,
+    "itemx" : 3,
+    "itemy" : 1,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "tv.huan.shop",
+      "clsname" : "tv.huan.shop.ui.ShareActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "{\"icon\":\"\",\"tid\":\"1994\",\"type\":\"2\",\"color\":\"\",\"belong\":\"1\"}"
+      } ]
+    },
+    "title" : "电视商城",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444358394583.png",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 2,
+    "itemwidth" : 1,
+    "itemx" : 4,
+    "itemy" : 0,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "com.huan.appstore",
+      "clsname" : "com.huan.appstore.ui.AppDetailActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "packagename:com.divmob.kidpuzzleworld"
+      } ]
+    },
+    "title" : "儿童益智世界",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444357982031.jpg",
+    "url3d" : ""
+  }, {
+    "animtype" : "",
+    "corner" : "0",
+    "datatype" : "default",
+    "dlintent" : {
+      "action" : "",
+      "starttype" : "",
+      "pkgname" : "",
+      "clsname" : "",
+      "uri" : ""
+    },
+    "itemheight" : 2,
+    "itemwidth" : 1,
+    "itemx" : 5,
+    "itemy" : 0,
+    "postertype" : "2D",
+    "score" : "",
+    "startintent" : {
+      "action" : "android.intent.action.MAIN",
+      "starttype" : "startActivity",
+      "pkgname" : "com.huan.appstore",
+      "clsname" : "com.huan.appstore.ui.AppDetailActivity",
+      "uri" : "",
+      "extralist" : [ {
+        "k" : "params",
+        "t" : "string",
+        "v" : "packagename:com.ebodoo.fmhd"
+      } ]
+    },
+    "title" : "儿童故事电台",
+    "url2d" : "http://118.194.161.113:8080/launcher/resources/2015/10/09/dataicon_1444357878843.jpg",
+    "url3d" : ""
+  } ]
+}
+
+

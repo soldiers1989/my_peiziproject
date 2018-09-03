@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<title>Dynatree - Example</title>
+
+	<script src="jquery/jquery.js" type="text/javascript"></script>
+	<script src="jquery/jquery-ui.custom.js" type="text/javascript"></script>
+	<script src="jquery/jquery.cookie.js" type="text/javascript"></script>
+
+	<link href="jquery/ui.dynatree.css" rel="stylesheet" type="text/css" id="skinSheet">
+	<script src="jquery/jquery.dynatree.js" type="text/javascript"></script>
+
+ 
+
+<script type="text/javascript">
+	var treeData = [
+	
+		{title: "Document with some children (expanded on init)", key: "id4", expand: true,
+			children: [
+				{title: "Sub-item 4.1 (active on init)", activate: true,
+					children: [
+						{title: "Sub-item 4.1.1", key: "id4.1.1" },
+						{title: "Sub-item 4.1.2", key: "id4.1.2" }
+					]
+				},
+				{title: "Sub-item 4.2 (selected on init)", select: true,
+					children: [
+						{title: "Sub-item 4.2.1", key: "id4.2.1" },
+						{title: "Sub-item 4.2.2", key: "id4.2.2" }
+					]
+				},
+				{title: "Sub-item 4.3 (hideCheckbox)", hideCheckbox: true },
+				{title: "Sub-item 4.4 (unselectable)", unselectable: true }
+			]
+		}
+	];
+	$(function(){
+
+		// --- Initialize sample trees
+		$("#tree1").dynatree({
+			checkbox: true,
+			// Override class name for checkbox icon:
+			classNames: {checkbox: "dynatree-radio"},
+			selectMode: 1,
+			children: treeData,
+			onActivate: function(node) {
+				$("#echoActive1").text(node.data.title);
+			},
+			onSelect: function(select, node) {
+				// Display list of selected nodes
+				var s = node.tree.getSelectedNodes().join(", ");
+				$("#echoSelection1").text(s);
+			},
+			onDblClick: function(node, event) {
+				node.toggleSelect();
+			},
+			onKeydown: function(node, event) {
+				if( event.which == 32 ) {
+					node.toggleSelect();
+					return false;
+				}
+			},
+			// The following options are only required, if we have more than one tree on one page:
+//			initId: "treeData",
+			cookieId: "dynatree-Cb1",
+			idPrefix: "dynatree-Cb1-"
+		});
+
+		$("#tree2").dynatree({
+			checkbox: true,
+			selectMode: 2,
+			children: treeData,
+			onSelect: function(select, node) {
+				// Display list of selected nodes
+				var selNodes = node.tree.getSelectedNodes();
+				// convert to title/key array
+				var selKeys = $.map(selNodes, function(node){
+					   return "[" + node.data.key + "]: '" + node.data.title + "'";
+				});
+				$("#echoSelection2").text(selKeys.join(", "));
+			},
+			onClick: function(node, event) {
+				// We should not toggle, if target was "checkbox", because this
+				// would result in double-toggle (i.e. no toggle)
+				if( node.getEventTargetType(event) == "title" )
+					node.toggleSelect();
+			},
+			onKeydown: function(node, event) {
+				if( event.which == 32 ) {
+					node.toggleSelect();
+					return false;
+				}
+			},
+			// The following options are only required, if we have more than one tree on one page:
+			cookieId: "dynatree-Cb2",
+			idPrefix: "dynatree-Cb2-"
+		});
+
+		$("#tree3").dynatree({
+			checkbox: true,
+			selectMode: 3,
+			children: treeData,
+			onSelect: function(select, node) {
+				// Get a list of all selected nodes, and convert to a key array:
+				var selKeys = $.map(node.tree.getSelectedNodes(), function(node){
+					return node.data.key;
+				});
+				$("#echoSelection3").text(selKeys.join(", "));
+
+				// Get a list of all selected TOP nodes
+				var selRootNodes = node.tree.getSelectedNodes(true);
+				// ... and convert to a key array:
+				var selRootKeys = $.map(selRootNodes, function(node){
+					return node.data.key;
+				});
+				$("#echoSelectionRootKeys3").text(selRootKeys.join(", "));
+				$("#echoSelectionRoots3").text(selRootNodes.join(", "));
+			},
+			onDblClick: function(node, event) {
+				node.toggleSelect();
+			},
+			onKeydown: function(node, event) {
+				if( event.which == 32 ) {
+					node.toggleSelect();
+					return false;
+				}
+			},
+			// The following options are only required, if we have more than one tree on one page:
+//				initId: "treeData",
+			cookieId: "dynatree-Cb3",
+			idPrefix: "dynatree-Cb3-"
+		});
+
+		$("#tree4").dynatree({
+			checkbox: false,
+			selectMode: 2,
+			children: treeData,
+			onQuerySelect: function(select, node) {
+				if( node.data.isFolder )
+					return false;
+			},
+			onSelect: function(select, node) {
+				// Display list of selected nodes
+				var selNodes = node.tree.getSelectedNodes();
+				// convert to title/key array
+				var selKeys = $.map(selNodes, function(node){
+					   return "[" + node.data.key + "]: '" + node.data.title + "'";
+				});
+				$("#echoSelection4").text(selKeys.join(", "));
+			},
+			onClick: function(node, event) {
+				if( ! node.data.isFolder )
+					node.toggleSelect();
+			},
+			onDblClick: function(node, event) {
+				node.toggleExpand();
+			},
+			onKeydown: function(node, event) {
+				if( event.which == 32 ) {
+					node.toggleSelect();
+					return false;
+				}
+			},
+			// The following options are only required, if we have more than one tree on one page:
+//			initId: "treeData",
+			cookieId: "dynatree-Cb4",
+			idPrefix: "dynatree-Cb4-"
+		});
+
+		$("#btnToggleSelect").click(function(){
+			$("#tree2").dynatree("getRoot").visit(function(node){
+				node.toggleSelect();
+			});
+			return false;
+		});
+		$("#btnDeselectAll").click(function(){
+			$("#tree2").dynatree("getRoot").visit(function(node){
+				node.select(false);
+			});
+			return false;
+		});
+		$("#btnSelectAll").click(function(){
+			$("#tree2").dynatree("getRoot").visit(function(node){
+				node.select(true);
+			});
+			return false;
+		});
+		<!-- Start_Exclude: This block is not part of the sample code -->
+		$("#skinCombo")
+		.val(0) // set state to prevent caching
+		.change(function(){
+			var href = "../src/"
+				+ $(this).val()
+				+ "/ui.dynatree.css"
+				+ "?reload=" + new Date().getTime();
+			$("#skinSheet").attr("href", href);
+		});
+		<!-- End_Exclude -->
+	});
+</script>
+</head>	
+
+<body class="example">
+<!-- Tree #3 -->
+
+	<p class="description">
+		This tree has <b>checkoxes and selectMode 3 (hierarchical multi-selection)</b> enabled.<br>
+		A double-click handler selects the node.<br>
+		A keydown handler selects on [space].
+	</p>
+	<div id="tree3"></div>
+	<div>Selected keys: <span id="echoSelection3">-</span></div>
+	<div>Selected root keys: <span id="echoSelectionRootKeys3">-</span></div>
+	<div>Selected root nodes: <span id="echoSelectionRoots3">-</span></div>
+	 
+</body>
+</html>

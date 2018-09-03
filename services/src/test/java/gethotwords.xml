@@ -1,0 +1,23 @@
+http://localhost:8083/service/launcher/gethotwords
+{
+    "parameter": {
+      "callid": "1234567",
+      "language": "zh_CN",
+      "client": {
+        "dnum": "1232312",
+        "didtoken": "1234323432432",
+        "devmodel": "HUAN-FREE-APPSTORE",
+        "systemver": "2.1"
+      },
+      "user": {
+        "huanid": "10995222",
+        "token": "35464e54e564f"
+      }
+    },
+    "hotword": {
+      "start": "1",
+      "count": "10"
+    },
+    "apiversion": "1.0"
+}
+

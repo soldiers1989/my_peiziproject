@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mine</groupId>
+    <artifactId>mine</artifactId>
+    <packaging>pom</packaging>
+    <name>MINE</name>
+    <version>3.0</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <modules>
+        <module>business</module>
+        <module>core</module>
+        <module>services</module>
+        <module>admin</module>
+    </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>maven-repo2</id>
+            <name>maven-repo2 from maven</name>
+            <url>http://repo2.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>sun-maven-site</id>
+            <name>sun-maven site repository</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+<!--         <repository>
+            <id>googlecode-xmemcache</id>
+            <name>googlecode-xmemcache</name>
+            <url>https://denniszhuang.googlecode.com/svn/repository</url>
+        </repository> -->
+        <repository>
+            <id>huan</id>
+            <name>huan</name>
+           <!-- 
+            <url>C:\Users\zhaojl\.m2\repository</url>
+        -->
+            <url>http://automation.huantest.com:8081/nexus/content/groups/public/</url>     
+        </repository>
+    </repositories>
+
+    <!-- 发布应用包到nexus maven库中，使用 mvn deploy -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>internal realse</name>
+            <url>http://automation.huantest.com:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>internal snapshot</name>
+            <url>http://automation.huantest.com:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

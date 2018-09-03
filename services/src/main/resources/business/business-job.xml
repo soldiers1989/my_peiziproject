@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dayMissionTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="true">
+		<property name="targetObject">
+			<ref bean="userMission" />
+		</property>
+		<property name="targetMethod">
+			<value>modifyMissionStatus</value>
+		</property>
+	</bean>
+	<bean id="dayMissionChangeTask" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="dayMissionTask" />
+		</property>
+		<property name="cronExpression">
+			<!-- <value>* * 10 1/3 * ? * </value> -->
+			<!-- <value>0 0 0 1/1 * ? </value> -->
+			 <value>0 30 13 1/1 * ? </value>
+			<!--测试用 <value>0 0/2 * * * ? </value> -->
+		</property>
+	</bean>
+	<!-- 定时同步大麦票务数据 start -->
+	<bean id="apiDamaiTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="true">
+		<property name="targetObject">
+			<ref bean="apiDamaiServiceImpl" />
+		</property>
+		<property name="targetMethod">
+			<value>getCitylistData</value>
+		</property>
+	</bean>
+	<bean id="apiDamaiTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="apiDamaiTask" />
+		</property>
+		<property name="cronExpression">
+			<!-- 凌晨4：30同步 -->
+			<value>0 30 4 * * ?</value>
+		</property>
+	</bean>
+	<!-- 定时同步大麦票务数据 end 定时同步美食杰数据 start -->
+	<bean id="apiMeishiTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="true">
+		<property name="targetObject">
+			<ref bean="apiMeishiServiceImpl" />
+		</property>
+		<property name="targetMethod">
+			<value>getMeishiData</value>
+		</property>
+	</bean>
+	<bean id="apiMeishiTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="apiMeishiTask" />
+		</property>
+		<property name="cronExpression">
+			<!-- 凌晨4：31同步 -->
+			<value>0 31 4 * * ?</value>
+		</property>
+	</bean>
+	<!-- 定时同步美食杰数据 end 定时同步Zaker数据 start -->
+	<bean id="apiZakerTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="true">
+		<property name="targetObject">
+			<ref bean="apiZakerServiceImpl" />
+		</property>
+		<property name="targetMethod">
+			<value>getAppsList</value>
+		</property>
+	</bean>
+	<bean id="apiZakerTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="apiZakerTask" />
+		</property>
+		<property name="cronExpression">
+			<!-- 凌晨4：32同步 -->
+			<value>0 32 4 * * ?</value>
+		</property>
+	</bean>
+	<!-- 定时同步Zaker数据 end 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="apiDamaiTime" />
+				<ref bean="apiMeishiTime" />
+				<ref bean="apiZakerTime" />
+				<!--<ref bean="dayMissionChangeTask" />-->
+			</list>
+		</property>
+	</bean>
+</beans>

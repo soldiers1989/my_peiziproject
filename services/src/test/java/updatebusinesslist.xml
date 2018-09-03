@@ -1,0 +1,34 @@
+http://localhost:8083/service/launcher/updatebusinesslist
+{
+    "parameter": {
+      "callid": "1234567",
+      "language": "zh_CN",
+      "timezone": "+0800",
+      "region": "cn",
+      "client": {
+        "dnum": "1232312",
+        "didtoken": "1234323432432",
+        "devmodel": "HUAN-FREE-APPSTORE",
+        "systemver": "2.1"
+      },
+      "user": {
+        "huanid": "10995222",
+        "token": "35464e54e564f"
+      }
+    },
+    "userinfo":{
+	"name":"孩子",
+		"icon":"http://xxx.png",
+		"agescope":"1",
+		"sex":"1"
+	},
+    
+    "businessids": "1;2;3;4;5",
+    "apiversion": "1.0"
+}
+
+
+
+{"parameter":{"callid":13992854774422,"language":"CH","timezone":"+8","region":"CN","client":{"dnum":"000","didtoken":"000","devmodel":"HUAN-FREE-APPSTORE","systemver":""},"user":{"huanid":"000","token":"000"}},"businessclasses":{"classid":0,"classname":"","prior":0,"template":4,"productinfos":[{"productname":"美图秀场","icon":"","midicon":"","params":"eyJ0JodHRwOi8vcGcifQ==","prior":"0"}]},"apiversion":"1.0","type":"ALBUM","name":"相册"}
+
+

@@ -1,0 +1,20 @@
+http://localhost:8083/service/launcher/getallbusinessinfos
+{
+    "parameter": {
+      "callid": "1234567",
+      "language": "zh_CN",
+      "timezone": "+0800",
+      "region": "cn",
+      "client": {
+        "dnum": "1232312",
+        "didtoken": "1234323432432",
+        "devmodel": "HUAN-FREE-APPSTORE",
+        "systemver": "2.1"
+      },
+      "user": {
+        "huanid": "10995222",
+        "token": "35464e54e564f"
+      }
+    },
+    "apiversion": "1.0"
+}
