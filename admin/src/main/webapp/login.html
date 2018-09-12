@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/libs/swiper-4.3.5.min.css">
+  <link rel="stylesheet" href="./css/libs/layer.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <title>登录</title>
+</head>
+<body class="has-all">
+  <div class="top-bar">
+    <div class="container clearfix">
+      <div class="top-bar-left fl">
+        <i class="fa fa-phone"></i>
+        客服电话: <span>400-888-8888</span>
+
+        &nbsp;
+        <i class="fa fa-globe"></i>
+        易记网址： <span>www.95888.com</span>
+      </div>
+      <div class="top-bar-right fr">
+        <a class="login-link" href="./login.html">立即登录</a>
+        <span>|</span>
+        <a class="register-link" href="./register.html">免费注册</a>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="container clearfix">
+      <a href="./index.html" class="logo fl">
+        <img src="./images/index/logo.png" alt="">
+      </a>
+      <ul class="nav fr">
+        <li>
+          <a href="./index.html">网站首页</a>
+        </li>
+        <li>
+          <a href="./stock-free.html">免息配资</a>
+        </li>
+        <li>
+          <a href="./stock-day.html">按天配资</a>
+        </li>
+        <li>
+          <a href="./stock-month.html">按月配资</a>
+        </li>
+        <li>
+          <a href="./software.html">交易软件</a>
+        </li>
+        <li>
+          <a href="./share.html">我要推广</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="login-banner">
+    <div class="container">
+      <h1>专注期货配资十年</h1>
+      <h1>您身边的配资专家</h1>
+      <form action="#" class="login-form" id="loginForm">
+        <p class="error-tips" id="errorTips">
+          <i class="fa fa-times-circle"></i> <span>错误信息</span>
+        </p>
+        <p class="form-item">
+          <img src="./images/login/user.png" alt="" class="form-icon">
+          <input type="number" placeholder="请输入注册手机号码" id="mobile">
+        </p>
+        <p class="form-item">
+          <img src="./images/login/password.png" alt=""
+            class="form-icon">
+          <input type="password" placeholder="请输入密码" id="password">
+        </p>
+        <p class="form-item">
+          <input type="text" placeholder="验证码" class="verif-code-input"
+            id="code">
+          <img class="verif-code" src="http://www.76pz.com/Member/common/verify?t=0.8382336697164519?t=0.2891924573849116"
+            alt="">
+          <a href="#">刷新</a>
+        </p>
+        <p class="form-item">
+          <button class="btn btn-orange btn-block">登录</button>
+        </p>
+        <p class="text-center">
+          还没有账号？
+          <a href="./register.html" class="register-link">免费注册</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div class="footer ">
+    <div class="container">
+      <div class="contact clearfix">
+        <div class="service fl">
+          <h1>客服热线</h1>
+          <h1>400-888-8888</h1>
+          <a href="#"><i class="fa fa-qq"></i>QQ客服</a>
+        </div>
+        <div class="app-qrcode fl clearfix">
+          <div class="fl">
+            <img src="./images/software/android.jpg" alt="">
+            <p>扫一扫关注我们</p>
+          </div>
+          <div class="fl">
+            <img src="./images/software/ios.jpg" alt="">
+            <p>苹果版APP下载</p>
+          </div>
+          <div class="fl">
+            <img src="./images/software/ios.jpg" alt="">
+            <p>苹果版APP下载</p>
+          </div>
+        </div>
+        <div class="links fr">
+          <a href="./stock-free.html">免息配资</a>
+          <a href="./stock-day.html">按天配资</a>
+          <a href="./stock-month.html">按月配资</a>
+        </div>
+      </div>
+      <p class="copyright">
+        Copyright @ 2014~2017 All Rights Reserved.
+        （市场有风险，投资需谨慎） 京ICP备17140308号-1
+      </p>
+    </div>
+  </div>
+
+
+  <script src="./js/libs/require.min.js"></script>
+  <script>
+    require(['js/login.js'])
+  </script>
+</body>
+</html>

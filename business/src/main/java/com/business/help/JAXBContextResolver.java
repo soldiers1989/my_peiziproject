@@ -19,7 +19,7 @@ import com.business.dto.model.RestfulResult;
 import com.business.dto.model.Shop;
 import com.business.dto.model.SystemConfig;
 import com.business.dto.model.TestModel;
-import com.business.dto.model.UserRecord;
+import com.business.dto.model.User;
 import com.business.dto.model.base.Request;
 import com.business.dto.model.base.Response;
 import com.business.dto.request.TestRequest;
@@ -36,7 +36,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
 
     private JAXBContext context;
     @SuppressWarnings("rawtypes")
-    private Class[] types = { ManagerAuth.class, SystemConfig.class, PageDTO.class, AuthConfig.class, Manager.class, Shop.class,SystemConfig.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,UserRecord.class};
+    private Class[] types = { ManagerAuth.class, SystemConfig.class, PageDTO.class, AuthConfig.class, Manager.class, Shop.class,SystemConfig.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,User.class};
 
     public JAXBContextResolver() throws Exception {
 	this.context = new JSONJAXBContext(JSONConfiguration.natural().build(), types);
