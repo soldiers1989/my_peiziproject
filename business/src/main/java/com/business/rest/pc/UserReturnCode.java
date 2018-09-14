@@ -9,7 +9,10 @@ package com.business.rest.pc;
  */
 public enum UserReturnCode {
 
-	USER_REPEAT(1, "用户已存在"), 
+	USER_NOTEXIST(1, "用户不存在！"), 
+	USER_REPEAT(1, "手机号已存在！"), 
+	CODE_NOTSEND(1, "未发送验证码！"), 
+	CODE_ERROR(1, "验证码错误！"), 
 	;
 	private int flag;
 	private String desc;

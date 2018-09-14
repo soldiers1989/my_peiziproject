@@ -34,6 +34,26 @@
 	<script src="<%=basePath%>/resources/msgBox/MsgBox.js"></script>
 	<script src="<%=basePath%>/js/register.js"></script>
   <title>注册</title>
+  <script type="text/javascript">
+
+$(document).ready(function() {
+	getuid();
+});
+
+
+function getuid(){
+	var RESTFUL_BASE = serviceurl.baseurl;
+    $.ajax({
+        url: RESTFUL_BASE+"/pc/user/getuid",
+        type: 'GET',
+        dataType: 'text',
+        success: function(data){
+            $("#uid").val(data);
+        }
+    });
+}
+
+</script>
 </head>
 <body class="has-all">
   <div class="top-bar">
@@ -83,6 +103,7 @@
   <div class="register">
     <div class="container">
       <form action="#" class="register-form">
+      	<input type="hidden" id="uid" name="uid" value="">
         <p class="form-item">
           <label for="">手机号码</label>
           <input type="text" name="mobile" placeholder="请输入您的手机号码"

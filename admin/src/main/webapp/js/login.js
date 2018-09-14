@@ -6,6 +6,7 @@ require(['js/require-config'], function() {
       var $mobileInput = $('#mobile');
       var $pswInput = $('#password');
       var $codeInput = $('#code');
+      var $checkCodeInput = $('#checkCode');
       var $errorTips = $('#errorTips');
 
       /**
@@ -36,9 +37,8 @@ require(['js/require-config'], function() {
         var mobile = $mobileInput.val().trim();
         var password = $pswInput.val().trim();
         var code = $codeInput.val().trim();
-
+        var checkCode = document.getElementById("checkCode").innerHTML;
         hideErrorTips();
-
         if (mobile === '') {
           showErrorTips('请输入手机号码');
         } else if (!utils.checkMobile(mobile)) {
@@ -47,16 +47,18 @@ require(['js/require-config'], function() {
           showErrorTips('请输入密码');
         } else if (code === '') {
           showErrorTips('请输入验证码');
+        } else if (code !== checkCode) {
+          showErrorTips('验证码错误');
         } else {
           $.ajax({
-            url: '',
+            url: '/service/pc/user/login',
             method: 'POST',
             data: {
               mobile: mobile,
-              password: password,
-              code: code
+              password: password
             },
             success: function(resp) {
+              window.location.href = "./pcRegLoginServlet?account=" + mobile;
               console.log(resp);
             },
             error: function() {

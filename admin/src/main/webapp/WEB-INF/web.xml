@@ -16,6 +16,15 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/logoutservlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>pcRegLoginServlet</servlet-name>
+		<servlet-class>com.admin.servlet.PcRegLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pcRegLoginServlet</servlet-name>
+		<url-pattern>/pcRegLoginServlet</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>

@@ -5,7 +5,7 @@ package com.business.dto.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class User implements java.io.Serializable {
+public class UserDTO implements java.io.Serializable {
 
 	private Long id;
 	private String uid;
@@ -14,7 +14,7 @@ public class User implements java.io.Serializable {
 	private String createtime;
 	private String operatetime;
 
-    public User() {
+    public UserDTO() {
     }
 
 	public Long getId() {
