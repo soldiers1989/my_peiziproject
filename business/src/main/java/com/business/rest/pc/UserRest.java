@@ -35,26 +35,24 @@ public class UserRest {
 
 	@Autowired
 	VerifyCodeService verifyCodeService;
-	
+
 	/**
-     * 生成uid
-     */
-    @GET
-    @Path("/getuid")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getuid() {
-    	return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-	
+	 * 生成uid
+	 */
+	@GET
+	@Path("/getuid")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
 	/**
 	 * 注册
 	 */
 	@Path("/register")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public RestfulResult register(@FormParam("uid") String uid,
-			@FormParam("mobile") String phone, @FormParam("code") String code,
-			@FormParam("password") String password) {
+	public RestfulResult register(@FormParam("uid") String uid, @FormParam("mobile") String phone, @FormParam("code") String code, @FormParam("password") String password) {
 		RestfulResult result = new RestfulResult();
 		Date now = new Date();
 		try {
@@ -66,21 +64,21 @@ public class UserRest {
 				result.setResultMessage(UserReturnCode.USER_REPEAT.getDesc());
 				return result;
 			}
-			
-			//验证码校验工作
+
+			// 验证码校验工作
 			VerifyCodeEntity verifyCodeEntity = verifyCodeService.getByUid(uid);
-			if (null == verifyCodeEntity){
+			if (null == verifyCodeEntity) {
 				result.setResultCode(UserReturnCode.CODE_NOTSEND.getFlag());
 				result.setResultMessage(UserReturnCode.CODE_NOTSEND.getDesc());
 				return result;
 			} else {
-				if (!code.equals(verifyCodeEntity.getCode())){
+				if (!code.equals(verifyCodeEntity.getCode())) {
 					result.setResultCode(UserReturnCode.CODE_ERROR.getFlag());
 					result.setResultMessage(UserReturnCode.CODE_ERROR.getDesc());
 					return result;
 				}
 			}
-			
+
 			UserDTO dto = new UserDTO();
 			dto.setUid(uid);
 			dto.setPhone(phone);
@@ -93,7 +91,7 @@ public class UserRest {
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("system", "register",WebUtils.objectToJson(dto)));
+			logger.info(WebUtils.outLogInfo("system", "register", WebUtils.objectToJson(dto)));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("system", "register", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
@@ -101,8 +99,7 @@ public class UserRest {
 		}
 		return result;
 	}
-	
-	
+
 	/**
 	 * 登录
 	 */
@@ -120,13 +117,13 @@ public class UserRest {
 				result.setResultMessage(UserReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
-			
+
 			UserDTO dto = new UserDTO();
 			dto.setPhone(phone);
 			dto.setPassword(password);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("system", "login",WebUtils.objectToJson(dto)));
+			logger.info(WebUtils.outLogInfo("system", "login", WebUtils.objectToJson(dto)));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("system", "login", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
