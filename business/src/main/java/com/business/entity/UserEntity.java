@@ -23,6 +23,7 @@ public class UserEntity implements java.io.Serializable {
 	private String uid;
 	private String phone;
 	private String password;
+	private Long amount;
 	private Date createtime;
 	private Date operatetime;
 
@@ -86,5 +87,16 @@ public class UserEntity implements java.io.Serializable {
 	public void setOperatetime(Date operatetime) {
 		this.operatetime = operatetime;
 	}
+
+	@Column(name = "amount", nullable = false)
+	public Long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Long amount) {
+		this.amount = amount;
+	}
+	
+	
 
 }

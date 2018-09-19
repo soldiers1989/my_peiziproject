@@ -23,11 +23,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	String account = URLDecoder.decode(request.getParameter("account"), "utf-8");
-	String type = request.getParameter("type").toString();
-	request.getSession().setAttribute("account", account);
-	request.getSession().setAttribute("type", type);
-	response.sendRedirect(request.getContextPath() + "/" + type +"/index.jsp");
+		String account = URLDecoder.decode(request.getParameter("account"), "utf-8");
+		String type = request.getParameter("type").toString();
+		request.getSession().setAttribute("account", account);
+		request.getSession().setAttribute("type", type);
+		response.sendRedirect(request.getContextPath() + "/" + type +"/index.jsp");
     }
 
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="business/src/main/java"/>
+
+	<!--<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="services/src/main/java"/>-->
+	<classpathentry kind="src" output="admin/src/main/webapp/WEB-INF/classes" path="admin/src/main/java"/>
+	<classpathentry kind="src" output="web/src/main/webapp/WEB-INF/classes" path="web/src/main/java"/>
+	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="core/src/main/java"/>
 	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="services/src/main/resources"/>
 	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="core/src/main/resources"/>
-	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="core/src/main/java"/>
-	<classpathentry kind="src" output="admin/src/main/webapp/WEB-INF/classes" path="admin/src/main/java"/>
-	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="services/src/main/java"/>
-		<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="business/src/main/java"/>
-	
 	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/transaction/jta/1.1/jta-1.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
