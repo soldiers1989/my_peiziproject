@@ -30,9 +30,9 @@ import com.business.service.SystemConfigService;
 
 @Service
 @Path("/business/systemConfig")
-public class SystemConfigRest {
+public class AdminSystemConfigRest {
 
-    private static final Logger logger = Logger.getLogger(SystemConfigRest.class);
+    private static final Logger logger = Logger.getLogger(AdminSystemConfigRest.class);
 
     @Autowired
     SystemConfigService sysconfigService;

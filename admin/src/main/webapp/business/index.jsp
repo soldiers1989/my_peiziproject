@@ -53,8 +53,6 @@ var page = new Page();
                         <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>记录管理 </span><i class="fa fa-angle-left pull-right"></i></a>
 	                        <ul class="treeview-menu">
 				  				<li><a href="<%=basePath%>/<%=busType%>/record/inlist.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 入金列表</a></li>
-	                        </ul>
-	                        <ul class="treeview-menu">
 				  				<li><a href="<%=basePath%>/<%=busType%>/record/outlist.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 出金列表</a></li>
 	                        </ul>
                         </li>

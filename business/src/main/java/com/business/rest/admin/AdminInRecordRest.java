@@ -16,26 +16,27 @@ import org.springframework.stereotype.Service;
 
 import com.base.orm.Page;
 import com.base.util.WebUtils;
-import com.business.dto.model.OutRecordDTO;
 import com.business.dto.model.PageDTO;
+import com.business.dto.model.InRecordDTO;
 import com.business.dto.model.RestfulResult;
-import com.business.entity.OutRecordEntity;
+import com.business.entity.InRecordEntity;
 import com.business.entity.UserEntity;
 import com.business.enums.ReturnCode;
-import com.business.service.OutRecordService;
+import com.business.service.InRecordService;
 import com.business.service.UserService;
 
 /**
- * 出金REST类
+ * 入金REST类
  * 
  */
 @Service
-@Path("/business/outrecord")
-public class OutRecordRest {
+@Path("/business/inrecord")
+public class AdminInRecordRest {
+
 	private Logger logger = Logger.getLogger(getClass());
 
 	@Autowired
-	private OutRecordService outRecordService;
+	private InRecordService inRecordService;
 
 	@Autowired
 	private UserService userService;
@@ -47,9 +48,9 @@ public class OutRecordRest {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public PageDTO<OutRecordDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,
+	public PageDTO<InRecordDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,
 			@FormParam("operator") String operator) {
-		PageDTO<OutRecordDTO> dtos = new PageDTO<OutRecordDTO>();
+		PageDTO<InRecordDTO> dtos = new PageDTO<InRecordDTO>();
 		RestfulResult result = new RestfulResult();
 		String operate = "分页查询配资信息";
 		try {
@@ -70,16 +71,16 @@ public class OutRecordRest {
 					return dtos;
 				}
 			}
-			Page<OutRecordEntity> entities = this.outRecordService.getByPage(pageNo, pageSize, userid);
+			Page<InRecordEntity> entities = this.inRecordService.getByPage(pageNo, pageSize, userid);
 			dtos.setPageNo(pageNo);
 			dtos.setPageSize(pageSize);
 			dtos.setTotalPages(entities.getTotalPages());
 			if (entities.getTotalCount() > 0) {
-				dtos.setResult(new ArrayList<OutRecordDTO>());
+				dtos.setResult(new ArrayList<InRecordDTO>());
 			}
-			for (OutRecordEntity entity : entities.getResult()) {
-				OutRecordDTO dto = new OutRecordDTO();
-				WebUtils.beanCopy(OutRecordEntity.class, OutRecordDTO.class, entity, dto);
+			for (InRecordEntity entity : entities.getResult()) {
+				InRecordDTO dto = new InRecordDTO();
+				WebUtils.beanCopy(InRecordEntity.class, InRecordDTO.class, entity, dto);
 				UserEntity tmpEntity = userService.getById(dto.getUserid());
 				dto.setPhone(tmpEntity.getPhone());
 				dto.setAmount((double)entity.getAmount()/100);

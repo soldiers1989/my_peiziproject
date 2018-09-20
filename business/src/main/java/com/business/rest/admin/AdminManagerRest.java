@@ -34,7 +34,7 @@ import com.business.service.ManagerService;
 
 @Service
 @Path("/business/manager")
-public class ManagerRest {
+public class AdminManagerRest {
 
     private Logger logger = Logger.getLogger(getClass());
     @Autowired

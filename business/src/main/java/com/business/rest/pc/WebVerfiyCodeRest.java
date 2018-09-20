@@ -28,9 +28,9 @@ import com.business.service.VerifyCodeService;
 
 @Service
 @Path("/pc/code")
-public class VerfiyCodeRest {
+public class WebVerfiyCodeRest {
 
-	private static final Logger logger = Logger.getLogger(VerfiyCodeRest.class);
+	private static final Logger logger = Logger.getLogger(WebVerfiyCodeRest.class);
 
 	@Autowired
 	VerifyCodeService verifyCodeService;

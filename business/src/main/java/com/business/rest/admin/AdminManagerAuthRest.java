@@ -41,7 +41,7 @@ import com.business.service.ManagerService;
 
 @Service
 @Path("/business/managerAuth")
-public class ManagerAuthRest {
+public class AdminManagerAuthRest {
     private Logger logger = Logger.getLogger(getClass());
     @Autowired
     ManagerAuthService managerAuthService;

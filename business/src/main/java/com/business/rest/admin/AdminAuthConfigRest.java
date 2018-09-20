@@ -36,7 +36,7 @@ import com.business.service.AuthConfigService;
 
 @Service
 @Path("/business/authConfig")
-public class AuthConfigRest {
+public class AdminAuthConfigRest {
 
     private Logger logger = Logger.getLogger(getClass());
 

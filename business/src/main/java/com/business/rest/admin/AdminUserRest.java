@@ -30,7 +30,7 @@ import com.business.service.UserService;
  */
 @Service
 @Path("/business/user")
-public class UserRest {
+public class AdminUserRest {
 	private Logger logger = Logger.getLogger(getClass());
 
 	@Autowired
@@ -51,6 +51,16 @@ public class UserRest {
 			UserEntity entity = userService.getById(dto.getId());
 			entity.setAmount((long)(dto.getAmount()*100));
 			entity.setOperatetime(now);
+			if (null != dto.getRealName() && !"".equals(dto.getRealName()) && null != dto.getCentNo() && !"".equals(dto.getCentNo())){
+				entity.setRealName(dto.getRealName());
+				entity.setCentNo(dto.getCentNo());
+				entity.setCentStatus(1);
+			}
+			if (null != dto.getBankName() && !"".equals(dto.getBankName()) && null != dto.getBankNo() && !"".equals(dto.getBankNo())){
+				entity.setBankName(dto.getBankName());
+				entity.setBankNo(dto.getBankNo());
+				entity.setBankStatus(1);
+			}
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
@@ -87,6 +97,9 @@ public class UserRest {
 				UserDTO dto = new UserDTO();
 				WebUtils.beanCopy(UserEntity.class, UserDTO.class, entity, dto);
 				dto.setAmount((double)entity.getAmount()/100);
+				if (null == entity.getRemdPhone()){
+					dto.setRemdPhone("无");
+				}
 				dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 				dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 				dtos.getResult().add(dto);

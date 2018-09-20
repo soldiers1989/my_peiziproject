@@ -31,7 +31,7 @@ import com.business.service.UserService;
  */
 @Service
 @Path("/business/peizi")
-public class PeiziRest {
+public class AdminPeiziAdminRest {
 	private Logger logger = Logger.getLogger(getClass());
 
 	@Autowired

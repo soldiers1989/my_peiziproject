@@ -26,9 +26,9 @@ import com.business.service.VerifyCodeService;
 
 @Service
 @Path("/pc/user")
-public class UserRest {
+public class WebUserRest {
 
-	private static final Logger logger = Logger.getLogger(UserRest.class);
+	private static final Logger logger = Logger.getLogger(WebUserRest.class);
 
 	@Autowired
 	UserService userService;

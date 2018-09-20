@@ -72,19 +72,15 @@
 		//调用初始查询
 		getPageData();
 		$("#saveBtn").click(function(){
-            var msg = $("#shopDesci").val();
-     		//过滤 回车、空格等
-     		msg=msg.replace(/\r/g,'\\r').replace(/\n/g,'\\n');;
-             // 修改 
              $.ajax({
-             	url:serviceurl.baseurl+"/<%=busType%>/shop/save",
+             	url:serviceurl.baseurl+"/<%=busType%>/user/save",
              	data:'{'
              		+'"id":"'+$("#id").val()+'"'
-             		+',"name":"'+$("#name").val()+'"'
-             		+',"shopDesci":"'+msg+'"'
-             		+',"prior":"'+$("#prior").val()+'"' 
-             		+',"icon":"'+$("#icon").val()+'"'
-             		+',"type":"'+$("#type").val()+'"'
+             		+',"amount":"'+$("#amount").val()+'"'
+             		+',"realName":"'+$("#realName").val()+'"' 
+             		+',"centNo":"'+$("#centNo").val()+'"'
+             		+',"bankName":"'+$("#bankName").val()+'"'
+             		+',"bankNo":"'+$("#bankNo").val()+'"'
              		+',"operator":"<%=userid%>"'
              		+'}',
                  beforeSend:function(){
@@ -114,7 +110,7 @@
         $("a[title='修改']").live("click",function(){
             //访问ajax,取分类信息
             $.ajax({
-                url:serviceurl.baseurl+"/<%=busType%>/shop/get/primarykey",
+                url:serviceurl.baseurl+"/<%=busType%>/user/get/primarykey",
                 type:"POST",
                 data:{'id':$(this).parent().parent().attr("id"),'operator':'<%=userid%>'},
                 beforeSend:function(){
@@ -126,14 +122,11 @@
                     //解析json数据,填充form
                     var resultObject=resultinfo;
                     $("#id").val(resultObject.id);
-                    $("#name").val(resultObject.name);
-                    $("#shopDesci").val(resultObject.shopDesci);
-                    $("#prior").val(resultObject.prior);
-                    $("#type").val(resultObject.type);
-                    $("#createtime").val(resultObject.createtime);
-                    $("#icon").val(resultObject.icon);
-                    $("#icon-img").attr("src",resultObject.iconurl);
-                	$("#icon-view").attr("href",resultObject.iconurl);
+                    $("#amount").val(resultObject.amount);
+                    $("#realName").val(resultObject.realName);
+                    $("#centNo").val(resultObject.centNo);
+                    $("#bankName").val(resultObject.bankName);
+                    $("#bankNo").val(resultObject.bankNo);
                 }
             });
         });
@@ -144,58 +137,6 @@
             del($(this).parent().parent().attr("id"));
         });
         
-        //图片上传
-        var icon_uploader3 = new qq.FileUploader({
-            allowedExtensions: ["jpg","png","gif"],
-            multiple: false,
-            params: {type:"shop" },//class表示货架图标的上传
-            element: document.getElementById("styleIcon_uploader"),
-            action: RESTFUL_BASE + '/<%=busType%>/upload/picture',
-            template: '<div class="qq-uploader">' +
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">文件上传</div>' +
-                '<ul class="qq-upload-list"></ul>' +
-                '</div>',
-            fileTemplate: '<li>' +
-                '<span class="qq-upload-file"></span>' +
-                '<span class="qq-upload-spinner"></span>' +
-                '<span class="qq-upload-size"></span>' +
-                '<a class="qq-upload-cancel" href="#">取消</a>' +//中文显示
-            '<span class="qq-upload-failed-text">上传失败!</span>' +//中文显示
-            '</li>',
-            onSubmit: function(id, fileName){
-            
-                this.params.createtime = $("#createtime").val();//设置createtimeurl
-            },
-            onComplete: function(id, fileName, responseJSON){
-                if(responseJSON.success){//上传成功
-                    var filename = responseJSON.filename;
-                    var url = responseJSON.filepath;
-                    var fn = responseJSON.filename;
-                    $("#icon").val(fn);
-                    var picpath = responseJSON.filepath;
-                    $("#icon-view").attr("href",picpath);
-                    $("#icon-img").attr("src",picpath);
-                }else{//上传失败
-                    var msg = "上传图标失败！原因："+((!responseJSON.error|| responseJSON.error=="")?"服务错误！":responseJSON.error);
-
-                    if(msg.length>100){
-                        msg = msg.substring(0, 99)+"......";
-                    }
-                    $("#operateresult").show();
-                    if($("#operateresult").hasClass("success")){
-                        $("#operateresult").removeClass("success").addClass("error").html(msg);
-                    } else {
-                        $("#operateresult").addClass("error").html(msg);
-                    }
-                }
-            }
-        });
-        icon_uploader3._onSubmit=function(id, fileName){
-            this._listElement.innerHTML="";//只有一个列表项
-            qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
-            this._addToList(id, fileName);
-        };
         
          
         
@@ -216,30 +157,13 @@
     //分页查询
     function  getPageData(pageNo){
         $.ajax({
-            url:serviceurl.baseurl+"/<%=busType%>/shop/get/page",
+            url:serviceurl.baseurl+"/<%=busType%>/user/get/page",
             type: 'POST',
             data: {'name':$('#searchname').val(),'pageNo':pageNo,'operator':'<%=userid%>'},
             success:dataFill
         });
     }
-    //删除方法
-    function del(ids){
-        if(!confirm('该删除将不可恢复,确认删除?')){
-            return;
-        }
-        //ajax 
-        $.ajax({
-            url: serviceurl.baseurl+'/<%=busType%>/shop/delete/list',
-            type: 'POST',
-            traditional :true,//使数组直接变成同一名字的查询字段
-            data: {'ids':ids,'operator':'<%=userid%>'},
-            success: function(data){
-                //解析json数据,填充form并填充操作结果提示
-                formSubmitSuccesssTip2(data);
-                getPageData(page.pageNo);
-            }
-        });
-    } 
+
    //列表数据填充
     function dataFill(data) {
     	var datatr = "";
@@ -290,32 +214,15 @@
     
     //校验提交表单
     function validateForm() {
-    	 if(!isEmpty($("#name"),"请填写店铺名称!")) {
-             return false;
-         }    	 
-    	 if(!isEmpty($("#type"),"请选择店铺类型!")) {
-             return false;
-         }  
-    	 if(!isEmpty2($("#prior"),"请填写排序!")){
-              return false;
-         }
-         　	 var r = /^\+?[1-9][0-9]*$/;　　//正整数
-         if(!r.test($("#prior").val())){
-          	alert("排序只能输入数字") ; 
-          	return false ;
-         }
-         　	 if($("#icon").val()==''){
-            alert("请上传图标！") ;
-            return  false ; 
-         }
-     	 
-       	 return true;
+    	if ($("#id").val()==""){
+    		alert("请通过列表页面点击修改图标,进行修改!");
+    		return false;
+    	}
+       	return true;
     }
      // 清空form表单数据
      function resetForm(){
         $("#form1").resetForm();
-        $("#icon-img").attr("src","../../resources/images/zanque.jpg");
-        $("#icon-view").attr("href","../../resources/images/zanque.jpg");
     }
      
     function add(){
@@ -323,17 +230,6 @@
          $("a[href=#tab2]").click();
      }
      
-    //批量操作
-    function batchDel(){
-    	var ids = getSelectedIds();
-        if(ids.length==0){
-            alert("您还没有选择要删除的记录！");
-            return;
-        }
-        if(ids){
-            del(ids);
-        }
-    }
     function IFrameResize(){
    	 	var obj = parent.document.getElementById("myFrameId"); //取得父页面IFrame对象
    	 	obj.height = this.document.body.scrollHeight; //调整父页面中IFrame的高度为此页面的高度
@@ -362,7 +258,7 @@
 										<div class="input-group">
 											<input type="text" id="searchname" name="searchname"
 												class="form-control input-sm pull-right"
-												style="width: 150px;" placeholder="店铺名称" />
+												style="width: 150px;" placeholder="手机号" />
 											<div class="input-group-btn">
 												<button class="btn btn-sm btn-default" style="height: 30px;"
 													onclick="getPageData();">
@@ -374,18 +270,7 @@
 								</div>
 								<div class="table-responsive mailbox-messages">
 									<div class="mailbox-controls">
-										<button class="btn btn-default btn-sm checkbox-toggle"
-											title="全选/全不选">
-											<i class="fa fa-square-o">&nbsp;全选</i>
-										</button>
-										<div class="btn-group">
-											<button class="btn btn-default btn-sm"  title="新增" onclick="add();">
-												<i class="fa fa-plus">&nbsp;新增</i>
-											</button>
-											<button class="btn btn-default btn-sm" title="批量删除" onclick="batchDel();">
-												<i class="fa fa-trash-o">&nbsp;批量删除</i>
-											</button>
-										</div>
+										
 									</div>
 									<table id="datalist" class="table table-hover table-striped">
 										<thead>
@@ -433,11 +318,26 @@
 									<input type="hidden" id="createtime" name="createtime" value="" />
 									<div class="box-body">
 										<div class="form-group">
-											<label>余额</label> <input type="text" id="name" name="name"
+											<label>余额</label> <input type="text" id="amount" name="amount"
 												class="form-control" style="width: 40%;"
-												placeholder="*必须项（长度1-60位）" />
+												placeholder="*必须项 数字" />
 										</div>
-										
+										<div class="form-group">
+											<label>真实姓名</label> <input type="text" id="realName" name="realName"
+												class="form-control" style="width: 40%;"/>
+										</div>
+										<div class="form-group">
+											<label>身份证号</label> <input type="text" id="centNo" name="centNo"
+												class="form-control" style="width: 40%;"/>
+										</div>
+										<div class="form-group">
+											<label>银行开户行</label> <input type="text" id="bankName" name="bankName"
+												class="form-control" style="width: 40%;"/>
+										</div>
+										<div class="form-group">
+											<label>银行帐号</label> <input type="text" id="bankNo" name="bankNo"
+												class="form-control" style="width: 40%;"/>
+										</div>
 										<div class="box-footer">
 											<button type="button" class="btn btn-primary" id="saveBtn">提交</button>
 										</div>
