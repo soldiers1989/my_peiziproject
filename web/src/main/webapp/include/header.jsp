@@ -53,3 +53,30 @@
       </div>
     </div>
   </div>
+   <div class="header">
+    <div class="container clearfix">
+      <a href="./index.jsp" class="logo fl">
+        <img src="./images/index/logo.png" alt="">
+      </a>
+      <ul class="nav fr">
+        <li class="active">
+          <a href="./index.jsp">网站首页</a>
+        </li>
+        <li>
+          <a href="./stock-free.jsp">免息配资</a>
+        </li>
+        <li>
+          <a href="./stock-day.jsp">按天配资</a>
+        </li>
+        <li>
+          <a href="./stock-month.jsp">按月配资</a>
+        </li>
+        <li>
+          <a href="./software.jsp">交易软件</a>
+        </li>
+        <li>
+          <a href="./share.jsp">我要推广</a>
+        </li>
+      </ul>
+    </div>
+  </div>

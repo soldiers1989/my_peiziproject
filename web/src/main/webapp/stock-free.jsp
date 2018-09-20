@@ -1,33 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="../include/header.jsp"%>
-  <div class="header">
-    <div class="container clearfix">
-      <a href="./index.html" class="logo fl">
-        <img src="./images/index/logo.png" alt="">
-      </a>
-      <ul class="nav fr">
-        <li>
-          <a href="./index.html">网站首页</a>
-        </li>
-        <li class="active">
-          <a href="./stock-free.html">免息配资</a>
-        </li>
-        <li>
-          <a href="./stock-day.html">按天配资</a>
-        </li>
-        <li>
-          <a href="./stock-month.html">按月配资</a>
-        </li>
-        <li>
-          <a href="./software.html">交易软件</a>
-        </li>
-        <li>
-          <a href="./share.html">我要推广</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
   <div class="stock-banner">
   </div>
   <div class="stock-type">

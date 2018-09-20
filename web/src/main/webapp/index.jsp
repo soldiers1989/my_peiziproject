@@ -1,32 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="../include/header.jsp"%>
-  <div class="header">
-    <div class="container clearfix">
-      <a href="./index.html" class="logo fl">
-        <img src="./images/index/logo.png" alt="">
-      </a>
-      <ul class="nav fr">
-        <li class="active">
-          <a href="./index.html">网站首页</a>
-        </li>
-        <li>
-          <a href="./stock-free.html">免息配资</a>
-        </li>
-        <li>
-          <a href="./stock-day.html">按天配资</a>
-        </li>
-        <li>
-          <a href="./stock-month.html">按月配资</a>
-        </li>
-        <li>
-          <a href="./software.html">交易软件</a>
-        </li>
-        <li>
-          <a href="./share.html">我要推广</a>
-        </li>
-      </ul>
-    </div>
-  </div>
   <div class="swiper-container banner">
     <div class="container">
       <div class="banner-box fr">
@@ -36,8 +9,8 @@
           <h3>资金100%安全，100%实盘交易</h3>
         </div>
         <p class="btn-wrapper clearfix">
-          <a href="./register.html" class="btn btn-block btn-primary register-btn fl">免费注册</a>
-          <a href="./login.html" class="btn btn-block btn-primary login-btn fr">立即登录</a>
+          <a href="./register.jsp" class="btn btn-block btn-primary register-btn fl">免费注册</a>
+          <a href="./login.jsp" class="btn btn-block btn-primary login-btn fr">立即登录</a>
         </p>
       </div>
     </div>
@@ -139,7 +112,7 @@
         </div>
         <p class="before-btn">资金第三方托管 全实盘交易</p>
         <p class="btn-wrapper">
-          <a href="./stock-free.html" class="btn outline primary btn-block">立即申请</a>
+          <a href="./stock-free.jsp" class="btn outline primary btn-block">立即申请</a>
         </p>
       </li>
       <li>
@@ -163,7 +136,7 @@
         </div>
         <p class="before-btn">资金第三方托管 全实盘交易</p>
         <p class="btn-wrapper">
-          <a href="./stock-day.html" class="btn outline orange btn-block">立即申请</a>
+          <a href="./stock-day.jsp" class="btn outline orange btn-block">立即申请</a>
         </p>
       </li>
       <li>
@@ -187,7 +160,7 @@
         </div>
         <p class="before-btn">资金第三方托管 全实盘交易</p>
         <p class="btn-wrapper">
-          <a href="./stock-month.html" class="btn outline orange btn-block">立即申请</a>
+          <a href="./stock-month.jsp" class="btn outline orange btn-block">立即申请</a>
         </p>
       </li>
     </ul>
@@ -201,7 +174,7 @@
           <br>&nbsp;</p>
         <img src="./images/index/software.png" alt="">
         <p class="btn-wrapper">
-          <a href="./software.html" class="btn btn-orange outline orange btn-block">马上下载</a>
+          <a href="./software.jsp" class="btn btn-orange outline orange btn-block">马上下载</a>
         </p>
       </li>
       <li>
@@ -211,7 +184,7 @@
           <br>可以随时兑现提取</p>
         <img src="./images/index/wallet.png" alt="">
         <p class="btn-wrapper">
-          <a href="./share.html" class="btn btn-orange outline orange btn-block">马上推广</a>
+          <a href="./share.jsp" class="btn btn-orange outline orange btn-block">马上推广</a>
         </p>
       </li>
       <li>
