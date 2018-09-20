@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <header class="main-header">
 	<!-- Logo -->
-	<a href="<%=basePath%>/index.jsp" class="logo"><b>业务管理系统</b></a>
+	<a href="<%=basePath%>/index.jsp" class="logo"><b>配资管理系统</b></a>
 	<!-- Header Navbar: style can be found in header.less -->
 	<nav class="navbar navbar-static-top" role="navigation">
 		<!-- Sidebar toggle button-->

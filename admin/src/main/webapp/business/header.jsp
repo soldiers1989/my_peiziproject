@@ -18,7 +18,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>业务管理系统</title>
+        <title>配资管理系统</title>
         <!-- =============================== CSS ================================== -->
 
 <link rel="stylesheet" href="<%=basePath%>/resources/css/gridster/jquery.gridster.css" type="text/css" media="screen" /> 
@@ -257,7 +257,7 @@
            
         </script>
         <meta charset="UTF-8">
-		<title>业务管理平台</title>
+		<title>配资管理平台</title>
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     </head>
   

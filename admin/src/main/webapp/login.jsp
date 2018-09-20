@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>业务管理系统</title>
+<title>配资管理系统</title>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<link href="<%=basePath%>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="<%=basePath%>/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
@@ -99,7 +99,7 @@ function resetform() {
 <body class="login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<b>业务管理系统</b>
+			<b>配资管理系统</b>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
