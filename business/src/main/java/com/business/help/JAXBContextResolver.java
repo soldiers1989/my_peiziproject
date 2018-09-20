@@ -10,14 +10,16 @@ import javax.xml.bind.JAXBContext;
 
 import org.springframework.stereotype.Component;
 
-
-import com.business.dto.model.AuthConfig;
-import com.business.dto.model.Manager;
-import com.business.dto.model.ManagerAuth;
+import com.business.dto.model.AuthConfigDTO;
+import com.business.dto.model.InRecordDTO;
+import com.business.dto.model.ManagerDTO;
+import com.business.dto.model.ManagerAuthDTO;
+import com.business.dto.model.OutRecordDTO;
 import com.business.dto.model.PageDTO;
+import com.business.dto.model.PeiziDTO;
 import com.business.dto.model.RestfulResult;
-import com.business.dto.model.Shop;
-import com.business.dto.model.SystemConfig;
+import com.business.dto.model.ShopDTO;
+import com.business.dto.model.SystemConfigDTO;
 import com.business.dto.model.TestModel;
 import com.business.dto.model.UserDTO;
 import com.business.dto.model.base.Request;
@@ -36,7 +38,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
 
     private JAXBContext context;
     @SuppressWarnings("rawtypes")
-    private Class[] types = { ManagerAuth.class, SystemConfig.class, PageDTO.class, AuthConfig.class, Manager.class, Shop.class,SystemConfig.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,UserDTO.class};
+    private Class[] types = { ManagerAuthDTO.class, SystemConfigDTO.class, PageDTO.class, AuthConfigDTO.class, ManagerDTO.class, ShopDTO.class,SystemConfigDTO.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,UserDTO.class,PeiziDTO.class,InRecordDTO.class,OutRecordDTO.class};
 
     public JAXBContextResolver() throws Exception {
 	this.context = new JSONJAXBContext(JSONConfiguration.natural().build(), types);

@@ -4,18 +4,27 @@ package com.business.dto.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+@SuppressWarnings("serial")
 @XmlRootElement
 public class UserDTO implements java.io.Serializable {
 
 	private Long id;
-	private String uid;
-	private String phone;
-	private String password;
+	private String uid;// uuid
+	private String phone;// 手机号
+	private String password;// 密码
+	private double amount;// 余额
+	private String realName;// 真实姓名
+	private String centNo;// 身份证号
+	private Integer centStatus;// 身份验证状态
+	private String bankName;// 开户行
+	private String bankNo;// 银行帐号
+	private Integer bankStatus;// 银行绑定状态
+	private String remdPhone;// 推荐人手机号
 	private String createtime;
 	private String operatetime;
-
-    public UserDTO() {
-    }
+	private RestfulResult restfulResult;
+	public UserDTO() {
+	}
 
 	public Long getId() {
 		return id;
@@ -49,6 +58,70 @@ public class UserDTO implements java.io.Serializable {
 		this.password = password;
 	}
 
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public String getCentNo() {
+		return centNo;
+	}
+
+	public void setCentNo(String centNo) {
+		this.centNo = centNo;
+	}
+
+	public Integer getCentStatus() {
+		return centStatus;
+	}
+
+	public void setCentStatus(Integer centStatus) {
+		this.centStatus = centStatus;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getBankNo() {
+		return bankNo;
+	}
+
+	public void setBankNo(String bankNo) {
+		this.bankNo = bankNo;
+	}
+
+	public Integer getBankStatus() {
+		return bankStatus;
+	}
+
+	public void setBankStatus(Integer bankStatus) {
+		this.bankStatus = bankStatus;
+	}
+
+	public String getRemdPhone() {
+		return remdPhone;
+	}
+
+	public void setRemdPhone(String remdPhone) {
+		this.remdPhone = remdPhone;
+	}
+
 	public String getCreatetime() {
 		return createtime;
 	}
@@ -65,5 +138,12 @@ public class UserDTO implements java.io.Serializable {
 		this.operatetime = operatetime;
 	}
 
-    
+	public RestfulResult getRestfulResult() {
+		return restfulResult;
+	}
+
+	public void setRestfulResult(RestfulResult restfulResult) {
+		this.restfulResult = restfulResult;
+	}
+
 }

@@ -22,7 +22,7 @@ import com.base.orm.Page;
 import com.base.util.WebUtils;
 import com.business.dto.model.PageDTO;
 import com.business.dto.model.RestfulResult;
-import com.business.dto.model.SystemConfig;
+import com.business.dto.model.SystemConfigDTO;
 import com.business.entity.SystemConfigEntity;
 import com.business.enums.ReturnCode;
 import com.business.enums.Status;
@@ -44,7 +44,7 @@ public class SystemConfigRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult saveSysconfig(SystemConfig dto) {
+    public RestfulResult saveSysconfig(SystemConfigDTO dto) {
 	RestfulResult result = new RestfulResult();
 	Date now = new Date();
 	String operate = "保存或更新系统配置";
@@ -59,7 +59,7 @@ public class SystemConfigRest {
 		}
 		// 设置属性并保存数据库
 		entity = new SystemConfigEntity();
-		WebUtils.beanCopy(SystemConfig.class, SystemConfigEntity.class, dto, entity);
+		WebUtils.beanCopy(SystemConfigDTO.class, SystemConfigEntity.class, dto, entity);
 		entity.setStatus(Status.ACTIVE.value());
 		entity.setCreatetime(now);
 		entity.setOperatetime(now);
@@ -72,7 +72,7 @@ public class SystemConfigRest {
 		    result.setResultMessage(ReturnCode.CODE_REPEAT.getDesc());
 		    return result;
 		}
-		WebUtils.beanCopy(SystemConfig.class, SystemConfigEntity.class, dto, entity);
+		WebUtils.beanCopy(SystemConfigDTO.class, SystemConfigEntity.class, dto, entity);
 		entity.setStatus(Status.ACTIVE.value());
 		entity.setOperatetime(now);
 		sysconfigService.saveOrUpdate(entity);
@@ -95,14 +95,14 @@ public class SystemConfigRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public SystemConfig getById(@FormParam("id") int id, @FormParam("operator") String operator) {
-	SystemConfig dto = new SystemConfig();
+    public SystemConfigDTO getById(@FormParam("id") int id, @FormParam("operator") String operator) {
+	SystemConfigDTO dto = new SystemConfigDTO();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过id查询系统配置";
 	try {
 	    SystemConfigEntity entity = sysconfigService.get(id);
 	    if (!WebUtils.isEmpty(entity)) {
-		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfig.class, entity, dto);
+		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfigDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 	    }
@@ -125,14 +125,14 @@ public class SystemConfigRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public SystemConfig getSysconfigByCode(@FormParam("code") String code, @FormParam("operator") String operator) {
-	SystemConfig dto = new SystemConfig();
+    public SystemConfigDTO getSysconfigByCode(@FormParam("code") String code, @FormParam("operator") String operator) {
+	SystemConfigDTO dto = new SystemConfigDTO();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过code查询系统配置";
 	try {
 	    SystemConfigEntity entity = sysconfigService.getByCode(code);
 	    if (!WebUtils.isEmpty(entity)) {
-		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfig.class, entity, dto);
+		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfigDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 	    }
@@ -155,9 +155,9 @@ public class SystemConfigRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public PageDTO<SystemConfig> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("code") String code,
+    public PageDTO<SystemConfigDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("code") String code,
 	    @FormParam("name") String name, @FormParam("value") String value, @FormParam("operator") String operator) {
-	PageDTO<SystemConfig> dtos = new PageDTO<SystemConfig>();
+	PageDTO<SystemConfigDTO> dtos = new PageDTO<SystemConfigDTO>();
 	RestfulResult result = new RestfulResult();
 	String operate = "分页查询系统配置";
 	try {
@@ -181,11 +181,11 @@ public class SystemConfigRest {
 	    dtos.setPageSize(pageSize);
 	    dtos.setTotalPages(entities.getTotalPages());
 	    if (entities.getTotalCount() > 0) {
-		dtos.setResult(new ArrayList<SystemConfig>());
+		dtos.setResult(new ArrayList<SystemConfigDTO>());
 	    }
 	    for (SystemConfigEntity entity : entities.getResult()) {
-		SystemConfig dto = new SystemConfig();
-		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfig.class, entity, dto);
+		SystemConfigDTO dto = new SystemConfigDTO();
+		WebUtils.beanCopy(SystemConfigEntity.class, SystemConfigDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dtos.getResult().add(dto);

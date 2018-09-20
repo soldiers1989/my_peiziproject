@@ -24,8 +24,8 @@ import org.springframework.stereotype.Service;
 
 import com.base.orm.Page;
 import com.base.util.WebUtils;
-import com.business.dto.model.AuthConfig;
-import com.business.dto.model.ManagerAuth;
+import com.business.dto.model.AuthConfigDTO;
+import com.business.dto.model.ManagerAuthDTO;
 import com.business.dto.model.PageDTO;
 import com.business.dto.model.RestfulResult;
 import com.business.entity.AuthConfigEntity;
@@ -57,9 +57,9 @@ public class ManagerAuthRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public PageDTO<ManagerAuth> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("account") String account,
+    public PageDTO<ManagerAuthDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("account") String account,
 	    @FormParam("startTime") String startTime, @FormParam("operator") String operator, @FormParam("endTime") String endTime) {
-	PageDTO<ManagerAuth> dtos = new PageDTO<ManagerAuth>();
+	PageDTO<ManagerAuthDTO> dtos = new PageDTO<ManagerAuthDTO>();
 	RestfulResult result = new RestfulResult();
 	Date sTime = null;
 	Date eTime = null;
@@ -76,7 +76,7 @@ public class ManagerAuthRest {
 	    // 总数，用于分页
 	    int count = appstoreManagerEntities.getTotalCount();
 	    if (appstoreManagerEntities.getResult().size() > 0) {
-		dtos.setResult(new ArrayList<ManagerAuth>());
+		dtos.setResult(new ArrayList<ManagerAuthDTO>());
 	    }
 	    for (ManagerEntity entity : appstoreManagerEntities.getResult()) {
 
@@ -90,7 +90,7 @@ public class ManagerAuthRest {
 		    if (authnames.lastIndexOf(",") != -1) {
 			authnames = authnames.substring(0, authnames.lastIndexOf(","));
 		    }
-		    ManagerAuth dto = new ManagerAuth();
+		    ManagerAuthDTO dto = new ManagerAuthDTO();
 		    dto.setAuthnames(authnames);
 		    dto.setAccount(entity.getAccount());
 		    dto.setOperator(appstoreManagerAuthEntities.get(0).getOperator());
@@ -125,7 +125,7 @@ public class ManagerAuthRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult saveManagerauth(ManagerAuth dto) {
+    public RestfulResult saveManagerauth(ManagerAuthDTO dto) {
 	RestfulResult result = new RestfulResult();
 	String operate = "保存用户权限";
 	try {
@@ -155,7 +155,7 @@ public class ManagerAuthRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult updateManagerauth(ManagerAuth dto) {
+    public RestfulResult updateManagerauth(ManagerAuthDTO dto) {
 	RestfulResult result = new RestfulResult();
 	String operate = "修改用户权限";
 	try {
@@ -176,7 +176,7 @@ public class ManagerAuthRest {
     /**
      * 得到需要保存的权限合集
      */
-    private List<ManagerAuthEntity> saveOrUpdateManageAuth(ManagerAuth managerauth) {
+    private List<ManagerAuthEntity> saveOrUpdateManageAuth(ManagerAuthDTO managerauth) {
 	List<ManagerAuthEntity> managerauthEntities = new ArrayList<ManagerAuthEntity>();
 	try {
 	    if (WebUtils.isEmpty(managerauth.getSelectKeys())) {
@@ -237,8 +237,8 @@ public class ManagerAuthRest {
     @Path("/query/{managerid}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public ManagerAuth getManagerauth(@PathParam("managerid") String managerid, @PathParam("operator") String operator) {
-	ManagerAuth managerauth = new ManagerAuth();
+    public ManagerAuthDTO getManagerauth(@PathParam("managerid") String managerid, @PathParam("operator") String operator) {
+	ManagerAuthDTO managerauth = new ManagerAuthDTO();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过managerid查询用户权限";
 	String selectKeys = "";
@@ -279,16 +279,16 @@ public class ManagerAuthRest {
     @Path("/queryAuth/{account}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public List<AuthConfig> getManagerauthByAccount(@PathParam("account") String account, @PathParam("operator") String operator) {
-	List<AuthConfig> authconfigs = new ArrayList<AuthConfig>();
+    public List<AuthConfigDTO> getManagerauthByAccount(@PathParam("account") String account, @PathParam("operator") String operator) {
+	List<AuthConfigDTO> authconfigs = new ArrayList<AuthConfigDTO>();
 	String operate = "通过account查询用户权限";
 	try {
 	    // 取得用户的权限，并将结果转为DTO
 	    List<ManagerAuthEntity> managers = managerAuthService.getByAccount(account);
 	    for (ManagerAuthEntity managerauthEntity : managers) {
-		AuthConfig authconfig = new AuthConfig();
+		AuthConfigDTO authconfig = new AuthConfigDTO();
 		AuthConfigEntity authconfigEntity = authConfigService.getById(managerauthEntity.getAuthid());
-		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfig.class, authconfigEntity, authconfig);
+		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfigDTO.class, authconfigEntity, authconfig);
 		authconfig.setName(authconfigEntity.getName());
 		authconfig.setUrl(authconfigEntity.getUrl());
 		authconfigs.add(authconfig);

@@ -20,10 +20,18 @@ import javax.persistence.TemporalType;
 public class UserEntity implements java.io.Serializable {
 
 	private Long id;
-	private String uid;
-	private String phone;
-	private String password;
-	private Long amount;
+	private String uid;//uuid
+	private String phone;//手机号
+	private String password;//密码
+	private Long amount;//余额
+	private String realName;//真实姓名
+	private String centNo;//身份证号
+	private Integer centStatus;//身份验证状态
+	private String bankName;//开户行
+	private String bankNo;//银行帐号
+	private Integer bankStatus;//银行绑定状态
+	private String remdPhone;//推荐人手机号
+
 	private Date createtime;
 	private Date operatetime;
 
@@ -95,6 +103,69 @@ public class UserEntity implements java.io.Serializable {
 
 	public void setAmount(Long amount) {
 		this.amount = amount;
+	}
+
+	@Column(name = "real_name", length = 20)
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	@Column(name = "cent_no", length = 40)
+	public String getCentNo() {
+		return centNo;
+	}
+
+	public void setCentNo(String centNo) {
+		this.centNo = centNo;
+	}
+
+	@Column(name = "cent_status", nullable = false)
+	public Integer getCentStatus() {
+		return centStatus;
+	}
+
+	public void setCentStatus(Integer centStatus) {
+		this.centStatus = centStatus;
+	}
+
+	@Column(name = "bank_name", length = 100)
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	@Column(name = "bank_no", length = 50)
+	public String getBankNo() {
+		return bankNo;
+	}
+
+	public void setBankNo(String bankNo) {
+		this.bankNo = bankNo;
+	}
+
+	@Column(name = "bank_status", nullable = false)
+	public Integer getBankStatus() {
+		return bankStatus;
+	}
+
+	public void setBankStatus(Integer bankStatus) {
+		this.bankStatus = bankStatus;
+	}
+
+	@Column(name = "remd_phone", length = 20)
+	public String getRemdPhone() {
+		return remdPhone;
+	}
+
+	public void setRemdPhone(String remdPhone) {
+		this.remdPhone = remdPhone;
 	}
 	
 	

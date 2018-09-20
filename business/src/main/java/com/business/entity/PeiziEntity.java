@@ -21,7 +21,7 @@ public class PeiziEntity implements java.io.Serializable {
 
 	private Long id;
 	private Long userid;
-	private Integer type;//今日 or下个交易日
+	private Integer type;//0:免息,1:按天,2:按月
 	private Long baozhengAmount;//保证金
 	private Integer dayCount;//配资周期
 	private Long rate;//配资利息
@@ -29,6 +29,7 @@ public class PeiziEntity implements java.io.Serializable {
 	private Long caopanAmount;//操盘金额
 	private Long warnLine;//预警线
 	private Long pingcangLine;//平仓线
+	private Integer tradeDay;//1:今日 ,2:下个交易日
 	private Date createtime;
 
 	public PeiziEntity() {
@@ -134,6 +135,15 @@ public class PeiziEntity implements java.io.Serializable {
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	@Column(name = "trade_day", nullable = false)
+	public Integer getTradeDay() {
+		return tradeDay;
+	}
+
+	public void setTradeDay(Integer tradeDay) {
+		this.tradeDay = tradeDay;
 	}
 
 

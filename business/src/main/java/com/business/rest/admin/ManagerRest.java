@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 
 import com.base.orm.Page;
 import com.base.util.WebUtils;
-import com.business.dto.model.Manager;
+import com.business.dto.model.ManagerDTO;
 import com.business.dto.model.PageDTO;
 import com.business.dto.model.RestfulResult;
 import com.business.entity.ManagerEntity;
@@ -89,9 +89,9 @@ public class ManagerRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public PageDTO<Manager> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("account") String account,
+    public PageDTO<ManagerDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("account") String account,
 	    @FormParam("operator") String operator, @FormParam("startTime") String startTime, @FormParam("endTime") String endTime) {
-	PageDTO<Manager> pagedtos = new PageDTO<Manager>();
+	PageDTO<ManagerDTO> pagedtos = new PageDTO<ManagerDTO>();
 	RestfulResult result = new RestfulResult();
 	String operate = "分页查询管理员信息";
 	try {
@@ -109,12 +109,12 @@ public class ManagerRest {
 	    pagedtos.setPageSize(pageSize);
 	    pagedtos.setTotalPages(entitys.getTotalPages());
 	    if (entitys.getResult().size() > 0) {
-		pagedtos.setResult(new ArrayList<Manager>());
+		pagedtos.setResult(new ArrayList<ManagerDTO>());
 	    }
 	    for (ManagerEntity entity : entitys.getResult()) {
 		if (!"huanadmin".equals(entity.getAccount())) {
-		    Manager dto = new Manager();
-		    WebUtils.beanCopy(ManagerEntity.class, Manager.class, entity, dto);
+		    ManagerDTO dto = new ManagerDTO();
+		    WebUtils.beanCopy(ManagerEntity.class, ManagerDTO.class, entity, dto);
 		    dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		    dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 		    pagedtos.getResult().add(dto);
@@ -139,7 +139,7 @@ public class ManagerRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult save(Manager dto) {
+    public RestfulResult save(ManagerDTO dto) {
 	RestfulResult result = new RestfulResult();
 	String operate = "保存管理员信息";
 	try {
@@ -152,7 +152,7 @@ public class ManagerRest {
 	    ManagerEntity entity = new ManagerEntity();
 	    Date now = new Date();
 
-	    WebUtils.beanCopy(Manager.class, ManagerEntity.class, dto, entity);
+	    WebUtils.beanCopy(ManagerDTO.class, ManagerEntity.class, dto, entity);
 	    if (!"huanadmin".equals(dto.getAccount())) {
 		if (dto.getPassword().length() != 32) {
 		    entity.setPassword(WebUtils.md5(dto.getPassword()));
@@ -182,14 +182,14 @@ public class ManagerRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Manager getById(@FormParam("id") Long id, @FormParam("operator") String operator) {
-	Manager dto = new Manager();
+    public ManagerDTO getById(@FormParam("id") Long id, @FormParam("operator") String operator) {
+	ManagerDTO dto = new ManagerDTO();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过id查询管理员信息";
 	try {
 	    ManagerEntity entity = managerService.getById(id);
 	    if (!WebUtils.isEmpty(entity)) {
-		WebUtils.beanCopy(ManagerEntity.class, Manager.class, entity, dto);
+		WebUtils.beanCopy(ManagerEntity.class, ManagerDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 	    }
@@ -214,7 +214,7 @@ public class ManagerRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult update(Manager dto) {
+    public RestfulResult update(ManagerDTO dto) {
 	RestfulResult result = new RestfulResult();
 	Date now = new Date();
 	String operate = "更新管理员信息";
@@ -226,7 +226,7 @@ public class ManagerRest {
 		return result;
 	    } else {
 		String pwd = entity.getPassword();
-		WebUtils.beanCopy(Manager.class, ManagerEntity.class, dto, entity);
+		WebUtils.beanCopy(ManagerDTO.class, ManagerEntity.class, dto, entity);
 		if (!"huanadmin".equals(dto.getAccount())) {
 		    if (dto.getPassword() != null) {
 			if (dto.getPassword().length() != 32) {
@@ -286,8 +286,8 @@ public class ManagerRest {
     @Path("/query/account/{name}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public List<Manager> getByAccount(@PathParam("name") String name, @PathParam("operator") String operator) {
-	List<Manager> dtos = new ArrayList<Manager>();
+    public List<ManagerDTO> getByAccount(@PathParam("name") String name, @PathParam("operator") String operator) {
+	List<ManagerDTO> dtos = new ArrayList<ManagerDTO>();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过帐号模糊查询管理员信息";
 	try {
@@ -300,8 +300,8 @@ public class ManagerRest {
 	    List<ManagerEntity> entities = managerService.getByLikeAccount(name);
 	    if (!WebUtils.isEmpty(entities)) {
 		for (ManagerEntity entity : entities) {
-		    Manager dto = new Manager();
-		    WebUtils.beanCopy(ManagerEntity.class, Manager.class, entity, dto);
+		    ManagerDTO dto = new ManagerDTO();
+		    WebUtils.beanCopy(ManagerEntity.class, ManagerDTO.class, entity, dto);
 		    dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		    dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 		    dtos.add(dto);

@@ -1,35 +1,53 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="../header.jsp"%>
+<style type="text/css">
+#searchdiv table {
+	border-collapse: separate;
+}
+
+#searchdiv table tr {
+	background-color: #FFFFFF
+}
+
+#searchdiv table tr td {
+	background-color: #FFFFFF;
+	width: 27%
+}
+</style>
 <script type="text/javascript">
-    var page = new Page();
-    page.pageSize = 10;
-    var manu="";
-    var validateFlag=true;
-    var operator="<%=userid%>";
-    //page.pageSize=3;
-     var CRUD_DIV_ID = ["tab2"];
+	var page = new Page();
+	//page.pageSize=8;
+	
     $(document).ready(function() {
+        //$("#small-input").datepicker();
+		var $start = $("#startSpan").ajaxStart(function(){  
+	        $(this).html('正在执行...');  
+	        $start.show();
+	    }).ajaxStop(function(){  
+	        $(this).html('');
+	        $start.hide();
+	    }); 
         $.ajaxSetup({
             cache:false,
             type:"POST",
             contentType:"application/json",
             dataType:"json"
         });
-
         //设置页签点击处理
         $("a[href=#tab1]").click(function(){
-        	$(".notification").hide();
-        	getPageData();
+        	  $(".notification").hide();
+              getPageData(page.pageNo);
         });
-        
-        //设置页签点击处理
         $("a[href=#tab2]").click(function(){
+        	 resetForm();
         	 $(".notification").hide();
-        	 $("#account").next().hide();
-        	 $("#password").next().hide();
-        	
+        	 if(parent.document.all("myFrameId")!=null){
+              	if(parseInt(parent.document.all("myFrameId").style.height)<2000){
+                 	 parent.document.all("myFrameId").style.height=parent.document.getElementsByClassName("content-wrapper")[0].clientHeight+800;
+         		}
+             } 
         });
-        //设置翻页工具栏中的首页、尾页、上一页、下一页
+      //设置翻页工具栏中的首页、尾页、上一页、下一页
         $("ul.pagination a:not(.number)").each(function(index){
             $(this).click(function(){
                 switch(index){
@@ -51,82 +69,182 @@
                 getPageData(page.pageNo);
             });
         });
-        
-        getPageData();
-        
-        //导出上报
-        $("button[title='导出上报']").click(function () {
-            window.open(serviceurl.baseurl + "/<%=busType%>/userrecord/exportUserRecords?realname="+$("#searchrealname").val() +"&phone="+$("#searchphone").val()+"&accountbank="+$("#searchaccountbank").val()+"&startTime="+$("#startTime").val()+"&endTime="+$("#endTime").val() + "&operator="+"<%=userid%>");	
+		//调用初始查询
+		getPageData();
+		$("#saveBtn").click(function(){
+            var msg = $("#shopDesci").val();
+     		//过滤 回车、空格等
+     		msg=msg.replace(/\r/g,'\\r').replace(/\n/g,'\\n');;
+             // 修改 
+             $.ajax({
+             	url:serviceurl.baseurl+"/<%=busType%>/shop/save",
+             	data:'{'
+             		+'"id":"'+$("#id").val()+'"'
+             		+',"name":"'+$("#name").val()+'"'
+             		+',"shopDesci":"'+msg+'"'
+             		+',"prior":"'+$("#prior").val()+'"' 
+             		+',"icon":"'+$("#icon").val()+'"'
+             		+',"type":"'+$("#type").val()+'"'
+             		+',"operator":"<%=userid%>"'
+             		+'}',
+                 beforeSend:function(){
+                     //执行提交前的提交信息验证
+                    return validateForm();
+                 },
+                 error:function() {
+                     ajaxAccessErrorProcess2();
+                 },
+                 success:function(info) {
+                     //解析json数据,填充form并填充操作结果提示
+                     formSubmitSuccesssTip2(info);
+                     var resultObject=info;
+                     if(resultObject.resultCode == 0) {
+                      	$("a[href=#tab1]").click();
+                     }
+                 }
+             });
         });
-      	//=================================   
-    	//***********************查询列表页按单条记录进行删除****************************
-        $("table a[title='删除']").live("click",function(){
-        	var operator="<%=userid%>";
-            var dataparam="";
-            if(!confirm('删除将不能恢复，确定要继续吗？')) {
-            	 return;
-            }
-            //访问ajax,删除选中的分类记录
+
+        $("input[value='搜索']").click(function(){
+            //访问ajax,取分类信息,刷新表格
+            getPageData();
+        });
+       
+        //修改
+        $("a[title='修改']").live("click",function(){
+            //访问ajax,取分类信息
             $.ajax({
-                contentType:"application/x-www-form-urlencoded",
-                url:serviceurl.baseurl+"/<%=busType%>/userrecord/delete/list",
-                data:dataparam+"id="+$(this).parent().parent().attr("id") + "&operator=" + operator,
-                dataType:"json",
-                beforeSend:function(){},
+                url:serviceurl.baseurl+"/<%=busType%>/shop/get/primarykey",
+                type:"POST",
+                data:{'id':$(this).parent().parent().attr("id"),'operator':'<%=userid%>'},
+                beforeSend:function(){
+                    //执行提交前的提交信息验证
+                	$("a[href=#tab2]").click();
+                },
                 error:function() {},
-                success:function(cateinfo) {
-             	   getPageData();
+                success:function(resultinfo) {
+                    //解析json数据,填充form
+                    var resultObject=resultinfo;
+                    $("#id").val(resultObject.id);
+                    $("#name").val(resultObject.name);
+                    $("#shopDesci").val(resultObject.shopDesci);
+                    $("#prior").val(resultObject.prior);
+                    $("#type").val(resultObject.type);
+                    $("#createtime").val(resultObject.createtime);
+                    $("#icon").val(resultObject.icon);
+                    $("#icon-img").attr("src",resultObject.iconurl);
+                	$("#icon-view").attr("href",resultObject.iconurl);
                 }
             });
         });
-     	//=================================   
-      	//点击批量删除操作
-        $("button[title='批量删除']").click(function() {
-            if($(":checkbox[name=devcheckbox]:checked").length == 0) {
-                alert("请选择要删除的记录");
-                return false;
-            }
-            var operator="<%=userid%>";
-            var dataparam="operator=" + operator + "&";
-            for(var i=0; i<$(":checkbox:checked").length-1;i++) {
-                if($(":checkbox:checked").eq(i).parent().parent().attr("id") != "") {
-                    dataparam+="id="+$(":checkbox:checked").eq(i).parent().parent().attr("id")+"&";
+
+
+        //单个删除
+        $("a[title='删除']").live("click",function(){
+            del($(this).parent().parent().attr("id"));
+        });
+        
+        //图片上传
+        var icon_uploader3 = new qq.FileUploader({
+            allowedExtensions: ["jpg","png","gif"],
+            multiple: false,
+            params: {type:"shop" },//class表示货架图标的上传
+            element: document.getElementById("styleIcon_uploader"),
+            action: RESTFUL_BASE + '/<%=busType%>/upload/picture',
+            template: '<div class="qq-uploader">' +
+                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
+                '<div class="qq-upload-button">文件上传</div>' +
+                '<ul class="qq-upload-list"></ul>' +
+                '</div>',
+            fileTemplate: '<li>' +
+                '<span class="qq-upload-file"></span>' +
+                '<span class="qq-upload-spinner"></span>' +
+                '<span class="qq-upload-size"></span>' +
+                '<a class="qq-upload-cancel" href="#">取消</a>' +//中文显示
+            '<span class="qq-upload-failed-text">上传失败!</span>' +//中文显示
+            '</li>',
+            onSubmit: function(id, fileName){
+            
+                this.params.createtime = $("#createtime").val();//设置createtimeurl
+            },
+            onComplete: function(id, fileName, responseJSON){
+                if(responseJSON.success){//上传成功
+                    var filename = responseJSON.filename;
+                    var url = responseJSON.filepath;
+                    var fn = responseJSON.filename;
+                    $("#icon").val(fn);
+                    var picpath = responseJSON.filepath;
+                    $("#icon-view").attr("href",picpath);
+                    $("#icon-img").attr("src",picpath);
+                }else{//上传失败
+                    var msg = "上传图标失败！原因："+((!responseJSON.error|| responseJSON.error=="")?"服务错误！":responseJSON.error);
+
+                    if(msg.length>100){
+                        msg = msg.substring(0, 99)+"......";
+                    }
+                    $("#operateresult").show();
+                    if($("#operateresult").hasClass("success")){
+                        $("#operateresult").removeClass("success").addClass("error").html(msg);
+                    } else {
+                        $("#operateresult").addClass("error").html(msg);
+                    }
                 }
             }
-            if($(":checkbox:checked").eq($(":checkbox:checked").length-1).parent().parent().attr("id")!="") {
-                dataparam+="id="+$(":checkbox:checked").eq($(":checkbox:checked").length-1).parent().parent().attr("id");
-            }
-           if(!confirm('删除将不能恢复，确定要继续吗？')) {
-        	    return;
-           }
-           //访问ajax,删除选中的分类记录
-           $.ajax({
-               contentType:"application/x-www-form-urlencoded",
-               url:serviceurl.baseurl+"/<%=busType%>/userrecord/delete/list",
-               data:dataparam,
-               dataType:"json",
-               beforeSend:function(){},
-               error:function() {},
-               success:function(cateinfo) {
-            	   getPageData();
-               }
-           });
         });
-    });
+        icon_uploader3._onSubmit=function(id, fileName){
+            this._listElement.innerHTML="";//只有一个列表项
+            qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
+            this._addToList(id, fileName);
+        };
+        
+         
+        
+    })
     
-    function getPageData(){
-    	$.ajax({
-        	contentType:"application/x-www-form-urlencoded",
-            url:serviceurl.baseurl+"/<%=busType%>/userrecord/get/page",
-            dataType:"json",
-            data:"pageNo=" + page.pageNo+"&pageSize="+page.pageSize+"&realname="+$("#searchrealname").val()+"&phone="+$("#searchphone").val()+"&accountbank="+$("#searchaccountbank").val()+"&startTime="+$("#startTime").val()+"&endTime="+$("#endTime").val() + "&operator=" + operator,
+    
+    //获取应用列表中被选中的应用id集合，返回为数组
+    function getSelectedIds(){
+        var ret = new Array();
+        $("#datalist tbody input:checkbox").each(function(){
+            if($(this).attr("checked")){
+                ret.push($(this).parent().parent().attr("id"));
+            }
+        });
+        return ret;
+    }
+
+    //分页查询
+    function  getPageData(pageNo){
+        $.ajax({
+            url:serviceurl.baseurl+"/<%=busType%>/shop/get/page",
+            type: 'POST',
+            data: {'name':$('#searchname').val(),'pageNo':pageNo,'operator':'<%=userid%>'},
             success:dataFill
         });
     }
-		
+    //删除方法
+    function del(ids){
+        if(!confirm('该删除将不可恢复,确认删除?')){
+            return;
+        }
+        //ajax 
+        $.ajax({
+            url: serviceurl.baseurl+'/<%=busType%>/shop/delete/list',
+            type: 'POST',
+            traditional :true,//使数组直接变成同一名字的查询字段
+            data: {'ids':ids,'operator':'<%=userid%>'},
+            success: function(data){
+                //解析json数据,填充form并填充操作结果提示
+                formSubmitSuccesssTip2(data);
+                getPageData(page.pageNo);
+            }
+        });
+    } 
+   //列表数据填充
     function dataFill(data) {
     	var datatr = "";
         var resultObject=data;
+        //TODO 设置翻页相关信息
         $("ul.pagination [id='number']").remove();
         page.pageNo = resultObject.pageNo;//从data中获取当前页码
         page.totalPage = resultObject.totalPages;//从data中获取总页数
@@ -138,121 +256,148 @@
         $("ul.pagination").children().eq(1).after($(pageLink));
         $("ul.pagination [id='number']").click(function(){
             page.gotoIndex(parseInt($(this).attr("title")));
-          //访问ajax,取分类信息,刷新表格
           getPageData(page.pageNo);
         });
         $(".pagination").show();
-        //设置翻页相关信息结束
-
-         $("#datalist tbody tr").remove();
+        
+        $("#datalist tbody tr").remove();
         //$("table tfoot").hide();
-        if(resultObject.totalPages > 0&&resultObject.result!=undefined) {
-            var countNum=(page.pageNo-1)*page.pageSize;
+        var countNum=(page.pageNo-1)*page.pageSize;
+        if(resultObject.totalPages > 0) {
             for(var i=0; i<resultObject.result.length;i++) {
-                var adaptor = resultObject.result[i];
-                datatr+= "<tr id=\""+adaptor.id+"\">"
-                datatr+="<td><input name=\"devcheckbox\" type=\"checkbox\" /></td>";
+                var resultData = resultObject.result[i];
+                datatr+= "<tr id=\""+resultData.id+"\">"
+                datatr+="<td><input type=\"checkbox\" /></td>";
                 datatr+="<td>"+(countNum+i+1)+"</td>";
-                datatr+="<td>"+adaptor.id+"</td>";
-                datatr+="<td>"+adaptor.realname+"</td>";
-                datatr+="<td>"+adaptor.phone+"</td>";
-                datatr+="<td>"+adaptor.accountbank+"</td>";
-                datatr+="<td>"+adaptor.createtime+"</td>";
-                //datatr+="<td><a href=\"#\" title=\"修改\"><img src=\"../../resources/images/icons/pencil.png\" alt=\"修改\" /></a>";
-                datatr+="<td><a href=\"#\" title=\"删除\"><img src=\"../../resources/images/icons/cross.png\" alt=\"删除\" /></a> </td>";
+                datatr+="<td>"+resultData.id+"</td>";
+                datatr+="<td>"+resultData.phone+"</td>";
+                datatr+="<td>"+resultData.amount+"</td>";
+                datatr+="<td>"+resultData.remdPhone+"</td>";
+               // datatr+="<td>"+"<a href=\"#\" class=\"userpic\"><img style='width:40px;height:40px;' id='iconpath"+resultData.id+"'  src=\""+resultData.iconurl+"\"></a>"+"</td>"; // 店铺图标
+                datatr+="<td>"+resultData.createtime+"</td>";
+                datatr+="<td><a href=\"#\" title=\"修改\"><img src=\"../../resources/images/icons/pencil.png\" alt=\"修改\" /></a></a>";
+                //datatr+="<a href=\"#\" title=\"删除\"><img src=\"../../resources/images/icons/cross.png\" alt=\"删除\" /></a> </td>";
                 datatr+="</tr>";
             }
         }else{
-            datatr = "<tr><td colspan=\"10\">抱歉，没有查询到符合条件的记录</td><tr>";
+            datatr = "<tr><td colspan=\"20\">很抱歉，没有找到相关的信息！</td><tr>";
         }
         $("#datalist tbody").append(datatr);
+        //设置行背景
         $('#datalist tr:even').addClass("alt-row");
         parent.document.all("myFrameId").style.height=$(".wrapper").css("height");
     }
     
-</script>
-
-</head>
-<body class="skin-blue">
+    //校验提交表单
+    function validateForm() {
+    	 if(!isEmpty($("#name"),"请填写店铺名称!")) {
+             return false;
+         }    	 
+    	 if(!isEmpty($("#type"),"请选择店铺类型!")) {
+             return false;
+         }  
+    	 if(!isEmpty2($("#prior"),"请填写排序!")){
+              return false;
+         }
+         　	 var r = /^\+?[1-9][0-9]*$/;　　//正整数
+         if(!r.test($("#prior").val())){
+          	alert("排序只能输入数字") ; 
+          	return false ;
+         }
+         　	 if($("#icon").val()==''){
+            alert("请上传图标！") ;
+            return  false ; 
+         }
+     	 
+       	 return true;
+    }
+     // 清空form表单数据
+     function resetForm(){
+        $("#form1").resetForm();
+        $("#icon-img").attr("src","../../resources/images/zanque.jpg");
+        $("#icon-view").attr("href","../../resources/images/zanque.jpg");
+    }
+     
+    function add(){
+     	resetForm();
+         $("a[href=#tab2]").click();
+     }
+     
+    //批量操作
+    function batchDel(){
+    	var ids = getSelectedIds();
+        if(ids.length==0){
+            alert("您还没有选择要删除的记录！");
+            return;
+        }
+        if(ids){
+            del(ids);
+        }
+    }
+    function IFrameResize(){
+   	 	var obj = parent.document.getElementById("myFrameId"); //取得父页面IFrame对象
+   	 	obj.height = this.document.body.scrollHeight; //调整父页面中IFrame的高度为此页面的高度
+   	} 
+--></script>
+<body onload="IFrameResize();" class="skin-blue">
 	<div class="wrapper" style="background: #fff;">
 		<!-- Custom Tabs -->
 		<div class="nav-tabs-custom">
 			<h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
 			<h3>
-				&nbsp;&nbsp;&nbsp;&nbsp;业务管理 <small>上报列表</small>
+				&nbsp;&nbsp;&nbsp;&nbsp;用户管理 <small>用户列表</small>
 			</h3>
 			<ul class="nav nav-tabs pull-right">
-				<!-- 
 				<li><a href="#tab2" data-toggle="tab">表单</a></li>
-				-->
 				<li class="active"><a href="#tab1" data-toggle="tab">列表</a></li>
-				 
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab1">
-					<!-- Main content -->
 					<section class="content">
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
+									<h3 class="box-title">用户检索</h3>
 									<div class="box-tools">
 										<div class="input-group">
-											<input type="text" id="endTime" name="endTime" class="form-control input-sm pull-right"  style="width: 150px;" placeholder="结束时间" />
-											<input type="text" id="startTime" name="startTime" class="form-control input-sm pull-right"  style="width: 150px;" placeholder="开始时间" />
-											<select id="searchaccountbank" name="searchaccountbank" placeholder="所在球迷会" class="form-control input-sm pull-right" style="width: 180px;">
-												<option value="">--请选择所在球迷会--</option>
-												<option value="东城球迷会">东城球迷会</option>
-												<option value="西城球迷会">西城球迷会</option>
-												<option value="朝阳球迷会">朝阳球迷会</option>
-												<option value="丰台球迷会">丰台球迷会</option>
-												<option value="石景山球迷会">石景山球迷会</option>
-												<option value="海淀球迷会">海淀球迷会</option>
-												<option value="中关村球迷会">中关村球迷会</option>
-												<option value="望京球迷会">望京球迷会</option>
-												<option value="金融街球迷会">金融街球迷会</option>
-												
-											</select>
-											<input type="text" id="searchphone" name="searchphone"  class="form-control input-sm pull-right"  style="width: 150px;" placeholder="电话" />
-											<input type="text" id="searchrealname" name="searchrealname"  class="form-control input-sm pull-right"  style="width: 150px;" placeholder="姓名" />
+											<input type="text" id="searchname" name="searchname"
+												class="form-control input-sm pull-right"
+												style="width: 150px;" placeholder="店铺名称" />
 											<div class="input-group-btn">
-												<button class="btn btn-sm btn-default" style="height: 30px;" onclick="getPageData()">
+												<button class="btn btn-sm btn-default" style="height: 30px;"
+													onclick="getPageData();">
 													<i class="fa fa-search"></i>
 												</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- /.box-header -->
 								<div class="table-responsive mailbox-messages">
 									<div class="mailbox-controls">
-										<button class="btn btn-default btn-sm checkbox-toggle" title="全选/全不选">
+										<button class="btn btn-default btn-sm checkbox-toggle"
+											title="全选/全不选">
 											<i class="fa fa-square-o">&nbsp;全选</i>
 										</button>
 										<div class="btn-group">
-											<button class="btn btn-default btn-sm"  title="批量删除">
-												<i class="fa fa-trash-o">&nbsp;删除</i>
+											<button class="btn btn-default btn-sm"  title="新增" onclick="add();">
+												<i class="fa fa-plus">&nbsp;新增</i>
 											</button>
-											<button class="btn btn-default btn-sm" title="导出上报">
-                                            	<i class="fa fa-file-excel-o">导出上报</i>
-                                        	</button>
+											<button class="btn btn-default btn-sm" title="批量删除" onclick="batchDel();">
+												<i class="fa fa-trash-o">&nbsp;批量删除</i>
+											</button>
 										</div>
-										<!-- /.btn-group -->
-										<!-- <button class="btn btn-default btn-sm" onclick="location.reload();" title="刷新">
-											<i class="fa fa-refresh">&nbsp;刷新</i>
-										</button> -->
 									</div>
 									<table id="datalist" class="table table-hover table-striped">
 										<thead>
 											<tr>
-												<!-- Check all button -->
-												<th>选择</th>
+												<th><input class="check-all" type="checkbox" /></th>
 												<th>序号</th>
 												<th>ID</th>
-												<th>姓名</th>
-												<th>电话</th>
-												<th>所在球迷会</th>
-												<th>时间</th>
-												<th>操作</th>
+												<th>手机号</th>
+												<th>余额</th>
+												<th>推荐人手机号</th>
+												<th>创建时间</th>
+												<th>操作选择</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -272,9 +417,9 @@
 						</div>
 					</section>
 				</div>
-				<!-- /.tab-pane -->
+				<!-- Page Head -->
+				<!-- End #tab1 -->
 				<div class="tab-pane" id="tab2">
-					<!-- Main content -->
 					<section class="content">
 						<!-- left column -->
 						<div class="col-md-12">
@@ -283,157 +428,24 @@
 								<div class="box-header">
 									<h3 class="box-title">编辑</h3>
 								</div>
-								<!-- /.box-header -->
-								<!-- form start -->
-            					<form action="#" method="post" id="fileForm" name="fileForm">
-               						<input type="hidden" id="id" name="id" value="" />
+								<form name="form1" id="form1">
+									<input type="hidden" id="id" name="id" value="" /> 
+									<input type="hidden" id="createtime" name="createtime" value="" />
 									<div class="box-body">
 										<div class="form-group">
-											<label><span style='margin-right: 4px; color: #c00;'>*</span>帐号</label> 
-											<input type="text" id="account" name="account" maxlength="50" class="form-control" style="width: 40%;" placeholder="*必须项" />
-
-										</div>
-										<div class="form-group">
-											<label><span style='margin-right: 4px; color: #c00;'>*</span>密码</label> 
-											<input type="text"  id="password" name="password"   maxlength="45" class="form-control" style="width: 40%;" placeholder="*必须项（修改可以不填默认密码不变）" />
+											<label>余额</label> <input type="text" id="name" name="name"
+												class="form-control" style="width: 40%;"
+												placeholder="*必须项（长度1-60位）" />
 										</div>
 										
-									</div>
-									<!-- /.box-body -->
-									<div class="box-footer">
-										<button type="button" class="btn btn-primary" title='提交' id="saveBtn">提交</button>
-									</div>
+										<div class="box-footer">
+											<button type="button" class="btn btn-primary" id="saveBtn">提交</button>
+										</div>
 								</form>
 							</div>
-							<!-- /.box -->
 						</div>
-						<!--/.col (left) -->
 					</section>
-					<!-- /.content -->
 				</div>
-				<!-- /.tab-pane -->
 			</div>
-			<!-- /.tab-content -->
 		</div>
-		<!-- nav-tabs-custom -->
-		<!-- /.content -->
 	</div>
-</body>
-<script type="text/javascript">
-    //日期
-    var dates = $( "#startTime, #endTime" ).datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 2,
-        onSelect: function( selectedDate ) {
-            var option = this.id == "startTime" ? "minDate" : "maxDate",
-            instance = $( this ).data( "datepicker" ),
-            date = $.datepicker.parseDate(
-            instance.settings.dateFormat ||
-                $.datepicker._defaults.dateFormat,
-            selectedDate, instance.settings );
-            dates.not( this ).datepicker( "option", option, date );
-        }
-    });
-    function chkStartTime()
-    { 
-        if($("#startTime").val()=="")
-       {
-           var inst=$("#startTime").data("datepicker");
-          $.datepicker._clearDate(inst.input);
-       }
-    }
-    function checkDat(){
-        var rs =checkMess(document.getElementById("startTime"));
-        rs =checkMess(document.getElementById("endTime"))&&rs;
-        return rs;
-    }
-    function checkMess(input){
-        var id = input.id;
-        var value = input.value;
-        var label = input.label;
-
-        if(id=="startTime"){
-            if(!isDate(value)){
-                alert("格式不正确，格式为'2008-08-08'");
-                return "false";
-            }
-
-            var checkEndTime =  document.getElementById("endTime").value;
-            var checkBegTime = value;
-            if(checkBegTime>checkEndTime&&checkEndTime!=""){
-                alert("开始时间不能晚于结束时间！");
-                return "false";
-            }
-        }
-        if(id=="endTime"){
-            if(!isDate(value)){
-                alert("格式不正确，格式为'2008-08-08'");
-                return "false";
-            }
-        }
-
-        return "true";
-    }
-    function isDate(dateStr) {
-        if(dateStr==""){
-            return "true";
-        }
-        var datePat = /^(\d{4})(-)(\d{2})(-)(\d{2})$/;
-        var matchArray = dateStr.match(datePat); // is the format ok?
-
-        if (matchArray == null) {
-            // alert("Please enter date as either mm/dd/yyyy or mm-dd-yyyy.");
-            return "false";
-        }
-
-        month = matchArray[3]; // parse date into variables
-        day = matchArray[5];
-        year = matchArray[1];
-
-        if (month < 1 || month > 12) { // check month range
-            //alert("Month must be between 1 and 12.");
-            return "false";
-        }
-
-        if (day < 1 || day > 31) {
-            //    alert("Day must be between 1 and 31.");
-            return "false";
-        }
-
-        if ((month==4 || month==6 || month==9 || month==11) && day==31) {
-            //   alert("Month "+month+" doesn't have 31 days!")
-            return "false";
-        }
-
-        if (month == 2) { // check for february 29th
-            var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-            if (day > 29 || (day==29 && !isleap)) {
-                //     alert("February " + year + " doesn't have " + day + " days!");
-                return "false";
-            }
-        }
-        return "true"; // date is valid
-    }
-    $("#prior").keyup(function(){
-        $(this).val($(this).val().replace(/[^0-9|]$/,""));
-    }).blur(function(){
-        $(this).val($(this).val().replace(/[^0-9]$/,""));
-    });
-    //替换字符
-    function replaceAll(str,oldstr,newstr)
-    {
-        if(str!=""&&str!=undefined)
-        {
-            while(str.indexOf(oldstr)>=0)
-            {
-                str=str.replace(oldstr,newstr);
-            }
-            return str;
-        }
-        return "";
-    }
-    
-</script>
-</html>
-

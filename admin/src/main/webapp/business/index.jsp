@@ -40,9 +40,22 @@ var page = new Page();
 							</div>
 						</div>
                     <ul class="sidebar-menu" style="display: none">
-                        <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>业务管理 </span><i class="fa fa-angle-left pull-right"></i></a>
+                        <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>用户管理 </span><i class="fa fa-angle-left pull-right"></i></a>
 	                        <ul class="treeview-menu">
-				  				<li><a href="<%=basePath%>/<%=busType%>/user/list.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 上报列表</a></li>
+				  				<li><a href="<%=basePath%>/<%=busType%>/user/list.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+	                        </ul>
+                        </li>
+                        <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>配资管理 </span><i class="fa fa-angle-left pull-right"></i></a>
+	                        <ul class="treeview-menu">
+				  				<li><a href="<%=basePath%>/<%=busType%>/peizi/list.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 配资列表</a></li>
+	                        </ul>
+                        </li>
+                        <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>记录管理 </span><i class="fa fa-angle-left pull-right"></i></a>
+	                        <ul class="treeview-menu">
+				  				<li><a href="<%=basePath%>/<%=busType%>/record/inlist.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 入金列表</a></li>
+	                        </ul>
+	                        <ul class="treeview-menu">
+				  				<li><a href="<%=basePath%>/<%=busType%>/record/outlist.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 出金列表</a></li>
 	                        </ul>
                         </li>
                          <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>系统管理 </span><i class="fa fa-angle-left pull-right"></i></a>

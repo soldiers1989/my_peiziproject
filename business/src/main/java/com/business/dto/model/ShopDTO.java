@@ -12,7 +12,7 @@ import com.business.dto.model.RestfulResult;
  */
 @SuppressWarnings("serial")
 @XmlRootElement
-public class Shop implements java.io.Serializable {
+public class ShopDTO implements java.io.Serializable {
 
     private Long id;
     private String name;
@@ -27,7 +27,7 @@ public class Shop implements java.io.Serializable {
     private String operatetime;
     private RestfulResult restfulResult;
 
-    public Shop() {
+    public ShopDTO() {
     }
 
     public Long getId() {

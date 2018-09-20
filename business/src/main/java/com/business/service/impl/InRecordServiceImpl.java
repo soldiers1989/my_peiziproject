@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.base.orm.Page;
 import com.business.dao.InRecordEntityDAO;
 import com.business.entity.InRecordEntity;
 import com.business.service.InRecordService;
@@ -18,6 +19,11 @@ public class InRecordServiceImpl implements InRecordService {
 	@Override
 	public void saveOrUpdate(InRecordEntity entity) throws Exception {
 		inRecordEntityDAO.save(entity);
+	}
+
+	@Override
+	public Page<InRecordEntity> getByPage(int pageNo, int pageSize, Long userid) throws Exception {
+		return inRecordEntityDAO.getByPage(pageNo, pageSize, userid);
 	}
 
 

@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 
 import com.base.orm.Page;
 import com.base.util.WebUtils;
-import com.business.dto.model.AuthConfig;
+import com.business.dto.model.AuthConfigDTO;
 import com.business.dto.model.PageDTO;
 import com.business.dto.model.RestfulResult;
 import com.business.entity.AuthConfigEntity;
@@ -80,9 +80,9 @@ public class AuthConfigRest {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public PageDTO<AuthConfig> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("name") String name,
+    public PageDTO<AuthConfigDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("name") String name,
 	    @FormParam("operator") String operator, @FormParam("startTime") String startTime, @FormParam("endTime") String endTime) {
-	PageDTO<AuthConfig> dtos = new PageDTO<AuthConfig>();
+	PageDTO<AuthConfigDTO> dtos = new PageDTO<AuthConfigDTO>();
 	RestfulResult result = new RestfulResult();
 	String operate = "分页查询权限";
 	try {
@@ -109,11 +109,11 @@ public class AuthConfigRest {
 	    dtos.setTotalPages(entitys.getTotalPages());
 
 	    if (entitys.getResult().size() > 0) {
-		dtos.setResult(new ArrayList<AuthConfig>());
+		dtos.setResult(new ArrayList<AuthConfigDTO>());
 	    }
 	    for (AuthConfigEntity entity : entitys.getResult()) {
-		AuthConfig dto = new AuthConfig();
-		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfig.class, entity, dto);
+		AuthConfigDTO dto = new AuthConfigDTO();
+		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfigDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dtos.getResult().add(dto);
@@ -137,7 +137,7 @@ public class AuthConfigRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult save(AuthConfig dto) {
+    public RestfulResult save(AuthConfigDTO dto) {
 
 	RestfulResult result = new RestfulResult();
 	String operate = "保存权限";
@@ -150,7 +150,7 @@ public class AuthConfigRest {
 	    }
 	    AuthConfigEntity entity = new AuthConfigEntity();
 	    Date now = Calendar.getInstance().getTime();
-	    WebUtils.beanCopy(AuthConfig.class, AuthConfigEntity.class, dto, entity);
+	    WebUtils.beanCopy(AuthConfigDTO.class, AuthConfigEntity.class, dto, entity);
 	    entity.setCreatetime(now);
 	    entity.setOperatetime(now);
 	    entity.setStatus(Status.ACTIVE.value());
@@ -172,14 +172,14 @@ public class AuthConfigRest {
     @Path("/query/{id}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public AuthConfig getById(@PathParam("id") Long id, @PathParam("operator") String operator) {
-	AuthConfig dto = new AuthConfig();
+    public AuthConfigDTO getById(@PathParam("id") Long id, @PathParam("operator") String operator) {
+	AuthConfigDTO dto = new AuthConfigDTO();
 	RestfulResult result = new RestfulResult();
 	String operate = "通过id查询权限记录";
 	try {
 	    AuthConfigEntity entity = authConfigService.getById(id);
 	    if (!WebUtils.isEmpty(entity)) {
-		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfig.class, entity, dto);
+		WebUtils.beanCopy(AuthConfigEntity.class, AuthConfigDTO.class, entity, dto);
 		dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
 		dto.setOperatetime(WebUtils.formatDate2Str(entity.getOperatetime(), "yyyy-MM-dd HH:mm:ss"));
 	    }
@@ -201,13 +201,13 @@ public class AuthConfigRest {
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public RestfulResult update(AuthConfig dto) {
+    public RestfulResult update(AuthConfigDTO dto) {
 	RestfulResult result = new RestfulResult();
 	Date now = Calendar.getInstance().getTime();
 	String operate = "修改权限信息";
 	try {
 	    AuthConfigEntity entity = authConfigService.getById(dto.getId());
-	    WebUtils.beanCopy(AuthConfig.class, AuthConfigEntity.class, dto, entity);
+	    WebUtils.beanCopy(AuthConfigDTO.class, AuthConfigEntity.class, dto, entity);
 	    entity.setOperatetime(now);
 	    entity.setStatus(Status.ACTIVE.value());
 	    authConfigService.save(entity);
