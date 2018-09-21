@@ -454,4 +454,71 @@
       </li>
     </ul>
   </div>
+   <!-- 合作伙伴 友情链接 -->
+  <div class="container pal">
+    <div class="index-tab">
+      <a href="#partner" class="active">合作伙伴</a>
+      <span>/</span>
+      <a href="#links">友情链接</a>
+    </div>
+    <div class="index-content">
+      <div class="partner" id="partner">
+        <ul class="clearfix">
+          <li class="fl">
+            <a href="http://www.shfe.com.cn/" target="_blank"
+              title="上海期货交易所官网">
+              <img src="./images/index/shfe.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.dce.com.cn/" target="_blank"
+              title="大连商品交易所官网">
+              <img src="./images/index/dce.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.czce.com.cn/" target="_blank"
+              title="郑州商品交易所官网">
+              <img src="./images/index/czce.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.cffex.com.cn/" target="_blank"
+              title="中国金融期货交易所官网">
+              <img src="./images/index/cffex.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.haqh.com/" target="_blank"
+              title="华安期货官网">
+              <img src="./images/index/haqh.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.alqh.com/" target="_blank"
+              title="安粮期货官网">
+              <img src="./images/index/alqh.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.gyqh.net/" target="_blank"
+              title="广州金控期货官网">
+              <img src="./images/index/gyqh.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.cmbchina.com/" target="_blank"
+              title="招商银行官网">
+              <img src="./images/index/cmb.jpg" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="links" id="links">
+        <a href="http://www.csrc.gov.cn/">中国证监会官网</a>
+        <a href="http://www.cfachina.org/">中国期货业协会官网</a>
+      </div>
+    </div>
+  </div>
+
  <%@include file="../include/footer.jsp"%> 
