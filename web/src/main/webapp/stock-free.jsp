@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="stock-banner">
   </div>
   <div class="stock-type">
@@ -164,4 +164,4 @@
       <li><em>8</em>98配资网提醒您：期市有风险，投资需谨慎！</li>
     </ol>
   </div>
-   <%@include file="../include/footer.jsp"%> 
+   <%@include file="footer.jsp"%> 

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="login-banner">
     <div class="container">
       <h1>专注期货配资十年</h1>
@@ -34,4 +34,4 @@
       </form>
     </div>
   </div>
-   <%@include file="../include/footer.jsp"%> 
+   <%@include file="footer.jsp"%> 

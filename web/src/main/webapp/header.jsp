@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="<%=basePath%>/css/libs/layer.css">
   <link rel="stylesheet" href="<%=basePath%>/css/main.css">
   <script src="<%=basePath%>/resources/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+
   <title>首页</title>
 </head>
 <body class="has-all">
@@ -47,9 +48,9 @@
         易记网址： <span>www.95888.com</span>
       </div>
       <div class="top-bar-right fr">
-        <a class="login-link" href="./login.html">立即登录</a>
+        <a class="login-link" href="./login.jsp">立即登录</a>
         <span>|</span>
-        <a class="register-link" href="./register.html">免费注册</a>
+        <a class="register-link" href="./register.jsp">免费注册</a>
       </div>
     </div>
   </div>

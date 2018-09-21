@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="account container">
     <div class="account-side fl">
       <h1 class="title">我的账户</h1>
@@ -62,4 +62,4 @@
       </form>
     </div>
   </div>
-  <%@include file="../include/footer.jsp"%> 
+  <%@include file="footer.jsp"%> 

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="container clearfix sub-page">
     <div class="sub-side fl">
       <ul>
@@ -18,4 +18,4 @@
       </div>
     </div>
   </div>
- <%@include file="../include/footer.jsp"%> 
+ <%@include file="footer.jsp"%> 
