@@ -7,12 +7,13 @@ require(['js/require-config'], function() {
       var $accNumberInput = $('#accNumber');
       var $rechargeTypeInput = $('#rechargeType');
       var $submitBtn = $('#submitBtn');
-
+      var $accountInput = $('#account');
+      
       $submitBtn.click(function() {
         var rechargeAmount = $rechargeAmountInput.val().trim();
         var accNumber = $accNumberInput.val().trim();
         var rechargeType = $rechargeTypeInput.val().trim();
-
+        var account = $accountInput.val();
         if (rechargeAmount === '') {
           layer.msg('请输入充值金额');
         } else if (accNumber === '') {
@@ -21,14 +22,21 @@ require(['js/require-config'], function() {
           layer.msg('请输入充值方式');
         } else {
           $.ajax({
-            url: '',
+            url: '/service/web/inrecord/save',
+            method: 'POST',
             data: {
               rechargeAmount: rechargeAmount,
               accNumber: accNumber,
-              rechargeType: rechargeType
+              rechargeType: rechargeType,
+              account:account
             },
             success: function(resp) {
-              console.log(resp);
+              if (resp.resultCode === 0) {
+            	  console.log(resp);
+            	  window.location.href = "./recharge.jsp";
+                } else {
+              	 alert(resp.resultMessage);
+                }
             }
           });
         }

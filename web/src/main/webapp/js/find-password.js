@@ -20,12 +20,17 @@ require(['js/require-config'], function() {
         } else {
           if (!$this.hasClass('disabled')) {
             $.ajax({
-              url: '',
+              url: '/service/web/code/send',
+              method: 'POST',
               data: {
                 mobile: mobile
               },
               success: function(resp) {
-                utils.countDown($this, 5);
+                if (resp.resultCode === 0) {
+                	 utils.countDown($this, 5);
+                  } else {
+                	 alert(resp.resultMessage);
+                  }
               }
             });
           }
@@ -57,7 +62,7 @@ require(['js/require-config'], function() {
           var loading = layer.load();
 
           $.ajax({
-            url: '',
+            url: '/service/web/user/getpassword',
             method: 'POST',
             data: {
               mobile: mobile,
@@ -65,9 +70,14 @@ require(['js/require-config'], function() {
               password: password
             },
             success: function(resp) {
-              layer.close(loading);
-
-              console.log(resp);
+              if (resp.resultCode === 0) {
+                  layer.close(loading);
+                  window.location.href = "./login.jsp";
+                  console.log(resp);
+                  
+                } else {
+              	 alert(resp.resultMessage);
+                }
             },
             error: function() {
               layer.close(loading);

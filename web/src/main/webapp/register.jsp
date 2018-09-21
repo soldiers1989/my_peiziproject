@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
-<script src="<%=basePath%>/js/register.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	getuid();
@@ -10,7 +9,7 @@ $(document).ready(function() {
 function getuid(){
 	var RESTFUL_BASE = serviceurl.baseurl;
     $.ajax({
-        url: RESTFUL_BASE+"/pc/user/getuid",
+        url: RESTFUL_BASE+"/web/user/getuid",
         type: 'GET',
         dataType: 'text',
         success: function(data){
@@ -23,6 +22,7 @@ function getuid(){
   <div class="register">
     <div class="container">
       <form action="#" class="register-form">
+        <input type="hidden" id="uid" name="uid" value="">
         <p class="form-item">
           <label for="">手机号码</label>
           <input type="text" name="mobile" placeholder="请输入您的手机号码"
@@ -66,3 +66,7 @@ function getuid(){
     </div>
   </div>
    <%@include file="footer.jsp"%> 
+<script src="<%=basePath%>/js/libs/require.min.js"></script>
+<script>
+  require(['js/register.js'])
+</script>

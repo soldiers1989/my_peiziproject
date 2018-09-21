@@ -4,10 +4,10 @@
     <div class="sub-side fl">
       <ul>
         <li class="active">
-          <a href="./company-profile.html">公司简介</a>
+          <a href="./company-profile.jsp">公司简介</a>
         </li>
         <li>
-          <a href="./contact-us.html">联系我们</a>
+          <a href="./contact-us.jsp">联系我们</a>
         </li>
       </ul>
     </div>
@@ -19,3 +19,7 @@
     </div>
   </div>
  <%@include file="footer.jsp"%> 
+  <script src="<%=basePath%>/js/libs/require.min.js"></script>
+  <script>
+    require(['js/company-profile.js'])
+  </script>

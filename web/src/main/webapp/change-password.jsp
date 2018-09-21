@@ -1,5 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<script type="text/javascript">
+$(document).ready(function() {
+	if(null == <%=account%>){
+		window.location.href="./login.jsp";
+	}
+	setaccount(<%=account%>);
+});
+
+
+function setaccount(account){
+	$("#account").val(account);
+}
+
+</script>
   <div class="account container">
     <div class="account-side fl">
       <h1 class="title">我的账户</h1>
@@ -44,6 +58,7 @@
       <h1 class="account-title">修改密码</h1>
       <div class="change-password clearfix">
         <form action="#">
+        <input type="hidden" id="account" name="account" value=""/>
           <p class="form-item">
             <label for="">原密码</label>
             <input type="password" name="oldPassword"
@@ -70,3 +85,7 @@
     </div>
   </div>
  <%@include file="footer.jsp"%> 
+<script src="<%=basePath%>/js/libs/require.min.js"></script>
+<script>
+ require(['js/change-password.js'])
+</script>

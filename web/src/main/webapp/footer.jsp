@@ -39,10 +39,6 @@
       </p>
     </div>
   </div>
-  <script src="<%=basePath%>/js/libs/require.min.js"></script>
-  <script>
-    require(['js/index.js'])
-  </script>
 </body>
 </html>
 

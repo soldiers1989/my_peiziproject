@@ -5,10 +5,10 @@
     <div class="sub-side fl">
       <ul>
         <li>
-          <a href="./company-profile.html">公司简介</a>
+          <a href="./company-profile.jsp">公司简介</a>
         </li>
         <li class="active">
-          <a href="./contact-us.html">联系我们</a>
+          <a href="./contact-us.jsp">联系我们</a>
         </li>
       </ul>
     </div>
@@ -28,8 +28,5 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
- <%@include file="../include/footer.jsp"%> 
-=======
+
  <%@include file="footer.jsp"%> 
->>>>>>> cf57f8ff1c6f4800fe22198ce66b165bfa52f938

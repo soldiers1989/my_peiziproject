@@ -1,7 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<script type="text/javascript">
+$(document).ready(function() {
+	if(null == <%=account%>){
+		window.location.href="./login.jsp";
+	}
+	setaccount(<%=account%>);
+});
 
 
+function setaccount(account){
+	$("#account").val(account);
+}
+
+</script>
   <div class="account container clearfix">
     <div class="account-side fl">
       <h1 class="title">我的账户</h1>
@@ -46,6 +58,7 @@
       <h1 class="account-title">绑定银行卡</h1>
       <div class="auth clearfix">
         <form action="#">
+        <input type="hidden" id="account" name="account" value=""/>
           <p class="form-item">
             <label for="">开户行</label>
             <input type="text" name="bank" placeholder="请输入开户行名称"
@@ -68,3 +81,7 @@
     </div>
   </div>
  <%@include file="footer.jsp"%> 
+<script src="<%=basePath%>/js/libs/require.min.js"></script>
+<script>
+ require(['js/bank-card.js'])
+</script>

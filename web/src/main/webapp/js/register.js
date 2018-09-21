@@ -7,12 +7,12 @@ require(['js/require-config'], function() {
       var $confirmPasswordInput = $('#confirmPassword');
       var $submitBtn = $('#submitBtn');
       var $getCodeBtn = $('#getCodeBtn');
-
+      var $uidInput = $('#uid');
       // 获取验证码
       $getCodeBtn.click(function() {
         var $this = $(this);
         var mobile = $mobileInput.val().trim();
-
+        var uid = $uidInput.val().trim();
         if (mobile === '') {
           layer.msg('请输入手机号码');
         } else if (!utils.checkMobile(mobile)) {
@@ -20,12 +20,18 @@ require(['js/require-config'], function() {
         } else {
           if (!$this.hasClass('disabled')) {
             $.ajax({
-              url: '',
+              url: '/service/web/code/send',
+              method: 'POST',
               data: {
+            	uid: uid,
                 mobile: mobile
               },
               success: function(resp) {
-                utils.countDown($this, 5);
+            	  if (resp.resultCode === 0) {
+                 	 utils.countDown($this, 5);
+                   } else {
+                 	 alert(resp.resultMessage);
+                   }
               }
             });
           }
@@ -34,13 +40,11 @@ require(['js/require-config'], function() {
 
       // 注册提交
       $submitBtn.click(function() {
-        var mobile = $('#mobile')
-          .val()
-          .trim();
+        var mobile = $('#mobile').val().trim();
         var code = $codeInput.val().trim();
         var password = $passwordInput.val().trim();
         var confirmPassword = $confirmPasswordInput.val().trim();
-
+        var uid = $uidInput.val().trim();
         if (mobile === '') {
           layer.msg('请输入手机号码');
         } else if (!utils.checkMobile(mobile)) {
@@ -57,17 +61,22 @@ require(['js/require-config'], function() {
           var loading = layer.load();
 
           $.ajax({
-            url: '',
+            url: '/service/web/user/register',
             method: 'POST',
             data: {
+              uid:uid,
               mobile: mobile,
               code: code,
               password: password
             },
             success: function(resp) {
-              layer.close(loading);
-
-              console.log(resp);
+              if (resp.resultCode === 0) {
+            	  layer.close(loading);
+                  window.location.href = "./loginServlet?account=" + mobile;
+                  console.log(resp);
+               } else {
+             	 alert(resp.resultMessage);
+               }
             },
             error: function() {
               layer.close(loading);

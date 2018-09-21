@@ -4,10 +4,12 @@ require(['js/require-config'], function() {
       var $realNameInput = $('#realName');
       var $codeNumberInput = $('#codeNumber');
       var $submitBtn = $('#submitBtn');
-
+      var $accountInput = $('#account');
+ 
       $submitBtn.click(function() {
         var realName = $realNameInput.val().trim();
         var codeNumber = $codeNumberInput.val().trim();
+        var account = $accountInput.val();
 
         if (realName === '') {
           layer.msg('请输入您的真实姓名');
@@ -15,13 +17,20 @@ require(['js/require-config'], function() {
           layer.msg('请输入真实身份证号码');
         } else {
           $.ajax({
-            url: '',
+              url: '/service/web/user/centauth',
+              method: 'POST',
             data: {
               realName: realName,
-              codeNumber: codeNumber
+              codeNumber: codeNumber,
+              account:account
             },
             success: function(resp) {
-              console.log(resp);
+            	if (resp.resultCode === 0) {
+              	  console.log(resp);
+              	  window.location.href = "./account.jsp";
+                  } else {
+                	 alert(resp.resultMessage);
+                  }
             }
           });
         }

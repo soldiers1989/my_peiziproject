@@ -523,3 +523,7 @@
   </div>
 
  <%@include file="footer.jsp"%> 
+   <script src="<%=basePath%>/js/libs/require.min.js"></script>
+  <script>
+    require(['js/index.js'])
+  </script>

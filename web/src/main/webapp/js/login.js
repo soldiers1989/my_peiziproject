@@ -7,7 +7,6 @@ require(['js/require-config'], function() {
       var $pswInput = $('#password');
       var $codeInput = $('#code');
       var $errorTips = $('#errorTips');
-
       /**
        * 登录错误提示
        * @param {*} msg 提示信息
@@ -36,7 +35,7 @@ require(['js/require-config'], function() {
         var mobile = $mobileInput.val().trim();
         var password = $pswInput.val().trim();
         var code = $codeInput.val().trim();
-
+        var checkCode = document.getElementById("checkCode").innerHTML;
         hideErrorTips();
 
         if (mobile === '') {
@@ -47,17 +46,23 @@ require(['js/require-config'], function() {
           showErrorTips('请输入密码');
         } else if (code === '') {
           showErrorTips('请输入验证码');
-        } else {
+        }  else if (code.toLowerCase() !== checkCode.toLowerCase()) {
+          showErrorTips('输入验证错误');
+        }  else {
           $.ajax({
-            url: '',
+            url: '/service/web/user/login',
             method: 'POST',
             data: {
               mobile: mobile,
-              password: password,
-              code: code
+              password: password
             },
             success: function(resp) {
-              console.log(resp);
+              if (resp.resultCode === 0) {
+                  window.location.href = "./loginServlet?account=" + mobile;
+                  console.log(resp);
+               } else {
+             	 alert(resp.resultMessage);
+               }
             },
             error: function() {
               console.log('请求错误');

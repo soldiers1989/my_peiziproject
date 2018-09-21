@@ -1,6 +1,5 @@
-package com.business.rest.pc;
+package com.business.rest.web;
 
-import java.net.URLEncoder;
 import java.util.Date;
 
 import javax.ws.rs.FormParam;
@@ -11,23 +10,19 @@ import javax.ws.rs.core.MediaType;
 
 import jxl.common.Logger;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.base.util.WebUtils;
 import com.business.dto.model.RestfulResult;
+import com.business.entity.UserEntity;
 import com.business.entity.VerifyCodeEntity;
 import com.business.enums.ReturnCode;
+import com.business.service.UserService;
 import com.business.service.VerifyCodeService;
 
 @Service
-@Path("/pc/code")
+@Path("/web/code")
 public class WebVerfiyCodeRest {
 
 	private static final Logger logger = Logger.getLogger(WebVerfiyCodeRest.class);
@@ -35,6 +30,8 @@ public class WebVerfiyCodeRest {
 	@Autowired
 	VerifyCodeService verifyCodeService;
 
+	@Autowired
+	UserService userService;
 	/**
 	 * 发送验证码
 	 */
@@ -82,7 +79,20 @@ public class WebVerfiyCodeRest {
 				result.setResultMessage(VerifyCodeReturnCode.MSG_SENDERROR.getDesc());
 				return result;
 			}
-			VerifyCodeEntity verifyCodeEntity = verifyCodeService.getByUid(uid);
+			VerifyCodeEntity verifyCodeEntity = null;
+			if (!WebUtils.isEmpty(uid)){
+				verifyCodeEntity = verifyCodeService.getByUid(uid);
+
+			} else {
+				UserEntity userEntity = userService.getByPhone(phone);
+				if (null == userEntity){
+					result.setResultCode(VerifyCodeReturnCode.MSG_PHONENOTEXIST.getFlag());
+					result.setResultMessage(VerifyCodeReturnCode.MSG_PHONENOTEXIST.getDesc());
+					return result;
+				}
+				verifyCodeEntity = verifyCodeService.getByUid(userEntity.getUid());
+				
+			}
 			if (null == verifyCodeEntity){
 				verifyCodeEntity = new VerifyCodeEntity();
 				verifyCodeEntity.setCode(code);
@@ -97,9 +107,9 @@ public class WebVerfiyCodeRest {
 			
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("system", "verify code send",""));
+			logger.info(WebUtils.outLogInfo("verify code", "send",""));
 		} catch (Exception ex) {
-			logger.error(WebUtils.outLogError("system", "verify code send", ex.getMessage()),ex);
+			logger.error(WebUtils.outLogError("verify code", "send", ex.getMessage()),ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
 			result.setResultMessage(ReturnCode.BUSINESS_ERROR.getDesc());
 		}
