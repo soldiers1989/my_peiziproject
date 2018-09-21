@@ -1,5 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
+<script src="<%=basePath%>/js/register.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	getuid();
+});
+
+
+function getuid(){
+	var RESTFUL_BASE = serviceurl.baseurl;
+    $.ajax({
+        url: RESTFUL_BASE+"/pc/user/getuid",
+        type: 'GET',
+        dataType: 'text',
+        success: function(data){
+            $("#uid").val(data);
+        }
+    });
+}
+
+</script>
   <div class="register">
     <div class="container">
       <form action="#" class="register-form">
@@ -45,4 +65,4 @@
       </form>
     </div>
   </div>
-   <%@include file="../include/footer.jsp"%> 
+   <%@include file="footer.jsp"%> 

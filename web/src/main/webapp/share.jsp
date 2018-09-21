@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="share-bg">
   </div>
   <div class="share-code">
@@ -8,4 +8,4 @@
       readonly>
     <button id="copyBtn" class="btn" data-clipboard-target="#input">复制</button>
   </div>
-   <%@include file="../include/footer.jsp"%> 
+   <%@include file="footer.jsp"%> 

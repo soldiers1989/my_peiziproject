@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="header.jsp"%>
   <div class="software-banner">
     <div class="container clearfix">
       <div class="money fl">
@@ -31,4 +31,4 @@
       </div>
     </div>
   </div>
-  <%@include file="../include/footer.jsp"%> 
+  <%@include file="footer.jsp"%> 

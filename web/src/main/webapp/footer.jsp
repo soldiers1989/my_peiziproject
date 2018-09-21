@@ -29,8 +29,8 @@
                 src="./images/index/qq-service.png" alt=""></a></p>
         </div>
         <div class="links fr">
-          <a href="./company-profile.html">公司简介</a>
-          <a href="./contact-us.html">联系我们</a>
+          <a href="./company-profile.jsp">公司简介</a>
+          <a href="./contact-us.jsp">联系我们</a>
         </div>
       </div>
       <p class="copyright">
@@ -39,7 +39,7 @@
       </p>
     </div>
   </div>
-  <script src="./js/libs/require.min.js"></script>
+  <script src="<%=basePath%>/js/libs/require.min.js"></script>
   <script>
     require(['js/index.js'])
   </script>
