@@ -121,8 +121,8 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
         </tr>
         <tr>
           <td colspan="5" class="info">
-            <p>支付保证金<span class="margin">100</span>元，第一个月利息<span
-                class="interest-unit">1</span>元</p>
+            <p>支付保证金<span class="margin">100</span>元，利息共计<span
+                class="interest">1</span>元</p>
             <p>本次账户管理费在配资成功后一次性收取。</p>
             <p>您的账户余额<span class="balance">5</span>元，
               还需<span class="recharge-amount">101</span>元

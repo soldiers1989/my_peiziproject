@@ -79,20 +79,20 @@ require(['js/require-config'], function() {
         $('.prefix').show();
       }
 
+      var interest = this.margin * this.rate * this.multiple * this.tradeTimes;
+
       $('.unit').text(this.unit);
       $('#stockTitle').text(this.stockTitle);
       $('.margin').text(this.margin);
       $('.trade-times-span').text(this.tradeTimes);
       $('.interest-unit').text(this.margin * this.rate);
-      $('.interest').text(this.margin * this.rate * this.multiple);
+      $('.interest').text(interest);
       $('.total').text(this.margin * this.multiple);
       $('.total-amount').text(this.margin + this.margin * this.multiple);
       $('.warning-line').text(this.margin * this.multiple * 1.05);
       $('.close-line').text(this.margin * this.multiple * 1.03);
 
-      $('.recharge-amount').text(
-        this.margin + this.margin * this.rate - balance
-      );
+      $('.recharge-amount').text(interest - balance);
     };
 
     var stockEnter = new StockEnter();
