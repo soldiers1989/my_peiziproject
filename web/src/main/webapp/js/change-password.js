@@ -34,6 +34,7 @@ require(['js/require-config'], function() {
             success: function(resp) {
               if (resp.resultCode === 0) {
             	  console.log(resp);
+            	  alert("修改密码成功");
             	  window.location.href = "./change-password.jsp";
                 } else {
               	 alert(resp.resultMessage);

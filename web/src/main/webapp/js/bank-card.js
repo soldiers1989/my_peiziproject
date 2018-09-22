@@ -25,6 +25,7 @@ require(['js/require-config'], function() {
             success: function(resp) {
             	if (resp.resultCode === 0) {
                 	  console.log(resp);
+                	  alert("绑定成功");
                 	  window.location.href = "./account.jsp";
                     } else {
                   	 alert(resp.resultMessage);

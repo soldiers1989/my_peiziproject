@@ -43,7 +43,13 @@ public class WebOutRecordRest {
 		RestfulResult result = new RestfulResult();
 		Date now = new Date();
 		try {
+
 			UserEntity userEntity = userService.getByPhone(phone);
+			if (userEntity.getAmount() - amount.longValue()<0){
+				result.setResultCode(OutRecordReturnCode.AMOUNT_NOTENOUGH.getFlag());
+				result.setResultMessage(OutRecordReturnCode.AMOUNT_NOTENOUGH.getDesc());
+				return result;
+			}
 			OutRecordEntity entity = new OutRecordEntity();
 			entity.setUserid(userEntity.getId());
 			entity.setAmount(amount*100);

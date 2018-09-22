@@ -82,7 +82,7 @@ function getamount(account){
           <img src="./images/account/avator.jpg" alt="">
         </div>
         <div class="info fr">
-          <p>当前权益</p>
+          <p>当前余额</p>
           <h1><span id="amount">0.00</span> <small>元</small></h1>
           <p>
             <a href="./withdraw.jsp" class="btn btn-primary">出金</a>
