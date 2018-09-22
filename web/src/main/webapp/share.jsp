@@ -3,9 +3,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	if(null == <%=account%>){
-		$("#input").val("http://localhost:8080/web/register.jsp");
+		$("#input").val("http://47.95.214.33/register.jsp");
 	} else {
-		$("#input").val("http://localhost:8080/web/register.jsp?remdPhone=" + <%=account%>);
+		$("#input").val("http://47.95.214.33/register.jsp?remdPhone=" + <%=account%>);
 	}
 	
 });

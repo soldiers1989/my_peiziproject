@@ -29,7 +29,7 @@ require(['js/require-config'], function() {
               },
               success: function(resp) {
             	  if (resp.resultCode === 0) {
-                 	 utils.countDown($this, 5);
+                 	 utils.countDown($this, 60);
                    } else {
                  	 alert(resp.resultMessage);
                    }
