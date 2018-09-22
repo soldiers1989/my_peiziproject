@@ -12,6 +12,7 @@
 
 $(document).ready(function() {
 	$("#submitBtn").click(function(){
+		var account = <%=account%>;
 		var type = <%=type%>;
 		var baozhengAmount = <%=baozhengAmount%>;
 		var dayCount = <%=dayCount%>;
@@ -22,37 +23,34 @@ $(document).ready(function() {
 		var pingcangLine = document.getElementById("pingcangLine").innerHTML;
 		var tradeDay = <%=tradeDay%>;
 		var tradeCount = <%=tradeCount%>;
-		alert("type="+type + ",baozhengAmount=" + baozhengAmount + ",dayCount=" 
-				+ dayCount + ",rate=" +rate+",peiziAmount=" + peiziAmount + ",caopanAmount=" +caopanAmount 
-				+ ",warnLine=" +warnLine+ ",pingcangLine=" + pingcangLine+",tradeDay=" + tradeDay + ",tradeCount=" + tradeCount);
-		return false;
 		if(null == <%=account%>){
 			alert("请先登录再进行配资操作！");
 			window.location.href="./login.jsp";
 		}
-		peiziSubmit(<%=account%>);
+		peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopanAmount,warnLine,pingcangLine,tradeDay,tradeCount);
 	});
 
 });
 
 
 
-function peiziSubmit(account){
+function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopanAmount,warnLine,pingcangLine,tradeDay,tradeCount){
 	var RESTFUL_BASE = serviceurl.baseurl;
      $.ajax({
-	         url: RESTFUL_BASE  + "/" + type +  "/manager/login",
+	         url: RESTFUL_BASE  + "/web/peizi/submit",
 	         type: 'POST',
-	         data: {"account":$("#account").val(),"password":$("#password").val(),"type":$("#type").val()},
+	         data: {"account":account),"type":type,"baozhengAmount":baozhengAmount,"dayCount":dayCount,
+	         "rate":rate,"peiziAmount":peiziAmount,"caopanAmount":caopanAmount,"warnLine":warnLine,"pingcangLine":pingcangLine,
+	         "tradeDay":tradeDay,"tradeCount":tradeCount},
              beforeSend:function(){
              },
 	         dataType: 'json',
 	         success: function(data){
 	             if(data.resultCode == 1) {
-	            	 	$.MsgBox.Alert("登陆失败",data.resultMessage);
-			 			$("#loginsubmit").show();
-			 			$("#account").select();
+            	 	alert(data.resultMessage);
 	             } else {
-	            	 window.location.href = "<%=basePath%>/loginservlet?account=" + $("#account").val() + "&type=" + type;
+	            	 alert("配置申请提交成功");
+	            	 window.location.href = "./index.jsp";
 				}
 			}
 		});
