@@ -33,6 +33,20 @@ define(function() {
             .removeClass('fa-angle-double-left');
         }
       });
+
+      // 根据链接激活菜单项
+      var $links = $('.nav').find('a');
+      $links.each(function() {
+        var url = window.location.href;
+
+        var $this = $(this);
+        var href = $this.attr('href');
+        href = href.replace('./', '');
+
+        if (url.indexOf(href) !== -1) {
+          $this.parent('li').addClass('active');
+        }
+      });
     });
   });
 });

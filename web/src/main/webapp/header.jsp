@@ -66,7 +66,7 @@
         <img src="./images/index/logo.png" alt="">
       </a>
       <ul class="nav fr">
-        <li class="active">
+        <li>
           <a href="./index.jsp">网站首页</a>
         </li>
         <li>
