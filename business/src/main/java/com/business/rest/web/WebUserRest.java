@@ -53,7 +53,7 @@ public class WebUserRest {
 	@Path("/register")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public RestfulResult register(@FormParam("uid") String uid, @FormParam("mobile") String phone, @FormParam("code") String code, @FormParam("password") String password) {
+	public RestfulResult register(@FormParam("uid") String uid, @FormParam("mobile") String phone, @FormParam("code") String code, @FormParam("password") String password, @FormParam("remdPhone") String remdPhone) {
 		RestfulResult result = new RestfulResult();
 		Date now = new Date();
 		try {
@@ -84,6 +84,7 @@ public class WebUserRest {
 			dto.setUid(uid);
 			dto.setPhone(phone);
 			dto.setPassword(password);
+			dto.setRemdPhone(remdPhone);
 			// 设置属性并保存数据库
 			entity = new UserEntity();
 			WebUtils.beanCopy(UserDTO.class, UserEntity.class, dto, entity);

@@ -31,4 +31,8 @@
       </div>
     </div>
   </div>
-<%@include file="footer.jsp"%> 
+<%@include file="footer.jsp"%>
+<script src="./js/libs/require.min.js"></script>
+<script>
+  require(['js/software.js'])
+</script>

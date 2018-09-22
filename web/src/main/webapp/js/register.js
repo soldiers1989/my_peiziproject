@@ -8,6 +8,7 @@ require(['js/require-config'], function() {
       var $submitBtn = $('#submitBtn');
       var $getCodeBtn = $('#getCodeBtn');
       var $uidInput = $('#uid');
+      var $remdPhoneInput = $('#remdPhone');
       // 获取验证码
       $getCodeBtn.click(function() {
         var $this = $(this);
@@ -45,6 +46,7 @@ require(['js/require-config'], function() {
         var password = $passwordInput.val().trim();
         var confirmPassword = $confirmPasswordInput.val().trim();
         var uid = $uidInput.val().trim();
+        var remdPhone = $remdPhoneInput.val().trim();
         if (mobile === '') {
           layer.msg('请输入手机号码');
         } else if (!utils.checkMobile(mobile)) {
@@ -67,7 +69,8 @@ require(['js/require-config'], function() {
               uid:uid,
               mobile: mobile,
               code: code,
-              password: password
+              password: password,
+              remdPhone:remdPhone
             },
             success: function(resp) {
               if (resp.resultCode === 0) {

@@ -91,8 +91,15 @@ require(['js/require-config'], function() {
       $('.total-amount').text(this.margin + this.margin * this.multiple);
       $('.warning-line').text(this.margin * this.multiple * 1.05);
       $('.close-line').text(this.margin * this.multiple * 1.03);
+      var consume =this.margin + interest;
+      if (balance-consume>=0){
+    	  $('.recharge-amount').text("0");
+      } else {
+    	  $('.recharge-amount').text(consume - balance);
+      }
+     
 
-      $('.recharge-amount').text(interest - balance);
+      
     };
 
     var stockEnter = new StockEnter();

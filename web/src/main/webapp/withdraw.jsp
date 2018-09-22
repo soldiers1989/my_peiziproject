@@ -48,7 +48,7 @@ function setaccount(account){
               <a href="./change-password.jsp">修改密码</a>
             </li>
             <li>
-              <a href="#">退出登录</a>
+              <a href="./logoutServlet">退出登录</a>
             </li>
           </ul>
         </li>

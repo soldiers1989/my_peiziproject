@@ -54,6 +54,12 @@ public class WebPeiziRest {
 				result.setResultMessage(ReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
+			long amount = userEntity.getAmount() - baozhengAmount * 100 - rate * 100;
+			if (amount<0){
+				result.setResultCode(PeiziReturnCode.AMOUNT_NOTENOUGH.getFlag());
+				result.setResultMessage(PeiziReturnCode.AMOUNT_NOTENOUGH.getDesc());
+				return result;
+			}
 			PeiziEntity peiziEntity = new PeiziEntity();
 			peiziEntity.setUserid(userEntity.getId());
 			peiziEntity.setType(type);
@@ -68,6 +74,9 @@ public class WebPeiziRest {
 			peiziEntity.setTradeCount(tradeCount);
 			peiziEntity.setCreatetime(new Date());
 			peiziService.saveOrUpdate(peiziEntity);
+			
+			userEntity.setAmount(amount);
+			userService.saveOrUpdate(userEntity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo(account, operate, ReturnCode.SUCCESS.getDesc()));

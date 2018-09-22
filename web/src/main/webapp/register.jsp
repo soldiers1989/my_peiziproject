@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<%
+	String remdPhone = (String)request.getParameter("remdPhone");
+%>
 <script type="text/javascript">
 $(document).ready(function() {
+	if (null != <%=remdPhone%>){
+		$("#remdPhone").val(<%=remdPhone%>);
+	}
 	getuid();
 });
 
@@ -23,6 +29,7 @@ function getuid(){
     <div class="container">
       <form action="#" class="register-form">
         <input type="hidden" id="uid" name="uid" value="">
+        <input type="hidden" id="remdPhone" name="remdPhone" value="">
         <p class="form-item">
           <label for="">手机号码</label>
           <input type="text" name="mobile" placeholder="请输入您的手机号码"

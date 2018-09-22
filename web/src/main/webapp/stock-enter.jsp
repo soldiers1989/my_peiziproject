@@ -3,14 +3,23 @@
 <%
 	String type = (String)request.getParameter("type");
 	String baozhengAmount = (String)request.getParameter("margin");
-	String dayCount = (String)request.getParameter("multiple");
-	String tradeCount = (String)request.getParameter("tradeTimes");
+	String dayCount = (String)request.getParameter("tradeTimes");
+	String tradeCount = (String)request.getParameter("multiple");
 	String tradeDay = (String)request.getParameter("startDate");
 
 %>
 <script type="text/javascript">
 
 $(document).ready(function() {
+	if (null == <%=account%>){
+		document.getElementById('amountP1').style.display = 'block';
+		document.getElementById('amountP2').style.display = 'none';
+	} else {
+		document.getElementById('amountP1').style.display = 'none';
+		document.getElementById('amountP2').style.display = 'block';
+		getamount(<%=account%>);
+	}
+	
 	$("#submitBtn").click(function(){
 		var account = <%=account%>;
 		var type = <%=type%>;
@@ -32,18 +41,26 @@ $(document).ready(function() {
 
 });
 
-
-
+function getamount(account){
+	var RESTFUL_BASE = serviceurl.baseurl;
+    $.ajax({
+        url: RESTFUL_BASE+"/web/user/getamount/"+account,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data){
+            document.getElementById("amount").innerHTML=data.amount;
+            
+        }
+    });
+}
 function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopanAmount,warnLine,pingcangLine,tradeDay,tradeCount){
 	var RESTFUL_BASE = serviceurl.baseurl;
      $.ajax({
 	         url: RESTFUL_BASE  + "/web/peizi/submit",
 	         type: 'POST',
-	         data: {"account":account),"type":type,"baozhengAmount":baozhengAmount,"dayCount":dayCount,
+	         data: {"account":account,"type":type,"baozhengAmount":baozhengAmount,"dayCount":dayCount,
 	         "rate":rate,"peiziAmount":peiziAmount,"caopanAmount":caopanAmount,"warnLine":warnLine,"pingcangLine":pingcangLine,
 	         "tradeDay":tradeDay,"tradeCount":tradeCount},
-             beforeSend:function(){
-             },
 	         dataType: 'json',
 	         success: function(data){
 	             if(data.resultCode == 1) {
@@ -55,7 +72,6 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
 			}
 		});
 }
-
 </script>
   <div class="stock-banner">
   </div>
@@ -124,7 +140,8 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
             <p>支付保证金<span class="margin">100</span>元，利息共计<span
                 class="interest">1</span>元</p>
             <p>本次账户管理费在配资成功后一次性收取。</p>
-            <p>您的账户余额<span class="balance">5</span>元，
+            <p id="amountP1" style="display:none">您还没有登录，请先登录再进行配资申请。</p>
+            <p id="amountP2" style="display:none">您的账户余额<span class="balance" id="amount">5</span>元，
               还需<span class="recharge-amount">101</span>元
               <a href="./recharge.jsp" class="btn btn-primary">立即充值</a></p>
           </td>
