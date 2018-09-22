@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +16,7 @@
 <body class="has-all">
   <div class="container protocol width-960">
     <div class="protocol-header">
-      <a href="./index.html">
+      <a href="./index.jsp">
         <img src="./images/index/logo.png" alt="">
       </a>
     </div>

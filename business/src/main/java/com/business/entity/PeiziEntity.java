@@ -30,6 +30,7 @@ public class PeiziEntity implements java.io.Serializable {
 	private Long warnLine;//预警线
 	private Long pingcangLine;//平仓线
 	private Integer tradeDay;//1:今日 ,2:下个交易日
+	private Integer tradeCount;//操盘天数
 	private Date createtime;
 
 	public PeiziEntity() {
@@ -144,6 +145,15 @@ public class PeiziEntity implements java.io.Serializable {
 
 	public void setTradeDay(Integer tradeDay) {
 		this.tradeDay = tradeDay;
+	}
+
+	@Column(name = "trade_count", nullable = false)
+	public Integer getTradeCount() {
+		return tradeCount;
+	}
+
+	public void setTradeCount(Integer tradeCount) {
+		this.tradeCount = tradeCount;
 	}
 
 

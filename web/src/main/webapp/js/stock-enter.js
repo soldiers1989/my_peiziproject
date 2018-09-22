@@ -101,5 +101,7 @@ require(['js/require-config'], function() {
     var stockEnter = new StockEnter();
 
     stockEnter.init();
+    
+
   });
 });

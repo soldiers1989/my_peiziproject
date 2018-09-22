@@ -59,7 +59,7 @@ function getuid(){
           </button>
         </p>
         <p class="form-item btn-wrapper text-center color-orange">
-          已有账号 <a href="./login.html" class="text-orange">立即登录
+          已有账号 <a href="./login.jsp" class="text-orange">立即登录
           </a>
         </p>
       </form>

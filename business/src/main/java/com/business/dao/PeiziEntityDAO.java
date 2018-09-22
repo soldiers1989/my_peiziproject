@@ -20,7 +20,7 @@ public class PeiziEntityDAO extends HibernateDao<PeiziEntity, Long> {
 		if (!WebUtils.isEmpty(userid)) {
 			hql.append(" and userid = " + userid);
 		}
-		if (!WebUtils.isEmptyEx0(type)) {
+		if (!WebUtils.isEmpty(type)) {
 			hql.append(" and type = " + type);
 		}
 		hql.append("  order by createtime desc");

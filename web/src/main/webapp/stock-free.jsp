@@ -6,13 +6,13 @@
     <div class="container">
       <ul class="common-list">
         <li class="active">
-          <a href="./stock-free.html">免息配资</a>
+          <a href="./stock-free.jsp">免息配资</a>
         </li>
         <li>
-          <a href="./stock-day.html">按天配资</a>
+          <a href="./stock-day.jsp">按天配资</a>
         </li>
         <li>
-          <a href="./stock-month.html">按月配资</a>
+          <a href="./stock-month.jsp">按月配资</a>
         </li>
       </ul>
     </div>
@@ -136,7 +136,7 @@
       <input type="checkbox" name="" id="agree" checked
         disabled>
       <label for="agree">
-        我已阅读并同意 <a href="./protocol.html" target="_blank">98配资网操盘协议</a>
+        我已阅读并同意 <a href="./protocol.jsp" target="_blank">98配资网操盘协议</a>
       </label>
     </p>
     <p class="btn-wrapper">
@@ -165,3 +165,7 @@
     </ol>
   </div>
    <%@include file="footer.jsp"%> 
+<script src="./js/libs/require.min.js"></script>
+<script>
+  require(['js/stock.js'])
+</script>

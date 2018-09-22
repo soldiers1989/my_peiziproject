@@ -106,6 +106,7 @@
                 datatr+="<td>"+adaptor.caopanAmount+"</td>";
                 datatr+="<td>"+adaptor.warnLine+"</td>";
                 datatr+="<td>"+adaptor.pingcangLine+"</td>";
+                datatr+="<td>"+adaptor.tradeCount+"</td>";
                 datatr+="<td>"+adaptor.tradeDayName+"</td>";
                 datatr+="<td>"+adaptor.createtime+"</td>";
                 //datatr+="<td><a href=\"#\" title=\"修改\"><img src=\"../../resources/images/icons/pencil.png\" alt=\"修改\" /></a>";
@@ -148,10 +149,10 @@
 									<div class="box-tools">
 										<div class="input-group">
 											<select id="searchtype" name="searchtype"  class="form-control input-sm pull-right" style="width: 180px;">
-												<option value="">--请选择配资类型--</option>
-												<option value="0">免息配资</option>
-												<option value="1">按天配资</option>
-												<option value="2">按月配资</option>
+												<option value="0">--请选择配资类型--</option>
+												<option value="1">免息配资</option>
+												<option value="2">按天配资</option>
+												<option value="3">按月配资</option>
 											</select>
 											<input type="text" id="searchphone" name="searchphone"  class="form-control input-sm pull-right"  style="width: 150px;" placeholder="电话" />
 											<div class="input-group-btn">
@@ -197,6 +198,7 @@
 												<th>操盘金额</th>
 												<th>预警线</th>
 												<th>平仓线</th>
+												<th>操盘天数</th>
 												<th>交易时间</th>
 												<th>时间</th>
 											</tr>

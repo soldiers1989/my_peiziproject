@@ -1,5 +1,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<%
+	String type = (String)request.getParameter("type");
+	String baozhengAmount = (String)request.getParameter("margin");
+	String dayCount = (String)request.getParameter("multiple");
+	String tradeCount = (String)request.getParameter("tradeTimes");
+	String tradeDay = (String)request.getParameter("startDate");
+
+%>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#submitBtn").click(function(){
+		var type = <%=type%>;
+		var baozhengAmount = <%=baozhengAmount%>;
+		var dayCount = <%=dayCount%>;
+		var rate = document.getElementById("rate").innerHTML;
+		var peiziAmount = document.getElementById("peiziAmount").innerHTML;
+		var caopanAmount = document.getElementById("caopanAmount").innerHTML;
+		var warnLine = document.getElementById("warnLine").innerHTML;
+		var pingcangLine = document.getElementById("pingcangLine").innerHTML;
+		var tradeDay = <%=tradeDay%>;
+		var tradeCount = <%=tradeCount%>;
+		alert("type="+type + ",baozhengAmount=" + baozhengAmount + ",dayCount=" 
+				+ dayCount + ",rate=" +rate+",peiziAmount=" + peiziAmount + ",caopanAmount=" +caopanAmount 
+				+ ",warnLine=" +warnLine+ ",pingcangLine=" + pingcangLine+",tradeDay=" + tradeDay + ",tradeCount=" + tradeCount);
+		return false;
+		if(null == <%=account%>){
+			alert("请先登录再进行配资操作！");
+			window.location.href="./login.jsp";
+		}
+		peiziSubmit(<%=account%>);
+	});
+
+});
+
+
+
+function peiziSubmit(account){
+	var RESTFUL_BASE = serviceurl.baseurl;
+     $.ajax({
+	         url: RESTFUL_BASE  + "/" + type +  "/manager/login",
+	         type: 'POST',
+	         data: {"account":$("#account").val(),"password":$("#password").val(),"type":$("#type").val()},
+             beforeSend:function(){
+             },
+	         dataType: 'json',
+	         success: function(data){
+	             if(data.resultCode == 1) {
+	            	 	$.MsgBox.Alert("登陆失败",data.resultMessage);
+			 			$("#loginsubmit").show();
+			 			$("#account").select();
+	             } else {
+	            	 window.location.href = "<%=basePath%>/loginservlet?account=" + $("#account").val() + "&type=" + type;
+				}
+			}
+		});
+}
+
+</script>
   <div class="stock-banner">
   </div>
 
@@ -27,7 +86,7 @@
       <li>
         <h1>配资金额</h1>
         <p>
-          <span class="total">100</span>元
+          <span class="total" id="peiziAmount">100</span>元
         </p>
       </li>
     </ul>
@@ -45,21 +104,21 @@
       <tbody>
         <tr>
           <td>
-            <span><span class="interest">1</span>元</span>
+            <span><span class="interest" id="rate">1</span>元</span>
           </td>
           <td>
             <span><span class="multiple">1</span><span
                 class="prefix">个</span><span class="unit">月</span></span>
           </td>
           <td>
-            <span><span class="total-amount">200</span>元</span>
+            <span><span class="total-amount" id="caopanAmount">200</span>元</span>
           </td>
           <td>
-            <span><span class="warning-line">150</span>元</span>
+            <span><span class="warning-line" id="warnLine">150</span>元</span>
           </td>
 
           <td>
-            <span><span class="close-line">120</span>元</span>
+            <span><span class="close-line" id="pingcangLine">120</span>元</span>
           </td>
         </tr>
         <tr>
@@ -69,7 +128,7 @@
             <p>本次账户管理费在配资成功后一次性收取。</p>
             <p>您的账户余额<span class="balance">5</span>元，
               还需<span class="recharge-amount">101</span>元
-              <a href="./recharge.html" class="btn btn-primary">立即充值</a></p>
+              <a href="./recharge.jsp" class="btn btn-primary">立即充值</a></p>
           </td>
         </tr>
       </tbody>
@@ -78,7 +137,7 @@
       <input type="checkbox" name="" id="agree" checked
         disabled>
       <label for="agree">
-        我已阅读并同意 <a href="./protocol.html" target="_blank">98配资网操盘协议</a>
+        我已阅读并同意 <a href="./protocol.jsp" target="_blank">98配资网操盘协议</a>
       </label>
     </p>
     <p class="btn-wrapper">
@@ -94,7 +153,7 @@
         注意事项
       </li>
       <li class="tab-item">
-        <a href="./software.html">
+        <a href="./software.jsp">
           软件下载
         </a>
       </li>
@@ -131,4 +190,8 @@
       <li><em>8</em>98配资网提醒您：期市有风险，投资需谨慎！</li>
     </ol>
   </div>
-  <%@include file="footer.jsp"%> 
+<%@include file="footer.jsp"%> 
+<script src="./js/libs/require.min.js"></script>
+<script>
+  require(['js/stock-enter.js'])
+</script>

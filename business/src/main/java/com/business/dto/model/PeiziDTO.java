@@ -18,6 +18,7 @@ public class PeiziDTO implements java.io.Serializable {
 	private double warnLine;// 预警线
 	private double pingcangLine;// 平仓线
 	private Integer tradeDay;// 今日 or下个交易日
+	private Integer tradeCount;//操盘天数
 	private String tradeDayName;
 	private String createtime;
 	private RestfulResult restfulResult;
@@ -151,6 +152,14 @@ public class PeiziDTO implements java.io.Serializable {
 
 	public void setPingcangLine(double pingcangLine) {
 		this.pingcangLine = pingcangLine;
+	}
+
+	public Integer getTradeCount() {
+		return tradeCount;
+	}
+
+	public void setTradeCount(Integer tradeCount) {
+		this.tradeCount = tradeCount;
 	}
 
 }

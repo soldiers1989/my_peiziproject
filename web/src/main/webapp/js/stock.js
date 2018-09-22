@@ -155,7 +155,7 @@ require(['js/require-config'], function() {
 
         $stockBtn.click(function(e) {
           e.preventDefault();
-          var stockEnterUrl = './stock-enter.html';
+          var stockEnterUrl = './stock-enter.jsp';
           var type = _this.type;
           var margin = _this.data[type].margin;
           var multiple = _this.data[type].multiple;
