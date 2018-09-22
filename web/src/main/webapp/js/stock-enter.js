@@ -82,10 +82,7 @@ require(['js/require-config'], function() {
       $('.unit').text(this.unit);
       $('#stockTitle').text(this.stockTitle);
       $('.margin').text(this.margin);
-      $('.multiple').text(this.multiple);
-      console.log(this.margin);
-      console.log(this.rate);
-      console.log(this.margin * this.rate);
+      $('.trade-times-span').text(this.tradeTimes);
       $('.interest-unit').text(this.margin * this.rate);
       $('.interest').text(this.margin * this.rate * this.multiple);
       $('.total').text(this.margin * this.multiple);
@@ -101,7 +98,5 @@ require(['js/require-config'], function() {
     var stockEnter = new StockEnter();
 
     stockEnter.init();
-    
-
   });
 });

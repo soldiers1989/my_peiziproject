@@ -67,7 +67,7 @@ function peiziSubmit(account){
       按月配资
     </h2>
     <ul class="common-list stock-detail">
-      <li class="trade-times"><span class="multiple">2</span><span
+      <li class="trade-times"><span class="trade-times-span">2</span><span
           class="prefix">个</span><span class="unit">天</span></li>
       <li class="pz">配资</li>
       <li>
@@ -107,7 +107,7 @@ function peiziSubmit(account){
             <span><span class="interest" id="rate">1</span>元</span>
           </td>
           <td>
-            <span><span class="multiple">1</span><span
+            <span><span class="trade-times-span" id="tradeTimes">1</span><span
                 class="prefix">个</span><span class="unit">月</span></span>
           </td>
           <td>
