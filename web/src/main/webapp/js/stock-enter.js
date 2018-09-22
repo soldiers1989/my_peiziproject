@@ -85,7 +85,7 @@ require(['js/require-config'], function() {
       $('#stockTitle').text(this.stockTitle);
       $('.margin').text(this.margin);
       $('.trade-times-span').text(this.tradeTimes);
-      $('.interest-unit').text(this.margin * this.rate);
+      $('.interest-unit').text(this.margin * this.rate * this.multiple);
       $('.interest').text(interest);
       $('.total').text(this.margin * this.multiple);
       $('.total-amount').text(this.margin + this.margin * this.multiple);
