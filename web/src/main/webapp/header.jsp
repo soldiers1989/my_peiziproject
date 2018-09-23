@@ -42,10 +42,10 @@
 <div class="container clearfix">
       <div class="top-bar-left fl">
         <i class="fa fa-phone"></i>
-        客服电话: <span>400-888-8888</span>
+        客服电话: <span>18612226789</span>
         &nbsp;
         <i class="fa fa-globe"></i>
-        易记网址： <span>www.95888.com</span>
+        易记网址： <span>www.98pz.com</span>
       </div>
       <div class="top-bar-right fr">
       <%if (null == account) {%>
