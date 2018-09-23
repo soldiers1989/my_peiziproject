@@ -61,6 +61,28 @@ require(['js/require-config'], function() {
           }
         );
       }, 1000);
+
+      // 合作伙伴/友情链接切换
+      var $indexTabLinks = $('.index-tab').find('a');
+      var $partner = $('#partner');
+      var $links = $('#links');
+
+      $indexTabLinks.click(function(e) {
+        var $this = $(this);
+        var href = $this.attr('href');
+
+        e.preventDefault();
+
+        $this
+          .addClass('active')
+          .siblings('a')
+          .removeClass('active');
+
+        $(href)
+          .show()
+          .siblings()
+          .hide();
+      });
     });
   });
 });
