@@ -1,5 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<script type="text/javascript">
+$(document).ready(function() {
+	if(null == <%=account%>){
+		window.location.href="./login.jsp";
+	}
+	getamount(<%=account%>);
+	$("#loginBtn").click(function(){
+		window.location.href="./logoutServlet";
+	});
+
+});
+
+
+function getamount(account){
+	var RESTFUL_BASE = serviceurl.baseurl;
+    $.ajax({
+        url: RESTFUL_BASE+"/web/user/getamount/"+account,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data){
+            document.getElementById("amount").innerHTML=data.amount;
+        }
+    });
+}
+
+</script>
 <body class="has-all">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -13,8 +39,8 @@
   <div class="swiper-container assets-preview">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <p>当前权益(元)</p>
-        <h1>988.89</h1>
+        <p>当前余额(元)</p>
+        <h1><span id="amount">0</span></h1>
       </div>
       <!-- <div class="swiper-slide">
         <p>配资金额(元)</p>
@@ -110,9 +136,38 @@
       退出登录
     </a>
   </div>
-<%@include file="footer.jsp"%> 
-<script src="./js/libs/require.min.js"></script>
-<script>
-  require(['js/account.js'])
-</script>
+ <!-- tabbar -->
+  <div class="weui-tabbar">
+    <a href="./index.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/home-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="./stock-day.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/stock-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">股票配资</p>
+    </a>
+    <!-- <a href="javascript:;" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/service-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">在线客服</p>
+    </a> -->
+    <a href="./account.jsp" class="weui-tabbar__item weui-bar__item--on">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/account-on.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">我的账户</p>
+    </a>
+  </div>
+  <script src="./js/libs/require.min.js"></script>
+  <script>
+    require(['js/account.js'])
+  </script>
+</body>
+</html>
+
 

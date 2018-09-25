@@ -5,7 +5,7 @@
   <div class="header">
     <div class="hd-center">
       <h1 class="title">
-        header页面
+        首页
       </h1>
     </div>
   </div>
@@ -67,7 +67,7 @@
       <img src="./images/home/m3.png" alt="">
       <p>按月配资</p>
     </a>
-    <a href="./software.jsp" class="weui-flex__item">
+    <a href="http://47.95.214.33/software.jsp" class="weui-flex__item">
       <img src="./images/home/m4.png" alt="">
       <p>交易软件</p>
     </a>
@@ -110,8 +110,37 @@
       </div>
     </div>
   </div> -->
-<%@include file="footer.jsp"%> 
-<script src="./js/libs/require.min.js"></script>
+<!-- tabbar -->
+  <div class="weui-tabbar">
+    <a href="./index.jsp" class="weui-tabbar__item weui-bar__item--on">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/home-on.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="./stock-day.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/stock-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">股票配资</p>
+    </a>
+    <!-- <a href="javascript:;" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/service-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">在线客服</p>
+    </a> -->
+    <a href="./account.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/account-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">我的账户</p>
+    </a>
+  </div>
+  </div>
+  <script src="./js/libs/require.min.js"></script>
 <script>
     require(['js/index.js'])
 </script>
+</body>
+</html>

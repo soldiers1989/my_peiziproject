@@ -4,7 +4,7 @@ require(['js/require-config'], function() {
       var $mobileInput = $('#mobile');
       var $pswInput = $('#password');
       var $loginBtn = $('#loginBtn');
-      var loginApiUrl = '';
+      var loginApiUrl = '/service/web/user/login';
 
       $loginBtn.click(function(e) {
         e.preventDefault();
@@ -29,7 +29,12 @@ require(['js/require-config'], function() {
               password: password
             },
             success: function(resp) {
-              console.log(resp);
+            	if (resp.resultCode === 0) {
+                    window.location.href = "./loginServlet?account=" + mobile;
+                    console.log(resp);
+                 } else {
+               	 alert(resp.resultMessage);
+                 }
             },
             error: function() {
               utils.errorToast('请求出错，请重试');

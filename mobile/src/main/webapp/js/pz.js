@@ -104,7 +104,7 @@ require(['js/require-config'], function() {
         $startDate.change(
           function() {
             var $this = $(this);
-            this.startDate = $this.val();
+            this.startDate = $startDate.val();
           }.bind(this)
         );
 
@@ -116,9 +116,13 @@ require(['js/require-config'], function() {
               margin: this.margin,
               multiple: this.leverage,
               deadline: this.deadline,
-              startDate: this.startDate
+              startDate: this.startDate,
+              rate:$interest.text(),
+              caopanAmount:$totalTradingAmount.text(),
+              warnLine:$warningAmount.text(),
+              pingcangLine:$closeAmount.text()
             });
-            window.location.href = './stock-enter.html?' + search;
+            window.location.href = './stock-enter.jsp?' + search;
           }.bind(this)
         );
       };

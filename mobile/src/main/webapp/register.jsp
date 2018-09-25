@@ -1,5 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<%
+	String remdPhone = (String)request.getParameter("remdPhone");
+%>
+<script type="text/javascript">
+$(document).ready(function() {
+	if (null != <%=remdPhone%>){
+		$("#remdPhone").val(<%=remdPhone%>);
+	}
+	getuid();
+});
+
+
+function getuid(){
+	var RESTFUL_BASE = serviceurl.baseurl;
+    $.ajax({
+        url: RESTFUL_BASE+"/web/user/getuid",
+        type: 'GET',
+        dataType: 'text',
+        success: function(data){
+            $("#uid").val(data);
+        }
+    });
+}
+
+</script>
 <body class="has-hd">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -20,6 +45,8 @@
       <div class="weui-cell__bd"><input type="text" placeholder="请填写用户名"
           class="weui-input" name="username" id="username"></div>
     </div> -->
+    <input type="hidden" id="uid" name="uid" value="">
+    <input type="hidden" id="remdPhone" name="remdPhone" value="">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">
           +86

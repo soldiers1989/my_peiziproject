@@ -1,5 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<script type="text/javascript">
+$(document).ready(function() {
+	if(null == <%=account%>){
+		window.location.href="./login.jsp";
+	}
+	setaccount(<%=account%>);
+});
+
+
+function setaccount(account){
+	$("#account").val(account);
+}
+
+</script>
 <body class="has-hd">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -52,6 +66,7 @@
   </div>
   <div class="recharge-content offline" style="display: none;">
     <div class="weui-cells login">
+    <input type="hidden" id="account" name="account" value=""/>
       <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">充值金额</label></div>
         <div class="weui-cell__bd"><input type="number" id="amount"

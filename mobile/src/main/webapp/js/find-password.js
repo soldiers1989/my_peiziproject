@@ -8,8 +8,8 @@ require(['js/require-config'], function() {
       var $confirmPswInput = $('#confirmPsw');
       var $getCodeBtn = $('#getCodeBtn');
       var $registerBtn = $('#registerBtn');
-      var getCodeApiUrl = '';
-      var registerApiUrl = '';
+      var getCodeApiUrl = '/service/web/code/send';
+      var registerApiUrl = '/service/web/user/getpassword';
       var timer = null;
 
       /**
@@ -38,18 +38,23 @@ require(['js/require-config'], function() {
       $getCodeBtn.click(function() {
         var mobile = $mobileInput.val().trim();
         var $this = $(this);
-
+        alert(mobile);
         if (!utils.checkMobile(mobile)) {
           utils.errorToast('手机号码格式有误');
         } else {
           $.ajax({
             url: getCodeApiUrl,
+            method: 'POST',
             data: {
               mobile: mobile
             },
             success: function(resp) {
-              utils.successToast('验证码已发送');
-              btnCountDown($this, 60);
+              if (resp.resultCode === 0) {
+            	  utils.successToast('验证码已发送');
+                  btnCountDown($this, 60);
+               } else {
+             	 alert(resp.resultMessage);
+               }
             }
           });
         }
@@ -78,7 +83,7 @@ require(['js/require-config'], function() {
         } else {
           var data = {
             mobile: mobile,
-            vcode: vcode,
+            code: vcode,
             password: password
           };
 
@@ -89,7 +94,13 @@ require(['js/require-config'], function() {
             method: 'POST',
             data: data,
             success: function(resp) {
-              console.log(resp);
+            	if (resp.resultCode === 0) {
+            	  console.log(resp);
+            	  alert("修改成功!");
+                  window.location.href = "./login.jsp";
+	            } else {
+	          	 alert(resp.resultMessage);
+	            }
             },
             complete: function() {
               $this.removeClass('weui-btn_loading');

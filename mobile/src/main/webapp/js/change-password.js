@@ -5,8 +5,9 @@ require(['js/require-config'], function() {
       var $newPswInput = $('#newPassword');
       var $confirmPswInput = $('#confirmPassword');
       var $submitBtn = $('#submitBtn');
-      var changePswUrl = '';
-
+      var changePswUrl = '/service/web/user/modifypassword';
+      var $accountInput = $('#account');
+      var account = $accountInput.val().trim();
       $submitBtn.click(function(e) {
         e.preventDefault();
 
@@ -29,11 +30,18 @@ require(['js/require-config'], function() {
             url: changePswUrl,
             method: 'POST',
             data: {
-              password: oldPassword,
-              newPassword: newPassword
+              oldPassword: oldPassword,
+              newPassword: newPassword,
+              account:account
             },
             success: function(resp) {
-              console.log(resp);
+              if (resp.resultCode === 0) {
+              	  console.log(resp);
+              	  alert("修改密码成功");
+          	      window.location.href = "./account.jsp";
+              } else {
+            	 alert(resp.resultMessage);
+              }
             },
             error: function() {
               utils.errorToast('请求出错，请重试');

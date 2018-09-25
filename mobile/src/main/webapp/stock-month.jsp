@@ -191,8 +191,35 @@
   </div>
 
 
-<%@include file="footer.jsp"%> 
-<script src="./js/libs/require.min.js"></script>
-<script>
-  require(['js/pz.js'])
-</script>
+
+  <!-- tabbar -->
+  <div class="weui-tabbar">
+    <a href="./index.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/home-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="./stock-day.jsp" class="weui-tabbar__item weui-bar__item--on">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/stock-on.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">股票配资</p>
+    </a>
+
+    <a href="./account.jsp" class="weui-tabbar__item">
+      <div class="weui-tabbar__icon">
+        <img src="./images/tabbar/account-off.png" alt="">
+      </div>
+      <p class="weui-tabbar__label">我的账户</p>
+    </a>
+  </div>
+  </div>
+
+  <script src="./js/libs/require.min.js"></script>
+  <script>
+    require(['js/pz.js'])
+  </script>
+</body>
+</html>
+

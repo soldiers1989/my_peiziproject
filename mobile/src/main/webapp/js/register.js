@@ -8,10 +8,12 @@ require(['js/require-config'], function() {
       var $confirmPswInput = $('#confirmPsw');
       var $getCodeBtn = $('#getCodeBtn');
       var $registerBtn = $('#registerBtn');
-      var getCodeApiUrl = '';
-      var registerApiUrl = '';
+      var getCodeApiUrl = '/service/web/code/send';
+      var registerApiUrl = '/service/web/user/register';
       var timer = null;
-
+      var $uidInput = $('#uid');
+      var $remdPhoneInput = $('#remdPhone');
+      
       /**
        * 获取验证码按钮倒计时
        * @param {*} btn 执行倒计时的按钮，
@@ -37,6 +39,7 @@ require(['js/require-config'], function() {
       // 获取验证码
       $getCodeBtn.click(function() {
         var mobile = $mobileInput.val().trim();
+        var uid = $uidInput.val().trim();
         var $this = $(this);
 
         if (!utils.checkMobile(mobile)) {
@@ -44,12 +47,18 @@ require(['js/require-config'], function() {
         } else {
           $.ajax({
             url: getCodeApiUrl,
+            method: 'POST',
             data: {
+            	uid:uid,
               mobile: mobile
             },
             success: function(resp) {
-              utils.successToast('验证码已发送');
-              btnCountDown($this, 60);
+              if (resp.resultCode === 0) {
+            	  utils.successToast('验证码已发送');
+                  btnCountDown($this, 60);
+                } else {
+              	 alert(resp.resultMessage);
+                }
             }
           });
         }
@@ -64,7 +73,8 @@ require(['js/require-config'], function() {
         var vcode = $vcodeInput.val().trim();
         var password = $pswInput.val().trim();
         var confirmPsw = $confirmPswInput.val().trim();
-
+        var uid = $uidInput.val().trim();
+        var remdPhone = $remdPhoneInput.val().trim();
         if (!utils.checkMobile(mobile)) {
           utils.errorToast('手机号码格式有误');
         } else if (utils.isBlank(vcode)) {
@@ -77,9 +87,11 @@ require(['js/require-config'], function() {
           utils.errorToast('两次输入密码不一致');
         } else {
           var data = {
+            uid:uid,
             mobile: mobile,
-            vcode: vcode,
-            password: password
+            code: vcode,
+            password: password,
+            remdPhone:remdPhone
           };
 
           $this.addClass('weui-btn_loading');
@@ -89,7 +101,13 @@ require(['js/require-config'], function() {
             method: 'POST',
             data: data,
             success: function(resp) {
-              console.log(resp);
+
+              if (resp.resultCode === 0) {
+                  window.location.href = "./loginServlet?account=" + mobile;
+                  console.log(resp);
+               } else {
+             	 alert(resp.resultMessage);
+               }
             },
             complete: function() {
               $this.removeClass('weui-btn_loading');
