@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
-    name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/libs/weui.min.css">
-  <link rel="stylesheet" href="./css/libs/jquery-weui.min.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <title>免息配资-股票配资</title>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="header.jsp"%>
 <body class="has-all" data-type="free">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -29,10 +19,10 @@
     <a href="javascript:;" class="weui-flex__item active">
       <span>免息配资</span>
     </a>
-    <a href="./stock-day.html" class="weui-flex__item">
+    <a href="./stock-day.jsp" class="weui-flex__item">
       <span>按天配资</span>
     </a>
-    <a href="./stock-month.html" class="weui-flex__item">
+    <a href="./stock-month.jsp" class="weui-flex__item">
       <span>按月配资</span>
     </a>
   </div>
@@ -143,7 +133,7 @@
       <input id="weuiAgree" type="checkbox" checked class="weui-agree__checkbox"
         disabled>
       <span class="weui-agree__text">
-        阅读并同意 <a href="./contract.html">《配资相关条款》</a>
+        阅读并同意 <a href="./contract.jsp">《配资相关条款》</a>
       </span>
     </span>
     <div class="weui-btn-area">
@@ -153,34 +143,9 @@
     </div>
   </div>
 
+<%@include file="footer.jsp"%> 
+<script src="./js/libs/require.min.js"></script>
+<script>
+  require(['js/pz.js'])
+</script>
 
-  <!-- tabbar -->
-  <div class="weui-tabbar">
-    <a href="./index.html" class="weui-tabbar__item">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/home-off.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">首页</p>
-    </a>
-    <a href="./stock-day.html" class="weui-tabbar__item weui-bar__item--on">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/stock-on.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">股票配资</p>
-    </a>
-    <a href="./account.html" class="weui-tabbar__item">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/account-off.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">我的账户</p>
-    </a>
-  </div>
-  </div>
-
-  <script src="./js/libs/require.min.js"></script>
-  <script>
-    require(['js/pz.js'])
-  </script>
-
-</body>
-</html>

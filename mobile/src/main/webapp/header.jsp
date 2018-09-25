@@ -27,12 +27,4 @@
   <script src="<%=basePath%>/resources/util/tools.js" type="text/javascript"></script>
   <title>首页</title>
 </head>
-<body class="has-all">
-  <!-- 顶部导航栏 -->
-  <div class="header">
-    <div class="hd-center">
-      <h1 class="title">
-        header页面
-      </h1>
-    </div>
-  </div>
+

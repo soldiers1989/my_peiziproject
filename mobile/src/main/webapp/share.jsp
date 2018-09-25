@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/libs/weui.min.css">
-  <link rel="stylesheet" href="./css/libs/jquery-weui.min.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <title>我要推广</title>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="header.jsp"%>
 <body class="has-hd share">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -42,8 +32,8 @@
       <img src="./images/share/character.png" alt="">
     </div>
     <div class="share-link">
-      <h4><a href="./login.html">登录</a> 后生成您的专属分享链接</h4>
-      <!-- <input type="text" readonly value="http://sf.com/register.html?referrer=9181818732872">
+      <h4><a href="./login.jsp">登录</a> 后生成您的专属分享链接</h4>
+      <!-- <input type="text" readonly value="http://sf.com/register.jsp?referrer=9181818732872">
       <div class="weui-btn-area">
         <button class="weui-btn weui-btn_mini weui-btn_primary" id="copyLinkBtn">点击复制您的推广链接</button>
       </div> -->

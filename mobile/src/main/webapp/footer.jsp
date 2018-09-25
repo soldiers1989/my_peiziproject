@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- tabbar -->
   <div class="weui-tabbar">
-    <a href="./index.html" class="weui-tabbar__item weui-bar__item--on">
+    <a href="./index.jsp" class="weui-tabbar__item weui-bar__item--on">
       <div class="weui-tabbar__icon">
         <img src="./images/tabbar/home-on.png" alt="">
       </div>
       <p class="weui-tabbar__label">首页</p>
     </a>
-    <a href="./stock-day.html" class="weui-tabbar__item">
+    <a href="./stock-day.jsp" class="weui-tabbar__item">
       <div class="weui-tabbar__icon">
         <img src="./images/tabbar/stock-off.png" alt="">
       </div>
@@ -19,7 +19,7 @@
       </div>
       <p class="weui-tabbar__label">在线客服</p>
     </a> -->
-    <a href="./account.html" class="weui-tabbar__item">
+    <a href="./account.jsp" class="weui-tabbar__item">
       <div class="weui-tabbar__icon">
         <img src="./images/tabbar/account-off.png" alt="">
       </div>

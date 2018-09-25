@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/libs/weui.min.css">
-  <link rel="stylesheet" href="./css/libs/jquery-weui.min.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <title>账户充值</title>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="header.jsp"%>
 <body class="has-all">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -42,7 +32,7 @@
     <div class="swiper-pagination"></div>
   </div>
   <div class="weui-grids account-grid">
-    <a href="./personal-info.html" class="weui-grid js_grid">
+    <a href="./personal-info.jsp" class="weui-grid js_grid">
       <div class="weui-grid__icon">
         <img src="./images/account/m1.png" alt="">
       </div>
@@ -50,7 +40,7 @@
         个人资料
       </p>
     </a>
-    <a href="./recharge-type.html" class="weui-grid js_grid">
+    <a href="./recharge-type.jsp" class="weui-grid js_grid">
       <div class="weui-grid__icon">
         <img src="./images/account/m2.png" alt="">
       </div>
@@ -58,7 +48,7 @@
         入金
       </p>
     </a>
-    <a href="./withdraw.html" class="weui-grid js_grid">
+    <a href="./withdraw.jsp" class="weui-grid js_grid">
       <div class="weui-grid__icon">
         <img src="./images/account/m4.png" alt="">
       </div>
@@ -66,7 +56,7 @@
         出金
       </p>
     </a>
-    <a href="./change-password.html" class="weui-grid js_grid">
+    <a href="./change-password.jsp" class="weui-grid js_grid">
       <div class="weui-grid__icon">
         <img src="./images/account/m3.png" alt="">
       </div>
@@ -120,38 +110,9 @@
       退出登录
     </a>
   </div>
+<%@include file="footer.jsp"%> 
+<script src="./js/libs/require.min.js"></script>
+<script>
+  require(['js/account.js'])
+</script>
 
-
-  <!-- tabbar -->
-  <div class="weui-tabbar">
-    <a href="./index.html" class="weui-tabbar__item">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/home-off.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">首页</p>
-    </a>
-    <a href="./stock-day.html" class="weui-tabbar__item">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/stock-off.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">股票配资</p>
-    </a>
-    <!-- <a href="javascript:;" class="weui-tabbar__item">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/service-off.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">在线客服</p>
-    </a> -->
-    <a href="./account.html" class="weui-tabbar__item weui-bar__item--on">
-      <div class="weui-tabbar__icon">
-        <img src="./images/tabbar/account-on.png" alt="">
-      </div>
-      <p class="weui-tabbar__label">我的账户</p>
-    </a>
-  </div>
-  <script src="./js/libs/require.min.js"></script>
-  <script>
-    require(['js/account.js'])
-  </script>
-</body>
-</html>

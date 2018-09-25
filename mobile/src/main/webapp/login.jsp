@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
-    name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/libs/weui.min.css">
-  <link rel="stylesheet" href="./css/libs/jquery-weui.min.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <title>登录</title>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="header.jsp"%>
 <body class="has-hd">
   <!-- 顶部导航栏 -->
   <div class="header">
@@ -37,8 +27,8 @@
     </div>
   </div>
   <div class="weui-flex weui-cells__title login-other">
-    <a href="./register.html" class="link-left">新用户注册</a>
-    <a href="./find-password.html" class="link-right">忘记密码？</a>
+    <a href="./register.jsp" class="link-left">新用户注册</a>
+    <a href="./find-password.jsp" class="link-right">忘记密码？</a>
   </div>
 
   <div class="weui-btn-area">

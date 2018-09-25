@@ -1,5 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="header.jsp"%>
+<body class="has-all">
+  <!-- 顶部导航栏 -->
+  <div class="header">
+    <div class="hd-center">
+      <h1 class="title">
+        header页面
+      </h1>
+    </div>
+  </div>
   <!-- banner -->
   <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -46,27 +55,27 @@
 
   <!-- 菜单 -->
   <div class="weui-flex index-menu mt-12">
-    <a href="./stock-free.html" class="weui-flex__item">
+    <a href="./stock-free.jsp" class="weui-flex__item">
       <img src="./images/home/m1.png" alt="">
       <p>免息配资</p>
     </a>
-    <a href="./stock-day.html" class="weui-flex__item">
+    <a href="./stock-day.jsp" class="weui-flex__item">
       <img src="./images/home/m2.png" alt="">
       <p>按天配资</p>
     </a>
-    <a href="./stock-month.html" class="weui-flex__item">
+    <a href="./stock-month.jsp" class="weui-flex__item">
       <img src="./images/home/m3.png" alt="">
       <p>按月配资</p>
     </a>
-    <a href="./software.html" class="weui-flex__item">
+    <a href="./software.jsp" class="weui-flex__item">
       <img src="./images/home/m4.png" alt="">
       <p>交易软件</p>
     </a>
-    <a href="./share.html" class="weui-flex__item">
+    <a href="./share.jsp" class="weui-flex__item">
       <img src="./images/home/m5.png" alt="">
       <p>我要推广</p>
     </a>
-    <a href="./register.html" class="weui-flex__item">
+    <a href="./register.jsp" class="weui-flex__item">
       <img src="./images/home/m6.png" alt="">
       <p>免费注册</p>
     </a>
