@@ -1,0 +1,66 @@
+@import url(fonts.googleapis.com.css); /*!
+ *   AdminLTE v2.0.1
+ *   Author: Almsaeed Studio
+ *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
+!*/
+html,body {
+	min-height: 100%
+}
+
+.layout-boxed html,.layout-boxed body {
+	height: 100%
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	overflow-x: hidden;
+	overflow-y: auto
+}
+.my-main-footer {
+	-webkit-transition: -webkit-transform .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	-moz-transition: -moz-transform .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	-o-transition: -o-transform .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	transition: transform .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	-webkit-transition: margin-left .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	-o-transition: margin-left .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	transition: margin-left .3s cubic-bezier(.32, 1.25, .375, 1.15);
+	margin-left: 0px;
+	z-index: 820
+}
+
+.my-main-footer {
+	margin-left: 0
+}
+
+@media ( max-width :767px) {
+	.my-main-footer {
+		margin-left: 0
+	}
+}
+
+@media ( min-width :768px) {
+	.my-main-footer {
+		margin-left: 0
+	}
+}
+
+@media ( max-width :767px) {
+	.my-main-footer {
+		-webkit-transform: translate(230px, 0);
+		-ms-transform: translate(230px, 0);
+		-o-transform: translate(230px, 0);
+		transform: translate(230px, 0)
+	}
+}
+
+.my-main-footer {
+	background: #fff;
+	padding: 15px;
+	color: #444;
+	border-top: 1px solid #eee
+}

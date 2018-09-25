@@ -4,6 +4,7 @@
 
 	<!--<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="services/src/main/java"/>-->
 	<classpathentry kind="src" output="admin/src/main/webapp/WEB-INF/classes" path="admin/src/main/java"/>
+	<classpathentry kind="src" output="mobile/src/main/webapp/WEB-INF/classes" path="mobile/src/main/java"/>
 	<classpathentry kind="src" output="web/src/main/webapp/WEB-INF/classes" path="web/src/main/java"/>
 	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="core/src/main/java"/>
 	<classpathentry kind="src" output="services/src/main/webapp/WEB-INF/classes" path="services/src/main/resources"/>
