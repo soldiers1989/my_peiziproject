@@ -49,7 +49,11 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-
+  <script src="./js/libs/require.min.js"></script>
+  <script src="./js/libs/clipboard.min.js"></script>
+  <script>
+    require(['js/share.js'])
+  </script>
 
 </body>
 </html>
