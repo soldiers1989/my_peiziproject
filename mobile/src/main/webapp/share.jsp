@@ -3,9 +3,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	if(null == <%=account%>){
-		$("#input").val("http://47.95.214.33/register.jsp");
+		$("#input").val("http://www.98peizi.com/register.jsp");
 	} else {
-		$("#input").val("http://47.95.214.33/register.jsp?remdPhone=" + <%=account%>);
+		$("#input").val("http://www.98peizi.com/register.jsp?remdPhone=" + <%=account%>);
 	}
 	
 });
