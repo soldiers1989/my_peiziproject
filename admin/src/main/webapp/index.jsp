@@ -37,10 +37,10 @@
 		if(browser.versions.android){            
 		//是否在安卓浏览器打开            
 		}*/            
-		window.location.href = "http://47.95.214.33/mobile/index.jsp";        
+		window.location.href = "http://www.98peizi.com/mobile/index.jsp";        
 	}        
 	else {        
-		window.location.href = "http://47.95.214.33/web/index.jsp";        
+		window.location.href = "http://www.98peizi.com/web/index.jsp";        
 	}      
 </script>
 
