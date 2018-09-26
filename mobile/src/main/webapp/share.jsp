@@ -45,7 +45,7 @@ $(document).ready(function() {
       <!-- <h4><a href="./login.jsp">登录</a> 后生成您的专属分享链接</h4> -->
       <input type="text" id="input" readonly value="">
       <div class="weui-btn-area">
-        <button class="weui-btn weui-btn_mini weui-btn_primary" id="copyLinkBtn"  data-clipboard-target="#input">点击复制您的推广链接</button>
+        <button class="weui-btn weui-btn_mini weui-btn_primary" id="copyBtn"  data-clipboard-target="#input">点击复制您的推广链接</button>
       </div>
     </div>
   </div>
