@@ -16,7 +16,7 @@
   </div>
   <div class="weui-cells login">
     <div class="weui-cell">
-      <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
+      <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
       <div class="weui-cell__bd"><input type="number" id="mobile"
           placeholder="请填写手机号码" class="weui-input"></div>
     </div>
