@@ -67,7 +67,7 @@
       <img src="./images/home/m3.png" alt="">
       <p>按月配资</p>
     </a>
-    <a href="http://47.95.214.33/software.jsp" class="weui-flex__item">
+    <a href="http://47.95.214.33/web/software.jsp" class="weui-flex__item">
       <img src="./images/home/m4.png" alt="">
       <p>交易软件</p>
     </a>
