@@ -8,7 +8,8 @@ define(function() {
       Swiper: 'libs/swiper.min',
       base: 'base',
       utils: 'utils',
-      Qs: 'libs/qs.min'
+      Qs: 'libs/qs.min',
+      Clipboard: 'libs/clipboard.min'
     },
     shim: {
       weui: ['jquery'],
