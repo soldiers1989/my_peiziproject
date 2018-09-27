@@ -41,17 +41,17 @@
 		//是否在安卓浏览器打开            
 		}*/      
 		if (null == <%=remdPhone%>){
-			window.location.href = "http://47.95.214.33/mobile/register.jsp";
+			window.location.href = "http://www.98peizi.com/mobile/register.jsp";
 		} else {
-			window.location.href = "http://47.95.214.33/mobile/register.jsp?remdPhone=<%=remdPhone%>";  
+			window.location.href = "http://www.98peizi.com/mobile/register.jsp?remdPhone=<%=remdPhone%>";  
 		}
 		      
 	}        
 	else {      
 		if (null == <%=remdPhone%>){
-			window.location.href = "http://47.95.214.33/web/register.jsp"; 
+			window.location.href = "http://www.98peizi.com/web/register.jsp"; 
 		} else {
-			window.location.href = "http://47.95.214.33/web/register.jsp?remdPhone=<%=remdPhone%>"; 
+			window.location.href = "http://www.98peizi.com/web/register.jsp?remdPhone=<%=remdPhone%>"; 
 		}
 	}      
 </script>
