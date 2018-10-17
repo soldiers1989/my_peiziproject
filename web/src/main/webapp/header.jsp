@@ -45,7 +45,7 @@
         客服电话: <span>18612226789</span>
         &nbsp;
         <i class="fa fa-globe"></i>
-        易记网址： <span>www.98pz.com</span>
+        易记网址： <span>www.98peizi.com</span>
       </div>
       <div class="top-bar-right fr">
       <%if (null == account) {%>
