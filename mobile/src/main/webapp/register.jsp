@@ -85,7 +85,7 @@ function getuid(){
     <input id="weuiAgree" type="checkbox" checked="checked"
       class="weui-agree__checkbox" disabled>
     <span class="weui-agree__text">
-      阅读并同意<a href="#" target="_blank">《相关条款》
+      阅读并同意<a href="./registration-agreement.jsp" target="_blank">注册服务协议
       </a>
     </span>
   </label>

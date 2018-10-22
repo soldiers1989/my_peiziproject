@@ -71,6 +71,10 @@ define(function() {
           title: '按月配资'
         },
         {
+          keyword: 'stock-enter',
+          title: '配资确认'
+        },
+        {
           keyword: 'software',
           title: '交易软件'
         },
