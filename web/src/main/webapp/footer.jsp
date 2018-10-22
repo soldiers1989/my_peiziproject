@@ -1,25 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="footer">
+ <div class="footer">
     <div class="container">
       <div class="contact clearfix">
         <div class="service fl">
           <h1>客服热线</h1>
-          <h2>18612226789</h2>
+          <h2>18612226789 </h2>
+          <h2>18311187611 </h2>
           <p><span>工作时间</span>08:00 - 17:00</p>
           <p><span>法定假日</span>10:00 - 16:00</p>
         </div>
         <div class="app-qrcode fl clearfix">
           <div class="fl">
-            <img src="./images/software/android.jpg" alt="">
-            <p>扫一扫关注我们</p>
+            <img src="./images/index/weixin.jpg" alt="">
+            <p>扫一扫添加微信</p>
           </div>
           <div class="fl">
-            <img src="./images/software/ios.jpg" alt="">
-            <p>安卓APP下载</p>
-          </div>
-          <div class="fl">
-            <img src="./images/software/ios.jpg" alt="">
-            <p>苹果版APP下载</p>
+            <img src="./images/index/weixin1.jpg" alt="">
+            <p>扫一扫添加微信</p>
           </div>
         </div>
         <div class="fl">

@@ -112,7 +112,7 @@
         </div>
         <p class="before-btn">资金第三方托管 全实盘交易</p>
         <p class="btn-wrapper">
-          <a href="./stock-free.jsp" class="btn outline primary btn-block">立即申请</a>
+          <a href="./stock-free.jsp" class="btn outline orange btn-block">立即申请</a>
         </p>
       </li>
       <li>
@@ -515,8 +515,26 @@
         </ul>
       </div>
       <div class="links" id="links">
-        <a href="http://www.csrc.gov.cn/">中国证监会官网</a>
-        <a href="http://www.cfachina.org/">中国期货业协会官网</a>
+        <ul class="clearfix">
+          <li class="fl">
+            <a href="http://www.shfe.com.cn/" target="_blank"
+              title="上海期货交易所官网">
+              <img src="./images/index/shfe.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.csrc.gov.cn/" target="_blank"
+              title="中国证监会官网">
+              <img src="./images/index/csrc.jpg" alt="">
+            </a>
+          </li>
+          <li class="fl">
+            <a href="http://www.cfachina.org/" target="_blank"
+              title="中国期货业协会官网">
+              <img src="./images/index/qhxh.jpg" alt="">
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

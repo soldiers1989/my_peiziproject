@@ -56,7 +56,7 @@ function getuid(){
         <p class="agree form-item">
           <input type="checkbox" id="" checked disabled>
           <span>
-            同意 <a href="#">注册服务协议</a>
+            同意 <a href="./registration-agreement.jsp">注册服务协议</a>
           </span>
         </p>
         <p class="btn-wrapper">

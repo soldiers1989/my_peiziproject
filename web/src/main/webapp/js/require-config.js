@@ -34,6 +34,10 @@ define(function() {
         }
       });
 
+      $('head').append(
+        ' <link rel="shortcut icon" href="./images/favicon.ico">'
+      );
+
       // 根据链接激活菜单项
       var $links = $('.nav').find('a');
       $links.each(function() {
@@ -47,6 +51,88 @@ define(function() {
           $this.parent('li').addClass('active');
         }
       });
+
+      // 根据链接地址动态修改title
+      var websiteMap = [
+        {
+          keyword: 'index',
+          title: '首页'
+        },
+        {
+          keyword: 'stock-free',
+          title: '免息配资'
+        },
+        {
+          keyword: 'stock-day',
+          title: '按天配资'
+        },
+        {
+          keyword: 'stock-month',
+          title: '按月配资'
+        },
+        {
+          keyword: 'software',
+          title: '交易软件'
+        },
+        {
+          keyword: 'share',
+          title: '我的推广'
+        },
+        {
+          keyword: 'login',
+          title: '登录'
+        },
+        {
+          keyword: 'register',
+          title: '注册'
+        },
+        {
+          keyword: 'registration-agreement',
+          title: '注册协议'
+        },
+        {
+          keyword: 'find-password',
+          title: '找回密码'
+        },
+        {
+          keyword: 'account',
+          title: '个人中心'
+        },
+        {
+          keyword: 'recharge',
+          title: '入金'
+        },
+        {
+          keyword: 'withdraw',
+          title: '出金'
+        },
+        {
+          keyword: 'change-password',
+          title: '修改密码'
+        },
+        {
+          keyword: 'company-profile',
+          title: '公司简介'
+        },
+        {
+          keyword: 'contact-us',
+          title: '联系我们'
+        },
+        {
+          keyword: 'protocol',
+          title: '合作操盘协议'
+        }
+      ];
+      var suffix = '98配资网';
+
+      var url = window.location.href;
+
+      for (var i = 0; i < websiteMap.length; i++) {
+        var item = websiteMap[i];
+        if (url.indexOf(item.keyword) > -1) {
+          $('title').text(item.title + '-' + suffix);
+        }
+      }
     });
   });
 });
