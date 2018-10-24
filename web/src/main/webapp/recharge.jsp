@@ -68,7 +68,18 @@ function setaccount(account){
                   placeholder="请输入充值金额">
                 <span class="error"></span>
               </p>
-             
+              <p class="form-item">
+                <label for="">选择银行</label>
+                <select name="bank" id="bank">
+                  <option value="01020000">中国工商银行</option>
+                  <option value="01050000">中国建设银行</option>
+                  <option value="01030000">中国农业银行</option>
+                  <option value="01040000">中国银行</option>
+                  <option value="04012900">上海银行</option>
+                  <option value="04031000">其他（银联支付）</option>
+                </select>
+                <span class="error"></span>
+              </p>
 
               <p class="btn-wrapper">
                 <button type="button" class="btn btn-block btn-primary"

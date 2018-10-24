@@ -143,8 +143,23 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
         </tr>
         <tr>
           <td colspan="5" class="info">
-            <p>点击<span>确认配资</span>按钮，会调起线上入金页面，请注意入金时间限制！</p>
-            <p>线上入金时间：08:30-17:30 20:30-03:00（不包含周末）</p>
+          <div class="clearfix">
+            <div class="fl">
+              <p>点击<span>确认配资</span>按钮，会调起线上入金页面，请注意入金时间限制！</p>
+              <p>线上入金时间：08:30-17:30 20:30-03:00（不包含周末）</p>
+            </div>
+            <div class="fl choose-bank>
+              <label for="">选择银行</label>
+              <select name="bank" id="bank">
+                <option value="01020000">中国工商银行</option>
+                <option value="01050000">中国建设银行</option>
+                <option value="01030000">中国农业银行</option>
+                <option value="01040000">中国银行</option>
+                <option value="04012900">上海银行</option>
+                <option value="04031000">其他（银联支付）</option>
+              </select>
+            </div>
+          </div>
           </td>
         </tr>
       </tbody>
