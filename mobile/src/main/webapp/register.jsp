@@ -86,14 +86,14 @@ function getuid(){
           class="weui-input" name="referrer" id="referrer"></div>
     </div> -->
   </div>
-  <label for="weuiAgree" class="weui-agree">
+  <span for="weuiAgree" class="weui-agree">
     <input id="weuiAgree" type="checkbox" 
       class="weui-agree__checkbox" >
     <span class="weui-agree__text">
       阅读并同意<a href="./registration-agreement.jsp" target="_blank">注册服务协议
       </a>
     </span>
-  </label>
+  </span>
   <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" id="registerBtn">同意协议并注册</a>
     <a href="./login.jsp" class="weui-btn weui-btn_default login-btn">已有账号？立即登录</a>
