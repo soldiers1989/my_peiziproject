@@ -46,7 +46,6 @@ function getuid(){
           class="weui-input" name="username" id="username"></div>
     </div> -->
     <input type="hidden" id="uid" name="uid" value="">
-    <input type="hidden" id="remdPhone" name="remdPhone" value="">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">
           +86
@@ -74,6 +73,12 @@ function getuid(){
       <div class="weui-cell__bd"><input type="password"
           placeholder="请确认密码" class="weui-input" name="confirmPsw"
           id="confirmPsw"></div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">推荐人</label></div>
+      <div class="weui-cell__bd"><input type="number"
+          placeholder="推荐人" class="weui-input" name="remdPhone"
+          id="remdPhone"></div>
     </div>
     <!-- <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">推荐人</label></div>

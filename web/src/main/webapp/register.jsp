@@ -29,7 +29,6 @@ function getuid(){
     <div class="container">
       <form action="#" class="register-form">
         <input type="hidden" id="uid" name="uid" value="">
-        <input type="hidden" id="remdPhone" name="remdPhone" value="">
         <p class="form-item">
           <label for="">手机号码</label>
           <input type="text" name="mobile" placeholder="请输入您的手机号码"
@@ -49,8 +48,13 @@ function getuid(){
         </p>
         <p class="form-item">
           <label for="">确认密码</label>
-          <input type="password" id="confirmPassword"
+          <input type="text" id="confirmPassword"
             placeholder="请确认密码">
+        </p>
+        <p class="form-item">
+          <label for="">推荐人</label>
+          <input type="remdPhone" id="remdPhone"
+            placeholder="推荐人">
         </p>
 
         <p class="agree form-item">
