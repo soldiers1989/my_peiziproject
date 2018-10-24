@@ -9,7 +9,7 @@ package com.business.rest.web;
  */
 public enum OutRecordReturnCode {
 
-	AMOUNT_NOTENOUGH(1, "您提现的金额大于您的余额！"), 
+	BANK_NOTBINDING(1, "您的银行卡信息未绑定，请在个人主页进行完善！"), 
 	;
 	private int flag;
 	private String desc;

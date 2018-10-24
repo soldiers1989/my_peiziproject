@@ -45,6 +45,11 @@ public class WebOutRecordRest {
 		try {
 
 			UserEntity userEntity = userService.getByPhone(phone);
+			if(userEntity.getBankStatus().intValue() == 0){
+				result.setResultCode(OutRecordReturnCode.BANK_NOTBINDING.getFlag());
+				result.setResultMessage(OutRecordReturnCode.BANK_NOTBINDING.getDesc());
+				return result;
+			}
 			OutRecordEntity entity = new OutRecordEntity();
 			entity.setUserid(userEntity.getId());
 			entity.setAmount(amount*100);
@@ -53,9 +58,9 @@ public class WebOutRecordRest {
 			outRecordService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("outrecord", "inrecord save", ""));
+			logger.info(WebUtils.outLogInfo("outrecord", "outrecord save", ""));
 		} catch (Exception ex) {
-			logger.error(WebUtils.outLogError("outrecord", "inrecord save", ex.getMessage()), ex);
+			logger.error(WebUtils.outLogError("outrecord", "outrecord save", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
 			result.setResultMessage(ReturnCode.BUSINESS_ERROR.getDesc());
 		}

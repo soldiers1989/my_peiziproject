@@ -99,13 +99,14 @@
                 datatr+="<td>"+adaptor.phone+"</td>";
                 datatr+="<td>"+adaptor.amount+"</td>";
                 datatr+="<td>"+adaptor.statusStr+"</td>";
+                datatr+="<td>"+adaptor.memo+"</td>";
                 datatr+="<td>"+adaptor.createtime+"</td>";
                 //datatr+="<td><a href=\"#\" title=\"修改\"><img src=\"../../resources/images/icons/pencil.png\" alt=\"修改\" /></a>";
                 //datatr+="<td><a href=\"#\" title=\"删除\"><img src=\"../../resources/images/icons/cross.png\" alt=\"删除\" /></a> </td>";
                 datatr+="</tr>";
             }
         }else{
-            datatr = "<tr><td colspan=\"6\">抱歉，没有查询到符合条件的记录</td><tr>";
+            datatr = "<tr><td colspan=\"7\">抱歉，没有查询到符合条件的记录</td><tr>";
         }
         $("#datalist tbody").append(datatr);
         $('#datalist tr:even').addClass("alt-row");
@@ -217,6 +218,7 @@
 												<th>手机号</th>
 												<th>金额</th>
 												<th>状态</th>
+												<th>备注</th>
 												<th>时间</th>
 											</tr>
 										</thead>

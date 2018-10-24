@@ -20,7 +20,11 @@ function getamount(account){
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            document.getElementById("amount").innerHTML=data.amount;
+        	if (null == data.account){
+        		document.getElementById("account").innerHTML= "提交配资申请，自动分配帐号!";
+        	} else {
+        		document.getElementById("account").innerHTML=data.account;
+        	}
         }
     });
 }
@@ -39,8 +43,8 @@ function getamount(account){
   <div class="swiper-container assets-preview">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <p>当前余额(元)</p>
-        <h1><span id="amount">0</span></h1>
+        <p>当前交易帐号</p>
+        <h1><span id="account">0</span></h1>
       </div>
       <!-- <div class="swiper-slide">
         <p>配资金额(元)</p>

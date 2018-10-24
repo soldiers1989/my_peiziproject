@@ -59,7 +59,20 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
             	 	alert(data.resultMessage);
 	             } else {
 	            	 alert("配置申请提交成功");
-	            	 window.location.href = "./index.jsp";
+	            	 $.ajax({
+	            	        url: RESTFUL_BASE+"/web/user/getamount/"+account,
+	            	        type: 'GET',
+	            	        dataType: 'json',
+	            	        success: function(data){
+	            	        	//http://lcppay.com/a/payment/sandpay/gopay?account=5771001&rmb=5015.00&dollar=5000.00&bankCode=01050000&rage=2.00
+         	        			var jiaoYiAccount=data.account;
+	            	        	var dollar = baozhengAmount.toFixed(2);
+	            	        	var rmb = (baozhengAmount + (baozhengAmount*0.003)).toFixed(2);
+	            	        	var jiaoYiRate = parseFloat(rate).toFixed(2);
+	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode="+ $("#bankCode").val() +"&rate=" + jiaoYiRate;
+	            	           	window.location.href = redirectUrl;
+	            	        }
+	            	 });
 				}
 			}
 		});
@@ -86,7 +99,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
         <label for="" class="weui-label">选择银行</label>
       </div>
       <div class="weui-cell__bd">
-        <select class="weui-select" id="bank" name="bank">
+        <select class="weui-select" id="bankCode" name="bankCode">
           <option value="01020000">中国工商银行</option>
           <option value="01050000">中国建设银行</option>
           <option value="01030000">中国农业银行</option>
@@ -132,7 +145,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
 
   <script src="./js/libs/require.min.js"></script>
   <script>
-    require(['js/stock-enter'])
+    require(['js/stock-enter.js'])
   </script>
 
 </body>

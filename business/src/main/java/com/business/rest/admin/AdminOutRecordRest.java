@@ -91,7 +91,7 @@ public class AdminOutRecordRest {
 				} else if (dto.getStatus().intValue() == 1){
 					dto.setStatusStr("已处理");
 				}
-				
+				dto.setMemo(tmpEntity.getBankName() + ":" + tmpEntity.getBankNo());
 				dtos.getResult().add(dto);
 			}
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());

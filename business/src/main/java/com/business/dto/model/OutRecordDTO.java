@@ -12,6 +12,7 @@ public class OutRecordDTO implements java.io.Serializable {
 	private double amount;
 	private Integer status;
 	private String statusStr;
+	private String memo;
 	private String createtime;
 
 	public OutRecordDTO() {
@@ -71,6 +72,14 @@ public class OutRecordDTO implements java.io.Serializable {
 
 	public void setStatusStr(String statusStr) {
 		this.statusStr = statusStr;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	
