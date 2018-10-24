@@ -66,7 +66,23 @@ function setaccount(account){
   </div>
   <div class="recharge-content offline" style="display: none;">
     <div class="weui-cells login">
+    
     <input type="hidden" id="account" name="account" value=""/>
+      <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">选择银行</label>
+        </div>
+        <div class="weui-cell__bd">
+          <select class="weui-select" id="bank" name="bank">
+            <option value="01020000">中国工商银行</option>
+            <option value="01050000">中国建设银行</option>
+            <option value="01030000">中国农业银行</option>
+            <option value="01040000">中国银行</option>
+            <option value="04012900">上海银行</option>
+            <option value="04031000">其他（银联支付）</option>
+          </select>
+        </div>
+      </div>
       <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">充值金额</label></div>
         <div class="weui-cell__bd"><input type="number" id="amount"
