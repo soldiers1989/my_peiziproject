@@ -1,5 +1,7 @@
 package com.business.rest.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -60,6 +62,36 @@ public class WebPeiziRest {
 				result.setResultMessage(ReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
+			
+			Date today = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(today);
+			int weekday = c.get(Calendar.DAY_OF_WEEK);
+			if (weekday == 1 || weekday == 7) {
+				result.setResultCode(PeiziReturnCode.INRECORD_TIMEERROR.getFlag());
+				result.setResultMessage(PeiziReturnCode.INRECORD_TIMEERROR.getDesc());
+				return result;
+			} else {
+				Date now = new Date();
+				long nowLong = now.getTime();
+				SimpleDateFormat formatYMD = new SimpleDateFormat("yyyy-MM-dd");
+				String todayYMDStr = formatYMD.format(now);
+				SimpleDateFormat formatYMDHMD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				long date1 = formatYMDHMD.parse(todayYMDStr + " 00:00:00").getTime();
+				long date2 = formatYMDHMD.parse(todayYMDStr + " 03:00:00").getTime();
+				
+				long date3 = formatYMDHMD.parse(todayYMDStr + " 08:30:00").getTime();
+				long date4 = formatYMDHMD.parse(todayYMDStr + " 17:30:00").getTime();
+				
+				long date5 = formatYMDHMD.parse(todayYMDStr + " 20:30:00").getTime();
+				long date6 = formatYMDHMD.parse(todayYMDStr + " 00:00:00").getTime();
+				if (!((nowLong > date1 && nowLong<date2)|| (nowLong > date3 && nowLong<date4)||(nowLong > date5 && nowLong<date6) )){
+					result.setResultCode(PeiziReturnCode.INRECORD_TIMEERROR.getFlag());
+					result.setResultMessage(PeiziReturnCode.INRECORD_TIMEERROR.getDesc());
+					return result;
+				}
+			}
+			
 			String jiaoYiAccount = userEntity.getAccount();
 			if (null == jiaoYiAccount || "".equals(jiaoYiAccount)) {
 				List<AccountEntity> accountList = accountService.getAllNotUsed();

@@ -53,7 +53,8 @@ public class WebUserRest {
 	@Path("/register")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public RestfulResult register(@FormParam("uid") String uid, @FormParam("mobile") String phone, @FormParam("code") String code, @FormParam("password") String password, @FormParam("remdPhone") String remdPhone) {
+	public RestfulResult register(@FormParam("uid") String uid, @FormParam("mobile") String phone, @FormParam("code") String code, @FormParam("password") String password,
+			@FormParam("remdPhone") String remdPhone) {
 		RestfulResult result = new RestfulResult();
 		Date now = new Date();
 		try {
@@ -122,7 +123,7 @@ public class WebUserRest {
 				result.setResultMessage(UserReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
-			if (!password.equals(entity.getPassword())){
+			if (!password.equals(entity.getPassword())) {
 				result.setResultCode(UserReturnCode.PASSWORD_ERROR.getFlag());
 				result.setResultMessage(UserReturnCode.PASSWORD_ERROR.getDesc());
 				return result;
@@ -177,7 +178,7 @@ public class WebUserRest {
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("user", "getpassword",""));
+			logger.info(WebUtils.outLogInfo("user", "getpassword", ""));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("user", "getpassword", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
@@ -185,7 +186,7 @@ public class WebUserRest {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 获得余额
 	 */
@@ -194,20 +195,21 @@ public class WebUserRest {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public UserDTO getamount(@PathParam("phone") String phone) {
 		UserDTO dto = new UserDTO();
-		try{
+		try {
 			UserEntity userEntity = userService.getByPhone(phone);
-			if (null != userEntity){
+			if (null != userEntity) {
 				WebUtils.beanCopy(UserEntity.class, UserDTO.class, userEntity, dto);
-				dto.setAmount((double)userEntity.getAmount()/100);
+				dto.setAmount((double) userEntity.getAmount() / 100);
 			}
+
 			
-		} catch(Exception ex){
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
 		return dto;
 	}
-	
+
 	/**
 	 * 修改密码
 	 */
@@ -226,7 +228,7 @@ public class WebUserRest {
 				return result;
 			}
 
-			if(!entity.getPassword().equals(oldPassword)){
+			if (!entity.getPassword().equals(oldPassword)) {
 				result.setResultCode(UserReturnCode.OLDPASSWORD_ERROR.getFlag());
 				result.setResultMessage(UserReturnCode.OLDPASSWORD_ERROR.getDesc());
 				return result;
@@ -236,7 +238,7 @@ public class WebUserRest {
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("user", "modifypassword",""));
+			logger.info(WebUtils.outLogInfo("user", "modifypassword", ""));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("user", "modifypassword", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
@@ -244,7 +246,7 @@ public class WebUserRest {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 身份认证
 	 */
@@ -268,7 +270,7 @@ public class WebUserRest {
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("user", "modifypassword",""));
+			logger.info(WebUtils.outLogInfo("user", "modifypassword", ""));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("user", "modifypassword", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
@@ -276,7 +278,7 @@ public class WebUserRest {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 银行绑定
 	 */
@@ -300,7 +302,7 @@ public class WebUserRest {
 			userService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
-			logger.info(WebUtils.outLogInfo("user", "modifypassword",""));
+			logger.info(WebUtils.outLogInfo("user", "modifypassword", ""));
 		} catch (Exception ex) {
 			logger.error(WebUtils.outLogError("user", "modifypassword", ex.getMessage()), ex);
 			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());

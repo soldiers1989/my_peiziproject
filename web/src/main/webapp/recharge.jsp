@@ -70,7 +70,7 @@ function setaccount(account){
               </p>
               <p class="form-item">
                 <label for="">选择银行</label>
-                <select name="bank" id="bank">
+                <select name="bankCode" id="bankCode">
                   <option value="01020000">中国工商银行</option>
                   <option value="01050000">中国建设银行</option>
                   <option value="01030000">中国农业银行</option>

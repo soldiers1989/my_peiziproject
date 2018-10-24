@@ -10,6 +10,7 @@ package com.business.rest.web;
 public enum PeiziReturnCode {
 
 	ACCOUNT_NOTENOUGH(1, "可分配的交易帐号数量不足！"), 
+	INRECORD_TIMEERROR(1, "配资入金时间错误,请查看入金时间说明！"), 
 	;
 	private int flag;
 	private String desc;

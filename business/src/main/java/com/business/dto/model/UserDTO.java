@@ -23,6 +23,7 @@ public class UserDTO implements java.io.Serializable {
 	private String remdPhone;// 推荐人手机号
 	private String createtime;
 	private String operatetime;
+	//private Integer verifyTime;//0:正常入金时间,1:目前是周末,2:入金时间错误
 	private RestfulResult restfulResult;
 	public UserDTO() {
 	}

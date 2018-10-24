@@ -32,18 +32,6 @@ $(document).ready(function() {
 
 });
 
-function getamount(account){
-	var RESTFUL_BASE = serviceurl.baseurl;
-    $.ajax({
-        url: RESTFUL_BASE+"/web/user/getamount/"+account,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data){
-            document.getElementById("amount").innerHTML=data.amount;
-            
-        }
-    });
-}
 function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopanAmount,warnLine,pingcangLine,tradeDay,tradeCount){
 	var RESTFUL_BASE = serviceurl.baseurl;
      $.ajax({
@@ -65,12 +53,13 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
 	            	        dataType: 'json',
 	            	        success: function(data){
 	            	        	//http://lcppay.com/a/payment/sandpay/gopay?account=5771001&rmb=5015.00&dollar=5000.00&bankCode=01050000&rage=2.00
-	            	        	var jiaoYiAccount=data.account;
+            	        		var jiaoYiAccount=data.account;
 	            	        	var dollar = baozhengAmount.toFixed(2);
 	            	        	var rmb = (baozhengAmount + (baozhengAmount*0.003)).toFixed(2);
 	            	        	var jiaoYiRate = parseFloat(rate).toFixed(2);
-	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode=01050000&rate=" + jiaoYiRate;
+	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode="+ $("#bankCode").val() +"&rate=" + jiaoYiRate;
 	            	           	window.location.href = redirectUrl;
+	            	        	
 	            	        	
 	            	        }
 	            	 });
@@ -142,15 +131,19 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
           </td>
         </tr>
         <tr>
-          <td colspan="5" class="info">
+          <td colspan="3" class="info">
           <div class="clearfix">
             <div class="fl">
               <p>点击<span>确认配资</span>按钮，会调起线上入金页面，请注意入金时间限制！</p>
               <p>线上入金时间：08:30-17:30 20:30-03:00（不包含周末）</p>
             </div>
+          </div>
+          </td>
+          <td colspan="2" class="info">
+          <div class="clearfix">
             <div class="fl choose-bank>
               <label for="">选择银行</label>
-              <select name="bank" id="bank">
+              <select name="bankCode" id="bankCode">
                 <option value="01020000">中国工商银行</option>
                 <option value="01050000">中国建设银行</option>
                 <option value="01030000">中国农业银行</option>
