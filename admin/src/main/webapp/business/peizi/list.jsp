@@ -62,7 +62,7 @@
         	contentType:"application/x-www-form-urlencoded",
             url:serviceurl.baseurl+"/<%=busType%>/peizi/get/page",
             dataType:"json",
-            data:"pageNo=" + page.pageNo+"&pageSize="+page.pageSize+"&phone="+$("#searchphone").val() +"&type="+$("#searchtype").val()+ "&operator=" + operator,
+            data:"pageNo=" + page.pageNo+"&pageSize="+page.pageSize+"&phone="+$("#searchphone").val() +"&type="+$("#searchtype").val()+"&status="+$("#searchstatus").val()+ "&operator=" + operator,
             success:dataFill
         });
     }
@@ -94,11 +94,10 @@
             for(var i=0; i<resultObject.result.length;i++) {
                 var adaptor = resultObject.result[i];
                 datatr+= "<tr id=\""+adaptor.id+"\">"
-                //datatr+="<td><input name=\"devcheckbox\" type=\"checkbox\" /></td>";
+                datatr+="<td><input name=\"devcheckbox\" type=\"checkbox\" /></td>";
                 datatr+="<td>"+(countNum+i+1)+"</td>";
                 datatr+="<td>"+adaptor.phone+"</td>";
                 datatr+="<td>"+adaptor.typeName+"</td>";
-                
                 datatr+="<td>"+adaptor.baozhengAmount+"</td>";
                 datatr+="<td>"+adaptor.dayCount+"</td>";
                 datatr+="<td>"+adaptor.rate+"</td>";
@@ -108,19 +107,58 @@
                 datatr+="<td>"+adaptor.pingcangLine+"</td>";
                 datatr+="<td>"+adaptor.tradeCount+"</td>";
                 datatr+="<td>"+adaptor.tradeDayName+"</td>";
+                datatr+="<td>"+adaptor.statusStr+"</td>";
                 datatr+="<td>"+adaptor.createtime+"</td>";
                 //datatr+="<td><a href=\"#\" title=\"修改\"><img src=\"../../resources/images/icons/pencil.png\" alt=\"修改\" /></a>";
                 //datatr+="<td><a href=\"#\" title=\"删除\"><img src=\"../../resources/images/icons/cross.png\" alt=\"删除\" /></a> </td>";
                 datatr+="</tr>";
             }
         }else{
-            datatr = "<tr><td colspan=\"10\">抱歉，没有查询到符合条件的记录</td><tr>";
+            datatr = "<tr><td colspan=\"15\">抱歉，没有查询到符合条件的记录</td><tr>";
         }
         $("#datalist tbody").append(datatr);
         $('#datalist tr:even').addClass("alt-row");
         parent.document.all("myFrameId").style.height=$(".wrapper").css("height");
     }
     
+    //获取应用列表中被选中的应用id集合，返回为数组
+    function getSelectedIds(){
+        var ret = new Array();
+        $("#datalist tbody input:checkbox").each(function(){
+            if($(this).attr("checked")){
+                ret.push($(this).parent().parent().attr("id"));
+            }
+        });
+        return ret;
+    }
+    
+    function del(ids){
+        if(!confirm('该记录确认更新?')){
+            return;
+        }
+        //ajax 
+        $.ajax({
+            url: serviceurl.baseurl+'/<%=busType%>/peizi/update/list',
+            type: 'POST',
+            traditional :true,//使数组直接变成同一名字的查询字段
+            data: {'ids':ids,'operator':'<%=userid%>'},
+            success: function(data){
+            	alert("更新状态成功!");
+                getPageData(page.pageNo);
+            }
+        });
+    } 
+    
+    function batchDel(){
+    	var ids = getSelectedIds();
+        if(ids.length==0){
+            alert("您还没有选择要更新的记录！");
+            return;
+        }
+        if(ids){
+            del(ids);
+        }
+    }
 </script>
 
 </head>
@@ -148,6 +186,11 @@
 								<div class="box-header">
 									<div class="box-tools">
 										<div class="input-group">
+											<select id="searchstatus" name="searchstatus"  class="form-control input-sm pull-right" style="width: 180px;">
+												<option value="-1">--靖选择处理状态--</option>
+												<option value="0">未处理</option>
+												<option value="1">已处理</option>
+											</select>
 											<select id="searchtype" name="searchtype"  class="form-control input-sm pull-right" style="width: 180px;">
 												<option value="0">--请选择配资类型--</option>
 												<option value="1">免息配资</option>
@@ -166,19 +209,15 @@
 								<!-- /.box-header -->
 								<div class="table-responsive mailbox-messages">
 									<div class="mailbox-controls">
-									<!--
+									
 										<button class="btn btn-default btn-sm checkbox-toggle" title="全选/全不选">
 											<i class="fa fa-square-o">&nbsp;全选</i>
 										</button>
 										<div class="btn-group">
-											<button class="btn btn-default btn-sm"  title="批量删除">
-												<i class="fa fa-trash-o">&nbsp;删除</i>
+											<button class="btn btn-default btn-sm"  title="批量更新"  onclick="batchDel();">
+												<i class="fa fa-trash-o">&nbsp;批量更新</i>
 											</button>
-											<button class="btn btn-default btn-sm" title="导出上报">
-                                            	<i class="fa fa-file-excel-o">导出上报</i>
-                                        	</button>
 										</div>
-										 /.btn-group -->
 										<!-- <button class="btn btn-default btn-sm" onclick="location.reload();" title="刷新">
 											<i class="fa fa-refresh">&nbsp;刷新</i>
 										</button> -->
@@ -187,7 +226,7 @@
 										<thead>
 											<tr>
 												<!-- Check all button -->
-												<!-- <th>选择</th> -->
+												<th>选择</th>
 												<th>序号</th>
 												<th>手机号</th>
 												<th>配资类型</th>
@@ -200,6 +239,7 @@
 												<th>平仓线</th>
 												<th>杠杆倍数</th>
 												<th>交易时间</th>
+												<th>状态</th>
 												<th>时间</th>
 											</tr>
 										</thead>

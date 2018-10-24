@@ -9,7 +9,7 @@ package com.business.rest.web;
  */
 public enum PeiziReturnCode {
 
-	AMOUNT_NOTENOUGH(1, "您的余额不足,请先充值再进行配资申请！"), 
+	ACCOUNT_NOTENOUGH(1, "可分配的交易帐号数量不足！"), 
 	;
 	private int flag;
 	private String desc;

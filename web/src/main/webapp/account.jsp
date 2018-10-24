@@ -16,7 +16,12 @@ function getamount(account){
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            document.getElementById("amount").innerHTML=data.amount;
+        	if (null == data.account){
+        		document.getElementById("account").innerHTML= "提交配资申请，自动分配帐号!";
+        	} else {
+        		document.getElementById("account").innerHTML=data.account;
+        	}
+            
             if (data.centStatus == 0){
             	document.getElementById('centP1').style.display = 'block';
             } else if (data.centStatus == 1){
@@ -82,8 +87,8 @@ function getamount(account){
           <img src="./images/account/avator.jpg" alt="">
         </div>
         <div class="info fr">
-          <p>当前余额</p>
-          <h1><span id="amount">0.00</span> <small>元</small></h1>
+          <p>交易帐号</p>
+          <h1><span id="account">无</span></h1>
           <p>
             <a href="./withdraw.jsp" class="btn btn-primary">出金</a>
             <a href="./recharge.jsp" class="btn btn-primary">入金</a>

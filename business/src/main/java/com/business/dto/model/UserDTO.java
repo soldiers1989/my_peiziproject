@@ -12,6 +12,7 @@ public class UserDTO implements java.io.Serializable {
 	private String uid;// uuid
 	private String phone;// 手机号
 	private String password;// 密码
+	private String account;//交易帐号
 	private double amount;// 余额
 	private String realName;// 真实姓名
 	private String centNo;// 身份证号
@@ -144,6 +145,14 @@ public class UserDTO implements java.io.Serializable {
 
 	public void setRestfulResult(RestfulResult restfulResult) {
 		this.restfulResult = restfulResult;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 }

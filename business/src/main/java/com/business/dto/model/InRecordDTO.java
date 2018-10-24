@@ -2,7 +2,6 @@ package com.business.dto.model;
 
 // Generated 2015-9-28 14:16:01 by Hibernate Tools 3.4.0.CR1
 
-
 @SuppressWarnings("serial")
 public class InRecordDTO implements java.io.Serializable {
 
@@ -10,8 +9,10 @@ public class InRecordDTO implements java.io.Serializable {
 	private Long userid;
 	private String phone;
 	private double amount;
-	private String serialno;
-	private String way;
+	private Integer way;
+	private String wayStr;
+	private Integer status;
+	private String statusStr;
 	private String createtime;
 
 	public InRecordDTO() {
@@ -41,22 +42,6 @@ public class InRecordDTO implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public String getSerialno() {
-		return serialno;
-	}
-
-	public void setSerialno(String serialno) {
-		this.serialno = serialno;
-	}
-
-	public String getWay() {
-		return way;
-	}
-
-	public void setWay(String way) {
-		this.way = way;
-	}
-
 	public String getCreatetime() {
 		return createtime;
 	}
@@ -71,6 +56,38 @@ public class InRecordDTO implements java.io.Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Integer getWay() {
+		return way;
+	}
+
+	public void setWay(Integer way) {
+		this.way = way;
+	}
+
+	public String getWayStr() {
+		return wayStr;
+	}
+
+	public void setWayStr(String wayStr) {
+		this.wayStr = wayStr;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getStatusStr() {
+		return statusStr;
+	}
+
+	public void setStatusStr(String statusStr) {
+		this.statusStr = statusStr;
 	}
 
 }

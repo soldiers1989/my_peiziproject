@@ -18,5 +18,11 @@ public interface PeiziService {
 	/**
 	 * 分页查询
 	 */
-	public Page<PeiziEntity> getByPage(int pageNo, int pageSize, Long userid,Integer type) throws Exception;
+	public Page<PeiziEntity> getByPage(int pageNo, int pageSize, Long userid,Integer type,Integer status) throws Exception;
+
+	/**
+	 * 通过id查询
+	 */
+	public PeiziEntity getById(Long id) throws Exception;
+	
 }

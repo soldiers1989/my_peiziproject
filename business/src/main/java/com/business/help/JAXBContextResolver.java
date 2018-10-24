@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBContext;
 
 import org.springframework.stereotype.Component;
 
+import com.business.dto.model.AccountDTO;
 import com.business.dto.model.AuthConfigDTO;
 import com.business.dto.model.InRecordDTO;
 import com.business.dto.model.ManagerDTO;
@@ -38,7 +39,7 @@ public class JAXBContextResolver implements ContextResolver<JAXBContext> {
 
     private JAXBContext context;
     @SuppressWarnings("rawtypes")
-    private Class[] types = { ManagerAuthDTO.class, SystemConfigDTO.class, PageDTO.class, AuthConfigDTO.class, ManagerDTO.class, ShopDTO.class,SystemConfigDTO.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,UserDTO.class,PeiziDTO.class,InRecordDTO.class,OutRecordDTO.class};
+    private Class[] types = { ManagerAuthDTO.class, SystemConfigDTO.class, PageDTO.class, AuthConfigDTO.class, ManagerDTO.class, ShopDTO.class,SystemConfigDTO.class,RestfulResult.class ,TestModel.class,TestRequest.class,TestResponse.class,Request.class,Response.class,UserDTO.class,PeiziDTO.class,InRecordDTO.class,OutRecordDTO.class,AccountDTO.class};
 
     public JAXBContextResolver() throws Exception {
 	this.context = new JSONJAXBContext(JSONConfiguration.natural().build(), types);

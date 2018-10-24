@@ -10,6 +10,8 @@ public class OutRecordDTO implements java.io.Serializable {
 	private Long userid;
 	private String phone;
 	private double amount;
+	private Integer status;
+	private String statusStr;
 	private String createtime;
 
 	public OutRecordDTO() {
@@ -53,6 +55,22 @@ public class OutRecordDTO implements java.io.Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getStatusStr() {
+		return statusStr;
+	}
+
+	public void setStatusStr(String statusStr) {
+		this.statusStr = statusStr;
 	}
 
 	

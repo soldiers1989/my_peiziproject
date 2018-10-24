@@ -43,6 +43,7 @@ var page = new Page();
                         <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>用户管理 </span><i class="fa fa-angle-left pull-right"></i></a>
 	                        <ul class="treeview-menu">
 				  				<li><a href="<%=basePath%>/<%=busType%>/user/list.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+				  				<li><a href="<%=basePath%>/<%=busType%>/user/account.jsp" target="myFrameName"><i class="fa fa-circle-o"></i> 交易帐号</a></li>
 	                        </ul>
                         </li>
                         <li class="treeview"> <a href="#"><i class="fa fa-dashboard"></i><span>配资管理 </span><i class="fa fa-angle-left pull-right"></i></a>

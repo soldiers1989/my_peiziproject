@@ -22,8 +22,13 @@ public class OutRecordServiceImpl implements OutRecordService {
 	}
 
 	@Override
-	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid) throws Exception {
-		return outRecordEntityDAO.getByPage(pageNo, pageSize, userid);
+	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid,Integer status) throws Exception {
+		return outRecordEntityDAO.getByPage(pageNo, pageSize, userid,status);
+	}
+
+	@Override
+	public OutRecordEntity getById(Long id) throws Exception {
+		return outRecordEntityDAO.get(id);
 	}
 
 }

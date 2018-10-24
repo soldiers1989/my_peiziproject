@@ -39,20 +39,16 @@ public class WebOutRecordRest {
 	@Path("/save")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public RestfulResult register(@FormParam("amount") Long amount, @FormParam("account") String phone) {
+	public RestfulResult save(@FormParam("amount") Long amount, @FormParam("account") String phone) {
 		RestfulResult result = new RestfulResult();
 		Date now = new Date();
 		try {
 
 			UserEntity userEntity = userService.getByPhone(phone);
-			if (userEntity.getAmount() - amount.longValue()<0){
-				result.setResultCode(OutRecordReturnCode.AMOUNT_NOTENOUGH.getFlag());
-				result.setResultMessage(OutRecordReturnCode.AMOUNT_NOTENOUGH.getDesc());
-				return result;
-			}
 			OutRecordEntity entity = new OutRecordEntity();
 			entity.setUserid(userEntity.getId());
 			entity.setAmount(amount*100);
+			entity.setStatus(0);
 			entity.setCreatetime(now);
 			outRecordService.saveOrUpdate(entity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());

@@ -22,6 +22,7 @@ public class OutRecordEntity implements java.io.Serializable {
 	private Long id;
 	private Long userid;
 	private Long amount;
+	private Integer status;//0:未处理,1:已处理
 	private Date createtime;
 
 	public OutRecordEntity() {
@@ -65,5 +66,16 @@ public class OutRecordEntity implements java.io.Serializable {
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
+
+	@Column(name = "status", nullable = false)
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	
 
 }

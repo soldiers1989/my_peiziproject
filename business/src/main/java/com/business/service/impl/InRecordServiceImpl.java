@@ -22,8 +22,13 @@ public class InRecordServiceImpl implements InRecordService {
 	}
 
 	@Override
-	public Page<InRecordEntity> getByPage(int pageNo, int pageSize, Long userid) throws Exception {
-		return inRecordEntityDAO.getByPage(pageNo, pageSize, userid);
+	public Page<InRecordEntity> getByPage(int pageNo, int pageSize, Long userid,Integer status) throws Exception {
+		return inRecordEntityDAO.getByPage(pageNo, pageSize, userid,status);
+	}
+
+	@Override
+	public InRecordEntity getById(Long id) throws Exception {
+		return inRecordEntityDAO.get(id);
 	}
 
 

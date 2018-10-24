@@ -1,6 +1,7 @@
 package com.business.rest.web;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Service;
 
 import com.base.util.WebUtils;
 import com.business.dto.model.RestfulResult;
+import com.business.entity.AccountEntity;
 import com.business.entity.PeiziEntity;
 import com.business.entity.UserEntity;
 import com.business.enums.ReturnCode;
+import com.business.service.AccountService;
 import com.business.service.PeiziService;
 import com.business.service.UserService;
 
@@ -35,6 +38,9 @@ public class WebPeiziRest {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private AccountService accountService;
+
 	/**
 	 * 用户提交配资信息
 	 */
@@ -43,7 +49,7 @@ public class WebPeiziRest {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public RestfulResult submit(@FormParam("account") String account, @FormParam("type") Integer type, @FormParam("baozhengAmount") Long baozhengAmount, @FormParam("dayCount") Integer dayCount,
 			@FormParam("rate") Long rate, @FormParam("peiziAmount") Long peiziAmount, @FormParam("caopanAmount") Long caopanAmount, @FormParam("warnLine") Long warnLine,
-			@FormParam("pingcangLine") Long pingcangLine, @FormParam("tradeDay") Integer tradeDay,@FormParam("tradeCount") Integer tradeCount) {
+			@FormParam("pingcangLine") Long pingcangLine, @FormParam("tradeDay") Integer tradeDay, @FormParam("tradeCount") Integer tradeCount) {
 		RestfulResult result = new RestfulResult();
 
 		String operate = "配资提交";
@@ -54,11 +60,22 @@ public class WebPeiziRest {
 				result.setResultMessage(ReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
-			long amount = userEntity.getAmount() - baozhengAmount * 100 - rate * 100;
-			if (amount<0){
-				result.setResultCode(PeiziReturnCode.AMOUNT_NOTENOUGH.getFlag());
-				result.setResultMessage(PeiziReturnCode.AMOUNT_NOTENOUGH.getDesc());
-				return result;
+			String jiaoYiAccount = userEntity.getAccount();
+			if (null == jiaoYiAccount || "".equals(jiaoYiAccount)) {
+				List<AccountEntity> accountList = accountService.getAllNotUsed();
+				if (null != accountList && accountList.size() > 0) {
+					AccountEntity accountEntity = accountList.get(0);
+					userEntity.setAccount(accountEntity.getAccount());
+					userService.saveOrUpdate(userEntity);
+
+					accountEntity.setStatus(1);
+					accountService.saveOrUpdate(accountEntity);
+				} else {
+					result.setResultCode(PeiziReturnCode.ACCOUNT_NOTENOUGH.getFlag());
+					result.setResultMessage(PeiziReturnCode.ACCOUNT_NOTENOUGH.getDesc());
+					return result;
+				}
+
 			}
 			PeiziEntity peiziEntity = new PeiziEntity();
 			peiziEntity.setUserid(userEntity.getId());
@@ -73,10 +90,9 @@ public class WebPeiziRest {
 			peiziEntity.setTradeDay(tradeDay);
 			peiziEntity.setTradeCount(tradeCount);
 			peiziEntity.setCreatetime(new Date());
+			peiziEntity.setStatus(0);
 			peiziService.saveOrUpdate(peiziEntity);
-			
-			userEntity.setAmount(amount);
-			userService.saveOrUpdate(userEntity);
+
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo(account, operate, ReturnCode.SUCCESS.getDesc()));
@@ -89,4 +105,5 @@ public class WebPeiziRest {
 		return result;
 	}
 
+	
 }

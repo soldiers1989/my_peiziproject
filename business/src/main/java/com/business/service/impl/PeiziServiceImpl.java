@@ -22,8 +22,13 @@ public class PeiziServiceImpl implements PeiziService {
 	}
 
 	@Override
-	public Page<PeiziEntity> getByPage(int pageNo, int pageSize, Long userid, Integer type) throws Exception {
-		return peiziEntityDAO.getByPage(pageNo, pageSize, userid, type);
+	public Page<PeiziEntity> getByPage(int pageNo, int pageSize, Long userid, Integer type,Integer status) throws Exception {
+		return peiziEntityDAO.getByPage(pageNo, pageSize, userid, type,status);
+	}
+
+	@Override
+	public PeiziEntity getById(Long id) throws Exception {
+		return peiziEntityDAO.get(id);
 	}
 
 	

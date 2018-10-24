@@ -18,5 +18,12 @@ public interface OutRecordService {
 	/**
 	 * 分页查询
 	 */
-	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid) throws Exception;
+	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid,Integer status) throws Exception;
+	
+	/**
+	 * 通过id查询
+	 */
+	public OutRecordEntity getById(Long id) throws Exception;
+	
+	
 }

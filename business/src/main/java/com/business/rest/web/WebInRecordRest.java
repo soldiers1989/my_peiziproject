@@ -47,8 +47,8 @@ public class WebInRecordRest {
 			InRecordEntity inRecordEntity = new InRecordEntity();
 			inRecordEntity.setUserid(userEntity.getId());
 			inRecordEntity.setAmount(amount*100);
-			inRecordEntity.setSerialno(serialno);
-			inRecordEntity.setWay(way);
+			inRecordEntity.setWay(1);
+			inRecordEntity.setStatus(0);
 			inRecordEntity.setCreatetime(now);
 			inRecordService.saveOrUpdate(inRecordEntity);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
@@ -61,5 +61,7 @@ public class WebInRecordRest {
 		}
 		return result;
 	}
+	
+	
 
 }

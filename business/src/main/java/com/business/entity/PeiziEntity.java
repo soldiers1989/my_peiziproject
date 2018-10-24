@@ -31,6 +31,7 @@ public class PeiziEntity implements java.io.Serializable {
 	private Long pingcangLine;//平仓线
 	private Integer tradeDay;//1:今日 ,2:下个交易日
 	private Integer tradeCount;//杠杆倍数
+	private Integer status;//状态0:未处理,1:已处理
 	private Date createtime;
 
 	public PeiziEntity() {
@@ -154,6 +155,15 @@ public class PeiziEntity implements java.io.Serializable {
 
 	public void setTradeCount(Integer tradeCount) {
 		this.tradeCount = tradeCount;
+	}
+
+	@Column(name = "status", nullable = false)
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 

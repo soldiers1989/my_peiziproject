@@ -13,12 +13,16 @@ public class OutRecordEntityDAO extends HibernateDao<OutRecordEntity, Long> {
 	/**
 	 * 分页查询
 	 */
-	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid) {
+	public Page<OutRecordEntity> getByPage(int pageNo, int pageSize, Long userid,Integer status) {
 		Page<OutRecordEntity> page = new Page<OutRecordEntity>(pageSize);
 		page.setPageNo(pageNo);
 		StringBuilder hql = new StringBuilder("from OutRecordEntity where 1=1");
 		if (!WebUtils.isEmpty(userid)) {
 			hql.append(" and userid = " + userid);
+		}
+		
+		if (status.intValue() != -1){
+			hql.append(" and status = " + status);
 		}
 		hql.append("  order by createtime desc");
 		return this.find(page, hql.toString());

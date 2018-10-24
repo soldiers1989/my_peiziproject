@@ -22,8 +22,8 @@ public class InRecordEntity implements java.io.Serializable {
 	private Long id;
 	private Long userid;
 	private Long amount;
-	private String serialno;
-	private String way;
+	private Integer way;//0:配置,1:补仓
+	private Integer status;//0:未处理,1:已处理
 	private Date createtime;
 
 	public InRecordEntity() {
@@ -58,21 +58,13 @@ public class InRecordEntity implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	@Column(name = "serialno", nullable = false, length = 50)
-	public String getSerialno() {
-		return serialno;
-	}
 
-	public void setSerialno(String serialno) {
-		this.serialno = serialno;
-	}
-
-	@Column(name = "way", nullable = false, length = 100)
-	public String getWay() {
+	@Column(name = "way", nullable = false)
+	public Integer getWay() {
 		return way;
 	}
 
-	public void setWay(String way) {
+	public void setWay(Integer way) {
 		this.way = way;
 	}
 
@@ -85,5 +77,16 @@ public class InRecordEntity implements java.io.Serializable {
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
+
+	@Column(name = "status", nullable = false)
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	
 
 }

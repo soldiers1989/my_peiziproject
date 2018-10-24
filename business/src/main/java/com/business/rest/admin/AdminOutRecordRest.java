@@ -1,6 +1,7 @@
 package com.business.rest.admin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -10,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +49,7 @@ public class AdminOutRecordRest {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public PageDTO<OutRecordDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,
+	public PageDTO<OutRecordDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,@FormParam("status") Integer status,
 			@FormParam("operator") String operator) {
 		PageDTO<OutRecordDTO> dtos = new PageDTO<OutRecordDTO>();
 		RestfulResult result = new RestfulResult();
@@ -70,7 +72,7 @@ public class AdminOutRecordRest {
 					return dtos;
 				}
 			}
-			Page<OutRecordEntity> entities = this.outRecordService.getByPage(pageNo, pageSize, userid);
+			Page<OutRecordEntity> entities = this.outRecordService.getByPage(pageNo, pageSize, userid,status);
 			dtos.setPageNo(pageNo);
 			dtos.setPageSize(pageSize);
 			dtos.setTotalPages(entities.getTotalPages());
@@ -84,6 +86,12 @@ public class AdminOutRecordRest {
 				dto.setPhone(tmpEntity.getPhone());
 				dto.setAmount((double)entity.getAmount()/100);
 				dto.setCreatetime(WebUtils.formatDate2Str(entity.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
+				if (dto.getStatus().intValue() == 0){
+					dto.setStatusStr("未处理");
+				} else if (dto.getStatus().intValue() == 1){
+					dto.setStatusStr("已处理");
+				}
+				
 				dtos.getResult().add(dto);
 			}
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
@@ -98,4 +106,32 @@ public class AdminOutRecordRest {
 		return dtos;
 	}
 
+	/**
+	 * 批量更新状态
+	 */
+	@Path("/update/list")
+	@POST
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public RestfulResult updateList(@FormParam("ids") List<Long> ids, @FormParam("operator") String operator) {
+		RestfulResult result = new RestfulResult();
+		String operate = "批量更新状态";
+		try {
+			long[] idArr = ArrayUtils.toPrimitive(ids.toArray(new Long[0]));
+			for (int i=0 ;i <idArr.length;i++){
+				OutRecordEntity outRecordEntity = outRecordService.getById(idArr[i]);
+				outRecordEntity.setStatus(1);
+				outRecordService.saveOrUpdate(outRecordEntity);
+			}
+			result.setResultCode(ReturnCode.SUCCESS.getFlag());
+			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
+			logger.info(WebUtils.outLogInfo(operator, operate, ids.toString()));
+		} catch (Exception ex) {
+			logger.error(WebUtils.outLogError(operator, operate, ex.getMessage()), ex);
+			result.setResultCode(ReturnCode.BUSINESS_ERROR.getFlag());
+			result.setResultMessage(ReturnCode.BUSINESS_ERROR.getDesc());
+		}
+		return result;
+	}
+	
 }

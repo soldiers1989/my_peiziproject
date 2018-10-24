@@ -11,15 +11,6 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	if (null == <%=account%>){
-		document.getElementById('amountP1').style.display = 'block';
-		document.getElementById('amountP2').style.display = 'none';
-	} else {
-		document.getElementById('amountP1').style.display = 'none';
-		document.getElementById('amountP2').style.display = 'block';
-		getamount(<%=account%>);
-	}
-	
 	$("#submitBtn").click(function(){
 		var account = <%=account%>;
 		var type = <%=type%>;
@@ -67,7 +58,22 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
             	 	alert(data.resultMessage);
 	             } else {
 	            	 alert("配置申请提交成功");
-	            	 window.location.href = "./index.jsp";
+	            	 
+	            	 $.ajax({
+	            	        url: RESTFUL_BASE+"/web/user/getamount/"+account,
+	            	        type: 'GET',
+	            	        dataType: 'json',
+	            	        success: function(data){
+	            	        	//http://lcppay.com/a/payment/sandpay/gopay?account=5771001&rmb=5015.00&dollar=5000.00&bankCode=01050000&rage=2.00
+	            	        	var jiaoYiAccount=data.account;
+	            	        	var dollar = baozhengAmount.toFixed(2);
+	            	        	var rmb = (baozhengAmount + (baozhengAmount*0.003)).toFixed(2);
+	            	        	var jiaoYiRate = parseFloat(rate).toFixed(2);
+	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode=01050000&rate=" + jiaoYiRate;
+	            	           	window.location.href = redirectUrl;
+	            	        	
+	            	        }
+	            	 });
 				}
 			}
 		});
@@ -137,13 +143,8 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
         </tr>
         <tr>
           <td colspan="5" class="info">
-            <p>支付保证金<span class="margin">100</span>元，利息共计<span
-                class="interest">1</span>元</p>
-            <p>本次账户管理费在配资成功后一次性收取。</p>
-            <p id="amountP1" style="display:none">您还没有登录，请先登录再进行配资申请。</p>
-            <p id="amountP2" style="display:none">您的账户余额<span class="balance" id="amount">5</span>元，
-              还需<span class="recharge-amount">101</span>元
-              <a href="./recharge.jsp" class="btn btn-primary">立即充值</a></p>
+            <p>点击<span>确认配资</span>按钮，会调起线上入金页面，请注意入金时间限制！</p>
+            <p>线上入金时间：08:30-17:30 20:30-03:00（不包含周末）</p>
           </td>
         </tr>
       </tbody>
