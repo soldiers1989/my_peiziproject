@@ -77,7 +77,7 @@ function getuid(){
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">推荐人</label></div>
       <div class="weui-cell__bd"><input type="number"
-          placeholder="推荐人" class="weui-input" name="remdPhone"
+          placeholder="如果没有，可不填写" class="weui-input" name="remdPhone"
           id="remdPhone"></div>
     </div>
     <!-- <div class="weui-cell">
@@ -87,8 +87,8 @@ function getuid(){
     </div> -->
   </div>
   <label for="weuiAgree" class="weui-agree">
-    <input id="weuiAgree" type="checkbox" checked="checked"
-      class="weui-agree__checkbox" disabled>
+    <input id="weuiAgree" type="checkbox" 
+      class="weui-agree__checkbox" >
     <span class="weui-agree__text">
       阅读并同意<a href="./registration-agreement.jsp" target="_blank">注册服务协议
       </a>

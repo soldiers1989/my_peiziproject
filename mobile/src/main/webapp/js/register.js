@@ -67,7 +67,11 @@ require(['js/require-config'], function() {
       // 注册
       $registerBtn.click(function(e) {
         e.preventDefault();
-
+	    var agreeCheckbox = $('#weuiAgree');
+	  	if(!agreeCheckbox.is(':checked')){
+	  		alert("请仔细阅读注册服务协议并且同意,进行注册！");
+	  		return false;
+	  	}
         var $this = $(this);
         var mobile = $mobileInput.val().trim();
         var vcode = $vcodeInput.val().trim();

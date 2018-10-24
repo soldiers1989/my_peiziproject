@@ -48,17 +48,17 @@ function getuid(){
         </p>
         <p class="form-item">
           <label for="">确认密码</label>
-          <input type="text" id="confirmPassword"
+          <input type="password" id="confirmPassword"
             placeholder="请确认密码">
         </p>
         <p class="form-item">
           <label for="">推荐人</label>
           <input type="remdPhone" id="remdPhone"
-            placeholder="推荐人">
+            placeholder="如果没有，可不填写">
         </p>
 
         <p class="agree form-item">
-          <input type="checkbox" id="" checked disabled>
+          <input type="checkbox" id="weuiAgree" >
           <span>
             同意 <a href="./registration-agreement.jsp">注册服务协议</a>
           </span>

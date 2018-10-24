@@ -9,6 +9,7 @@ require(['js/require-config'], function() {
       var $getCodeBtn = $('#getCodeBtn');
       var $uidInput = $('#uid');
       var $remdPhoneInput = $('#remdPhone');
+     
       // 获取验证码
       $getCodeBtn.click(function() {
         var $this = $(this);
@@ -41,6 +42,11 @@ require(['js/require-config'], function() {
 
       // 注册提交
       $submitBtn.click(function() {
+	    var agreeCheckbox = $('#weuiAgree');
+	  	if(!agreeCheckbox.is(':checked')){
+	  		alert("请仔细阅读注册服务协议并且同意,进行注册！");
+	  		return false;
+	  	}
         var mobile = $('#mobile').val().trim();
         var code = $codeInput.val().trim();
         var password = $passwordInput.val().trim();
