@@ -141,7 +141,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
           </td>
           <td colspan="2" class="info">
           <div class="clearfix">
-            <div class="fl choose-bank>
+            <div class="fl choose-bank">
               <label for="">选择银行</label>
               <select name="bankCode" id="bankCode">
                 <option value="01020000">中国工商银行</option>

@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="<%=basePath%>/css/main.css">
   <script src="<%=basePath%>/resources/plugins/jQuery/jQuery-2.1.3.min.js"></script>
   <script src="<%=basePath%>/resources/util/tools.js" type="text/javascript"></script>
-  <title>首页</title>
+  <title>98配资网</title>
 </head>
 <body class="has-all">
   <div class="fixed-right">

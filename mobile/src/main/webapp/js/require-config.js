@@ -106,7 +106,7 @@ define(function() {
         title: '联系我们'
       },
       {
-        keyword: 'protocol',
+        keyword: 'contract',
         title: '合作操盘协议'
       }
     ];
