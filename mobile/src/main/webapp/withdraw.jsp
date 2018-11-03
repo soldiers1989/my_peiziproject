@@ -28,7 +28,7 @@ function setaccount(account){
       </h1>
     </div>
   </div>
-    <div class="recharge-content offline" style="display: block;">
+  <div class="recharge-content offline" style="display: block;">
   <div class="weui-cells register">
     <!-- <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
@@ -50,9 +50,9 @@ function setaccount(account){
       <div class="weui-cell__bd"><input type="text" placeholder="如果没有，可不填写"
           class="weui-input" name="referrer" id="referrer"></div>
     </div> -->
-  </div>
   <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" id="submitBtn">绑定</a>
+  </div>
   </div>
    <div class="tips">
       <h2>温馨提示：</h2>
