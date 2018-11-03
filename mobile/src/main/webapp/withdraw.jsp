@@ -28,6 +28,7 @@ function setaccount(account){
       </h1>
     </div>
   </div>
+    <div class="recharge-content offline" style="display: block;">
   <div class="weui-cells register">
     <!-- <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
@@ -52,6 +53,16 @@ function setaccount(account){
   </div>
   <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" id="submitBtn">绑定</a>
+  </div>
+   <div class="tips">
+      <h2>温馨提示：</h2>
+      <ol>
+        <li>1. 线上出金时间：09:30-15:30（周六日及法定节假日除外）。</li>
+        <li>2. 线上出金单次最高金额为50000元/次，不限出金次数，第三方支付机构收取2元/次的手续费。</li>
+        <li>3. 线上出金到账时间最迟15分钟以内，如未能正常到账，请及时联系客服。</li>
+        <li>4. 刘经理：电话/微信：18612226789 QQ：215772907 郭经理：电话/微信：18311187611 QQ：761369662</li>
+      </ol>
+    </div>
   </div>
 
 
