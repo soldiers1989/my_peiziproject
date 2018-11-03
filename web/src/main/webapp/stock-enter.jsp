@@ -149,7 +149,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
                 <option value="01030000">中国农业银行</option>
                 <option value="01040000">中国银行</option>
                 <option value="04012900">上海银行</option>
-                <option value="04031000">其他（银联支付）</option>
+                <option value="04031000">北京银行</option>
               </select>
             </div>
           </div>
@@ -158,8 +158,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
       </tbody>
     </table>
     <p class="text-center agree">
-      <input type="checkbox" name="" id="agree" checked
-        disabled>
+      <input type="checkbox" name="" id="agree" checked >
       <label for="agree">
         我已阅读并同意 <a href="./protocol.jsp" target="_blank">98配资网操盘协议</a>
       </label>

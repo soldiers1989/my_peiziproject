@@ -1,5 +1,10 @@
 require(['js/require-config'], function() {
-  require(['jquery', 'Swiper', 'countUp'], function($, Swiper, CountUp) {
+  require(['jquery', 'Swiper', 'dayjs', 'countUp'], function(
+    $,
+    Swiper,
+    dayjs,
+    CountUp
+  ) {
     $(function() {
       // 轮播图
       if ($('.swiper-container').length) {
@@ -19,6 +24,14 @@ require(['js/require-config'], function() {
         separator: ',',
         decimal: '.'
       };
+
+      var format = 'YYYY-MM-DD';
+      var today = dayjs(dayjs().format(format));
+      var start = dayjs('2015-02-20');
+      var diff = today.diff(start, 'day');
+      console.log(diff);
+
+      document.getElementById('countUp4').setAttribute('data-num', diff);
 
       for (var index = 1; index < $strongs.length + 1; index++) {
         var element = document.getElementById('countUp' + index);

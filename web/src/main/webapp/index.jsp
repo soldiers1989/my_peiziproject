@@ -517,12 +517,6 @@
       <div class="links" id="links">
         <ul class="clearfix">
           <li class="fl">
-            <a href="http://www.shfe.com.cn/" target="_blank"
-              title="上海期货交易所官网">
-              <img src="./images/index/shfe.jpg" alt="">
-            </a>
-          </li>
-          <li class="fl">
             <a href="http://www.csrc.gov.cn/" target="_blank"
               title="中国证监会官网">
               <img src="./images/index/csrc.jpg" alt="">

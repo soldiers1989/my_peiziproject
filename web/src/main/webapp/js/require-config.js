@@ -9,10 +9,14 @@ define(function() {
       tabs: 'tabs',
       Qs: 'libs/qs.min',
       Clipboard: 'libs/clipboard.min',
+      dayjs: 'libs/dayjs.min',
       layer: 'libs/layer'
     },
     shim: {
-      Swiper: ['jquery']
+      Swiper: ['jquery'],
+      dayjs: {
+        exports: 'dayjs'
+      }
     }
   });
 
@@ -69,10 +73,6 @@ define(function() {
         {
           keyword: 'stock-month',
           title: '按月配资'
-        },
-        {
-          keyword: 'stock-enter',
-          title: '配资确认'
         },
         {
           keyword: 'software',
