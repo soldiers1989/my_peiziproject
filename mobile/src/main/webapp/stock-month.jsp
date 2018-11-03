@@ -10,7 +10,7 @@
     </div>
     <div class="hd-center">
       <h1 class="title">
-        股票配资
+        期货操盘
       </h1>
     </div>
   </div>
@@ -178,7 +178,7 @@
     </div>
     <span for="weuiAgree" class="weui-agree">
       <input id="weuiAgree" type="checkbox" checked class="weui-agree__checkbox"
-        disabled>
+        >
       <span class="weui-agree__text">
         阅读并同意 <a href="./contract.jsp">《配资相关条款》</a>
       </span>
@@ -204,7 +204,7 @@
       <div class="weui-tabbar__icon">
         <img src="./images/tabbar/stock-on.png" alt="">
       </div>
-      <p class="weui-tabbar__label">股票配资</p>
+      <p class="weui-tabbar__label">期货操盘</p>
     </a>
 
     <a href="./account.jsp" class="weui-tabbar__item">

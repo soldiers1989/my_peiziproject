@@ -122,7 +122,7 @@
       <div class="weui-tabbar__icon">
         <img src="./images/tabbar/stock-off.png" alt="">
       </div>
-      <p class="weui-tabbar__label">股票配资</p>
+      <p class="weui-tabbar__label">期货操盘</p>
     </a>
     <!-- <a href="javascript:;" class="weui-tabbar__item">
       <div class="weui-tabbar__icon">
