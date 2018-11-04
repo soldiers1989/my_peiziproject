@@ -23,7 +23,7 @@ public interface UserService {
     /**
 	 * 分页查询
 	 */
-	public Page<UserEntity> getByPage(int pageNo, int pageSize, String phone) throws Exception;
+	public Page<UserEntity> getByPage(int pageNo, int pageSize, String phone,String account) throws Exception;
 	
 	/**
 	 * 通过id查询

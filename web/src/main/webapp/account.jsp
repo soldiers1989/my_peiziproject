@@ -118,7 +118,7 @@ function getamount(account){
           <span id="realName">已认证</span>
           <span>
             <i class="icon icon-checked"></i>
-                                            已认证
+            <a href="./authentication.jsp">已认证</a>
           </span>
         </p>
         <p  id="bankP1" style="display:none">
@@ -134,7 +134,7 @@ function getamount(account){
           <span id="bankName">未绑定</span>
           <span>
             <i class="icon icon-checked"></i>
-            	已绑定
+            <a href="./bank-card.jsp">已绑定</a>
           </span>
         </p>
       </div>

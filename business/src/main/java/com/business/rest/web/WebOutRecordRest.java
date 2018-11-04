@@ -50,12 +50,21 @@ public class WebOutRecordRest {
 				result.setResultMessage(OutRecordReturnCode.BANK_NOTBINDING.getDesc());
 				return result;
 			}
+			if (null == userEntity.getAccount() || "".equals(userEntity.getAccount())){
+				result.setResultCode(OutRecordReturnCode.ACCOUNT_NULL.getFlag());
+				result.setResultMessage(OutRecordReturnCode.ACCOUNT_NULL.getDesc());
+				return result;
+			}
 			OutRecordEntity entity = new OutRecordEntity();
 			entity.setUserid(userEntity.getId());
 			entity.setAmount(amount*100);
 			entity.setStatus(0);
 			entity.setCreatetime(now);
 			outRecordService.saveOrUpdate(entity);
+			
+			
+			//String content = "【98配资】尊敬的98配资客服，您公司的客户xxxxxxx（x代表资金账号）在平台系统申请出金xxxxxx元，请您及时查询。";
+			
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo("outrecord", "outrecord save", ""));

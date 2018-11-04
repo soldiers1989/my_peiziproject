@@ -76,7 +76,7 @@
              	url:serviceurl.baseurl+"/<%=busType%>/user/save",
              	data:'{'
              		+'"id":"'+$("#id").val()+'"'
-             		+',"amount":"'+$("#amount").val()+'"'
+             		+',"account":"'+$("#account").val()+'"'
              		+',"realName":"'+$("#realName").val()+'"' 
              		+',"centNo":"'+$("#centNo").val()+'"'
              		+',"bankName":"'+$("#bankName").val()+'"'
@@ -122,7 +122,7 @@
                     //解析json数据,填充form
                     var resultObject=resultinfo;
                     $("#id").val(resultObject.id);
-                    $("#amount").val(resultObject.amount);
+                    $("#account").val(resultObject.account);
                     $("#realName").val(resultObject.realName);
                     $("#centNo").val(resultObject.centNo);
                     $("#bankName").val(resultObject.bankName);
@@ -159,7 +159,7 @@
         $.ajax({
             url:serviceurl.baseurl+"/<%=busType%>/user/get/page",
             type: 'POST',
-            data: {'name':$('#searchname').val(),'pageNo':pageNo,'operator':'<%=userid%>'},
+            data: {'phone':$('#searchphone').val(),'account':$('#searchaccount').val(),'pageNo':pageNo,'operator':'<%=userid%>'},
             success:dataFill
         });
     }
@@ -195,7 +195,7 @@
                 datatr+="<td>"+(countNum+i+1)+"</td>";
                 datatr+="<td>"+resultData.id+"</td>";
                 datatr+="<td>"+resultData.phone+"</td>";
-                datatr+="<td>"+resultData.amount+"</td>";
+                datatr+="<td>"+resultData.account+"</td>";
                 datatr+="<td>"+resultData.remdPhone+"</td>";
                // datatr+="<td>"+"<a href=\"#\" class=\"userpic\"><img style='width:40px;height:40px;' id='iconpath"+resultData.id+"'  src=\""+resultData.iconurl+"\"></a>"+"</td>"; // 店铺图标
                 datatr+="<td>"+resultData.createtime+"</td>";
@@ -256,7 +256,10 @@
 									<h3 class="box-title">用户检索</h3>
 									<div class="box-tools">
 										<div class="input-group">
-											<input type="text" id="searchname" name="searchname"
+											<input type="text" id="searchaccount" name="searchaccount"
+												class="form-control input-sm pull-right"
+												style="width: 150px;" placeholder="交易帐号" />
+											<input type="text" id="searchphone" name="searchphone"
 												class="form-control input-sm pull-right"
 												style="width: 150px;" placeholder="手机号" />
 											<div class="input-group-btn">
@@ -279,7 +282,7 @@
 												<th>序号</th>
 												<th>ID</th>
 												<th>手机号</th>
-												<th>余额</th>
+												<th>交易帐号</th>
 												<th>推荐人手机号</th>
 												<th>创建时间</th>
 												<th>操作选择</th>
@@ -318,7 +321,7 @@
 									<input type="hidden" id="createtime" name="createtime" value="" />
 									<div class="box-body">
 										<div class="form-group">
-											<label>余额</label> <input type="text" id="amount" name="amount"
+											<label>交易帐号</label> <input type="text" id="account" name="account"
 												class="form-control" style="width: 40%;"
 												placeholder="*必须项 数字" />
 										</div>

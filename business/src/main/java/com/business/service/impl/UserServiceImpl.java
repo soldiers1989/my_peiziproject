@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Page<UserEntity> getByPage(int pageNo, int pageSize, String phone) throws Exception {
-		return userRecordEntityDAO.getByPage(pageNo, pageSize, phone);
+	public Page<UserEntity> getByPage(int pageNo, int pageSize, String phone,String account) throws Exception {
+		return userRecordEntityDAO.getByPage(pageNo, pageSize, phone,account);
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class AdminUserRest {
 		String operate = "保存用户信息";
 		try {
 			UserEntity entity = userService.getById(dto.getId());
-			entity.setAmount((long)(dto.getAmount()*100));
+			entity.setAccount(dto.getAccount());
 			entity.setOperatetime(now);
 			if (null != dto.getRealName() && !"".equals(dto.getRealName()) && null != dto.getCentNo() && !"".equals(dto.getCentNo())){
 				entity.setRealName(dto.getRealName());
@@ -80,13 +80,13 @@ public class AdminUserRest {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public PageDTO<UserDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,
+	public PageDTO<UserDTO> getByPage(@DefaultValue("1") @FormParam("pageNo") int pageNo, @DefaultValue("10") @FormParam("pageSize") int pageSize, @FormParam("phone") String phone,@FormParam("account") String account,
 			@FormParam("operator") String operator) {
 		PageDTO<UserDTO> dtos = new PageDTO<UserDTO>();
 		RestfulResult result = new RestfulResult();
 		String operate = "分页查询用户信息";
 		try {
-			Page<UserEntity> entities = userService.getByPage(pageNo, pageSize, phone);
+			Page<UserEntity> entities = userService.getByPage(pageNo, pageSize, phone,account);
 			dtos.setPageNo(pageNo);
 			dtos.setPageSize(pageSize);
 			dtos.setTotalPages(entities.getTotalPages());

@@ -42,7 +42,7 @@ require(['js/require-config'], function() {
                	        	var rmb = (parseFloat(rechargeAmount) + parseFloat(rechargeAmount)*0.003).toFixed(2);
                	        	var jiaoYiRate = "0.00"
                	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode=" + bankCode + "&rate=" + jiaoYiRate;
-               	           	window.location.href = redirectUrl;
+               	           	window.open(redirectUrl);
                	        	
                	        }
                   		});

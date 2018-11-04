@@ -133,7 +133,7 @@
       </table>
     </div>
     <p class="text-center agree">
-      <input type="checkbox" name="" id="agree" checked >
+      <input type="checkbox" id="weuiAgree"  >
       <label for="agree">
         我已阅读并同意 <a href="./protocol.jsp" target="_blank">98配资网操盘协议</a>
       </label>

@@ -110,6 +110,7 @@ require(['js/require-config'], function() {
 
         $btn.click(
           function() {
+        	  
             console.log(this.type);
             var search = Qs.stringify({
               type: this.type,
@@ -122,6 +123,11 @@ require(['js/require-config'], function() {
               warnLine:$warningAmount.text(),
               pingcangLine:$closeAmount.text()
             });
+            var agreeCheckbox = $('#weuiAgree');
+  		  	if(!agreeCheckbox.is(':checked')){
+  		  		alert("请仔细阅读配资相关条款并且确认,进行申请！");
+  		  		return false;
+  		  	}
             window.location.href = './stock-enter.jsp?' + search;
           }.bind(this)
         );

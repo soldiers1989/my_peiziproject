@@ -154,6 +154,11 @@ require(['js/require-config'], function() {
         // 我要配资按钮跳转对应页面，添加参数
 
         $stockBtn.click(function(e) {
+		    var agreeCheckbox = $('#weuiAgree');
+		  	if(!agreeCheckbox.is(':checked')){
+		  		alert("请仔细阅读操盘协议并且确认,进行配置！");
+		  		return false;
+		  	}
           e.preventDefault();
           var stockEnterUrl = './stock-enter.jsp';
           var type = _this.type;

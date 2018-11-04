@@ -10,6 +10,7 @@ package com.business.rest.web;
 public enum OutRecordReturnCode {
 
 	BANK_NOTBINDING(1, "您的银行卡信息未绑定，请在个人主页进行完善！"), 
+	ACCOUNT_NULL(1, "交易帐号未分配！"), 
 	;
 	private int flag;
 	private String desc;

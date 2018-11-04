@@ -58,7 +58,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
 	            	        	var rmb = (baozhengAmount + (baozhengAmount*0.003)).toFixed(2);
 	            	        	var jiaoYiRate = parseFloat(rate).toFixed(2);
 	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode="+ $("#bankCode").val() +"&rate=" + jiaoYiRate;
-	            	           	window.location.href = redirectUrl;
+	            	           	window.open(redirectUrl);
 	            	        	
 	            	        	
 	            	        }
@@ -158,10 +158,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
       </tbody>
     </table>
     <p class="text-center agree">
-      <input type="checkbox" name="" id="agree" checked >
-      <label for="agree">
-        我已阅读并同意 <a href="./protocol.jsp" target="_blank">98配资网操盘协议</a>
-      </label>
+      
     </p>
     <p class="btn-wrapper">
       <button class="btn btn-primary btn-block" id="submitBtn">

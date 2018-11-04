@@ -130,8 +130,7 @@
       </div>
     </div>
     <span for="weuiAgree" class="weui-agree">
-      <input id="weuiAgree" type="checkbox" checked class="weui-agree__checkbox"
-        >
+      <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
       <span class="weui-agree__text">
         阅读并同意 <a href="./contract.jsp">《配资相关条款》</a>
       </span>
