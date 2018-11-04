@@ -60,13 +60,18 @@ function setaccount(account){
         <form action="#">
         <input type="hidden" id="account" name="account" value=""/>
           <p class="form-item">
+            <label for="">客户姓名</label>
+            <input type="text" name="name" placeholder="请输入客户姓名"
+              id="name">
+          </p>
+          <p class="form-item">
             <label for="">开户行</label>
             <input type="text" name="bank" placeholder="请输入开户行名称"
               id="bank">
           </p>
           <p class="form-item">
             <label for="">银行卡号</label>
-            <input type="text" name="codeNumber"
+            <input type="number" name="codeNumber"
               placeholder="请输入您的银行卡号" id="codeNumber">
           </p>
           <p class="btn-wrapper">
@@ -75,8 +80,13 @@ function setaccount(account){
               绑定
             </button>
           </p>
-
         </form>
+      </div>
+      <div class="notice">
+        <h2>温馨提示：</h2>
+        <p>
+          此绑定的银行卡为出金银行卡，请您准确填写个人信息。如果填写有误，造成出金错误，98配资网概不负责。
+        </p>
       </div>
     </div>
   </div>

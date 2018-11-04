@@ -29,11 +29,12 @@ function setaccount(account){
     </div>
   </div>
   <div class="weui-cells register">
-    <!-- <div class="weui-cell">
-      <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
-      <div class="weui-cell__bd"><input type="text" placeholder="请填写用户名"
-          class="weui-input" name="username" id="username"></div>
-    </div> -->
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">客户姓名</label></div>
+      <div class="weui-cell__bd"><input type="text"
+          placeholder="请输入客户姓名" class="weui-input" name="name"
+          id="name"></div>
+    </div>
     <div class="weui-cell">
     <input type="hidden" id="account" name="account" value=""/>
       <div class="weui-cell__hd"><label class="weui-label">
@@ -62,6 +63,14 @@ function setaccount(account){
   <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" id="submitBtn">绑定</a>
   </div>
+  <div class="bind-bank-tips">
+    <h2>温馨提示：</h2>
+    <ol>
+      <li>
+        此绑定的银行卡为出金银行卡，请您准确填写个人信息。如果填写有误，造成出金错误，98配资网概不负责。</li>
+    </ol>
+  </div>
+
 
 
 
