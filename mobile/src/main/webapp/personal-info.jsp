@@ -37,7 +37,7 @@ function validateCent(){
 	if (centInfo == '未认证'){
 		window.location.href="./verified.jsp";
 	} else {
-		alert("用户身份信息已认证！");
+		window.location.href="./verified.jsp";
 	}
 }
 function validateBank(){
@@ -45,7 +45,7 @@ function validateBank(){
 	if (centInfo == '未绑定'){
 		window.location.href="./bind-bank-card.jsp";
 	} else {
-		alert("用户银行卡信息已绑定！");
+		window.location.href="./bind-bank-card.jsp";
 	}
 }
 </script>
