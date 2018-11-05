@@ -18,6 +18,7 @@ import com.business.dto.model.RestfulResult;
 import com.business.entity.OutRecordEntity;
 import com.business.entity.UserEntity;
 import com.business.enums.ReturnCode;
+import com.business.help.MessageUtils;
 import com.business.service.OutRecordService;
 import com.business.service.UserService;
 
@@ -69,8 +70,8 @@ public class WebOutRecordRest {
 			
 			
 			String content = "【98配资】尊敬的98配资客服，您公司的客户" + userEntity.getAccount() + "在平台系统申请出金"+ amount+"元，请您及时查询。";
-			WebUtils.sendPhoneMsg("18311187611", content);
-			WebUtils.sendPhoneMsg("18612226789", content);
+			MessageUtils.sendPhoneMsg("18311187611", content);
+			MessageUtils.sendPhoneMsg("18612226789", content);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo("outrecord", "outrecord save", ""));

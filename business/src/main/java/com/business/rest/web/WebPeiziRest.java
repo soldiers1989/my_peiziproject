@@ -21,6 +21,7 @@ import com.business.entity.AccountEntity;
 import com.business.entity.PeiziEntity;
 import com.business.entity.UserEntity;
 import com.business.enums.ReturnCode;
+import com.business.help.MessageUtils;
 import com.business.service.AccountService;
 import com.business.service.PeiziService;
 import com.business.service.UserService;
@@ -62,7 +63,7 @@ public class WebPeiziRest {
 				result.setResultMessage(ReturnCode.USER_NOTEXIST.getDesc());
 				return result;
 			}
-			
+
 			Date today = new Date();
 			Calendar c = Calendar.getInstance();
 			c.setTime(today);
@@ -79,19 +80,19 @@ public class WebPeiziRest {
 				SimpleDateFormat formatYMDHMD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				long date1 = formatYMDHMD.parse(todayYMDStr + " 00:00:00").getTime();
 				long date2 = formatYMDHMD.parse(todayYMDStr + " 03:00:00").getTime();
-				
+
 				long date3 = formatYMDHMD.parse(todayYMDStr + " 08:30:00").getTime();
 				long date4 = formatYMDHMD.parse(todayYMDStr + " 17:30:00").getTime();
-				
+
 				long date5 = formatYMDHMD.parse(todayYMDStr + " 20:30:00").getTime();
 				long date6 = formatYMDHMD.parse(todayYMDStr + " 23:59:59").getTime();
-				if (!((nowLong > date1 && nowLong<date2)|| (nowLong > date3 && nowLong<date4)||(nowLong > date5 && nowLong<date6) )){
+				if (!((nowLong > date1 && nowLong < date2) || (nowLong > date3 && nowLong < date4) || (nowLong > date5 && nowLong < date6))) {
 					result.setResultCode(PeiziReturnCode.INRECORD_TIMEERROR.getFlag());
 					result.setResultMessage(PeiziReturnCode.INRECORD_TIMEERROR.getDesc());
 					return result;
 				}
 			}
-			
+
 			String jiaoYiAccount = userEntity.getAccount();
 			if (null == jiaoYiAccount || "".equals(jiaoYiAccount)) {
 				List<AccountEntity> accountList = accountService.getAllNotUsed();
@@ -125,14 +126,9 @@ public class WebPeiziRest {
 			peiziEntity.setStatus(0);
 			peiziService.saveOrUpdate(peiziEntity);
 
-			
-			
-
-			
 			String content = "【98配资】尊敬的98配资客户，您在平台系统申请的期货配资账户已开通，资金账号为" + userEntity.getAccount() + "，交易密码为577189，请您及时下载交易软件，修改初始交易密码。祝您投资愉快！期市有风险！投资需谨慎！";
-			WebUtils.sendPhoneMsg(userEntity.getPhone(), content);
+			MessageUtils.sendPhoneMsg(userEntity.getPhone(), content);
 
-			
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo(account, operate, ReturnCode.SUCCESS.getDesc()));
@@ -145,5 +141,4 @@ public class WebPeiziRest {
 		return result;
 	}
 
-	
 }
