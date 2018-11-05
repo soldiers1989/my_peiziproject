@@ -1,7 +1,6 @@
 require(['js/require-config'], function() {
   require(['jquery', 'utils', 'layer'], function($, utils, layer) {
     $(function() {
-      var $nameInput = $('#name');
       var $bankInput = $('#bank');
       var $codeNumberInput = $('#codeNumber');
       var $submitBtn = $('#submitBtn');
@@ -11,13 +10,8 @@ require(['js/require-config'], function() {
         var bank = $bankInput.val().trim();
         var codeNumber = $codeNumberInput.val().trim();
         var account = $accountInput.val();
-        var name = $nameInput.val().trim();
 
-        if (name === '') {
-          layer.msg('请输入客户名称');
-        } else if (!isNaN(+name)) {
-          layer.msg('客户名称不能为数字');
-        } else if (bank === '') {
+        if (bank === '') {
           layer.msg('请输入开户行名称');
         } else if (!isNaN(bank)) {
           layer.msg('开户行名称不能为数字');

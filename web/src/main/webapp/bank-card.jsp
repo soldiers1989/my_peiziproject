@@ -59,11 +59,11 @@ function setaccount(account){
       <div class="auth clearfix">
         <form action="#">
         <input type="hidden" id="account" name="account" value=""/>
-          <p class="form-item">
+          <%-- <p class="form-item">
             <label for="">客户姓名</label>
             <input type="text" name="name" placeholder="请输入客户姓名"
               id="name">
-          </p>
+          </p> --%>
           <p class="form-item">
             <label for="">开户行</label>
             <input type="text" name="bank" placeholder="请输入开户行名称"

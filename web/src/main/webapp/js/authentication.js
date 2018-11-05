@@ -5,7 +5,7 @@ require(['js/require-config'], function() {
       var $codeNumberInput = $('#codeNumber');
       var $submitBtn = $('#submitBtn');
       var $accountInput = $('#account');
- 
+
       $submitBtn.click(function() {
         var realName = $realNameInput.val().trim();
         var codeNumber = $codeNumberInput.val().trim();
@@ -13,25 +13,27 @@ require(['js/require-config'], function() {
 
         if (realName === '') {
           layer.msg('请输入您的真实姓名');
+        } else if (!isNaN(+realName)) {
+          layer.msg('真实姓名不能为数字');
         } else if (codeNumber === '') {
           layer.msg('请输入真实身份证号码');
         } else {
           $.ajax({
-              url: '/service/web/user/centauth',
-              method: 'POST',
+            url: '/service/web/user/centauth',
+            method: 'POST',
             data: {
               realName: realName,
               codeNumber: codeNumber,
-              account:account
+              account: account
             },
             success: function(resp) {
-            	if (resp.resultCode === 0) {
-              	  console.log(resp);
-              	  alert("提交成功");
-              	  window.location.href = "./account.jsp";
-                  } else {
-                	 alert(resp.resultMessage);
-                  }
+              if (resp.resultCode === 0) {
+                console.log(resp);
+                alert('提交成功');
+                window.location.href = './account.jsp';
+              } else {
+                alert(resp.resultMessage);
+              }
             }
           });
         }

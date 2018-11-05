@@ -29,12 +29,16 @@ function setaccount(account){
     </div>
   </div>
   <div class="weui-cells register">
-    <div class="weui-cell">
-      <div class="weui-cell__hd"><label class="weui-label">客户姓名</label></div>
-      <div class="weui-cell__bd"><input type="text"
+    <%-- <div class="weui-cell">
+      <div class="weui-cell__hd">
+         <label class="weui-label">客户姓名</label>
+      </div>
+      <div class="weui-cell__bd">
+      <input type="text"
           placeholder="请输入客户姓名" class="weui-input" name="name"
-          id="name"></div>
-    </div>
+          id="name">
+          </div>
+    </div> --%>
     <div class="weui-cell">
     <input type="hidden" id="account" name="account" value=""/>
       <div class="weui-cell__hd"><label class="weui-label">

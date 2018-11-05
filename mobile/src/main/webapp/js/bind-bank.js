@@ -1,23 +1,17 @@
 require(['js/require-config'], function() {
   require(['jquery', 'utils', 'weui'], function($, utils) {
     $(function() {
-      var $nameInput = $('#name');
       var $submitBtn = $('#submitBtn');
       var $bankInput = $('#bank');
       var $numberInput = $('#number');
 
       var $accountInput = $('#account');
       $submitBtn.click(function() {
-        var name = $nameInput.val().trim();
         var bank = $bankInput.val().trim();
         var number = $numberInput.val().trim();
         var account = $accountInput.val();
 
-        if (name === '') {
-          utils.errorToast('请输入客户姓名');
-        } else if (!isNaN(+name)) {
-          utils.errorToast('客户姓名不能为数字');
-        } else if (bank === '') {
+        if (bank === '') {
           utils.errorToast('请输入开户行名称');
         } else if (!isNaN(+bank)) {
           utils.errorToast('开户行名称不能为数字');
