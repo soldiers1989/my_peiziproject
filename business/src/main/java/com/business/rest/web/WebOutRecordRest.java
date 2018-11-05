@@ -45,6 +45,11 @@ public class WebOutRecordRest {
 		try {
 
 			UserEntity userEntity = userService.getByPhone(phone);
+			if(userEntity.getCentStatus().intValue() == 0){
+				result.setResultCode(OutRecordReturnCode.USER_NOTAUTH.getFlag());
+				result.setResultMessage(OutRecordReturnCode.USER_NOTAUTH.getDesc());
+				return result;
+			}
 			if(userEntity.getBankStatus().intValue() == 0){
 				result.setResultCode(OutRecordReturnCode.BANK_NOTBINDING.getFlag());
 				result.setResultMessage(OutRecordReturnCode.BANK_NOTBINDING.getDesc());
@@ -63,8 +68,9 @@ public class WebOutRecordRest {
 			outRecordService.saveOrUpdate(entity);
 			
 			
-			//String content = "【98配资】尊敬的98配资客服，您公司的客户xxxxxxx（x代表资金账号）在平台系统申请出金xxxxxx元，请您及时查询。";
-			
+			String content = "【98配资】尊敬的98配资客服，您公司的客户" + userEntity.getAccount() + "在平台系统申请出金"+ amount+"元，请您及时查询。";
+			WebUtils.sendPhoneMsg("18311187611", content);
+			WebUtils.sendPhoneMsg("18612226789", content);
 			result.setResultCode(ReturnCode.SUCCESS.getFlag());
 			result.setResultMessage(ReturnCode.SUCCESS.getDesc());
 			logger.info(WebUtils.outLogInfo("outrecord", "outrecord save", ""));

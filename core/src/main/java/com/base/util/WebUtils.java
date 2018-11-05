@@ -427,7 +427,7 @@ public class WebUtils {
     			respStr = EntityUtils.toString(entity, "UTF-8");
     		}
     		String resultStr = respStr.contains("id") ? "success" : "fail";
-    		System.out.println("send verify code =" + resultStr);
+    		System.out.println("send message result =" + resultStr);
     	}catch(Exception ex){
     		ex.printStackTrace();
     	}
