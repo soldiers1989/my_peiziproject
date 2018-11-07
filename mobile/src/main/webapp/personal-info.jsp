@@ -20,14 +20,14 @@ function getamount(account){
             if (data.centStatus == 0){
             	document.getElementById("centDiv").innerHTML="未认证";
             } else if (data.centStatus == 1){
-            	document.getElementById("centDiv").innerHTML="已认证";
+            	document.getElementById("centDiv").innerHTML=data.realName +"  (已认证)";
             	
             }
             
             if (data.bankStatus == 0){
             	document.getElementById("bankDiv").innerHTML="未绑定";
             } else if (data.bankStatus == 1){
-            	document.getElementById("bankDiv").innerHTML="已绑定";
+            	document.getElementById("bankDiv").innerHTML=data.bankName +"  (已绑定)";
             }
         }
     });
@@ -70,7 +70,7 @@ function validateBank(){
         <div class="weui-cell__bd">
           <p>手机号码</p>
         </div>
-        <div class="weui-cell__ft"><%=account %></div>
+        <div class="weui-cell__ft"><%=account %>  (已认证)&nbsp;&nbsp;&nbsp;</div>
       </div>
       <a href="#" class="weui-cell weui-cell_access" onclick="validateCent();">
         <div class="weui-cell__bd">

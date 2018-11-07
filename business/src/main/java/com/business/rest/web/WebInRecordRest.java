@@ -66,7 +66,7 @@ public class WebInRecordRest {
 				long date4 = formatYMDHMD.parse(todayYMDStr + " 17:30:00").getTime();
 				
 				long date5 = formatYMDHMD.parse(todayYMDStr + " 20:30:00").getTime();
-				long date6 = formatYMDHMD.parse(todayYMDStr + " 00:00:00").getTime();
+				long date6 = formatYMDHMD.parse(todayYMDStr + " 23:59:59").getTime();
 				if (!((nowLong > date1 && nowLong<date2)|| (nowLong > date3 && nowLong<date4)||(nowLong > date5 && nowLong<date6) )){
 					result.setResultCode(PeiziReturnCode.INRECORD_TIMEERROR.getFlag());
 					result.setResultMessage(PeiziReturnCode.INRECORD_TIMEERROR.getDesc());
