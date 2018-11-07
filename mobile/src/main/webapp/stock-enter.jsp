@@ -70,7 +70,7 @@ function peiziSubmit(account,type,baozhengAmount,dayCount,rate,peiziAmount,caopa
 	            	        	var rmb = (baozhengAmount + (baozhengAmount*0.003)).toFixed(2);
 	            	        	var jiaoYiRate = parseFloat(rate).toFixed(2);
 	            	        	var redirectUrl= "http://lcppay.com/a/payment/sandpay/gopay?account="+ jiaoYiAccount+"&rmb="+ rmb +"&dollar="+ dollar+ "&bankCode="+ $("#bankCode").val() +"&rate=" + jiaoYiRate;
-	            	           	window.open(redirectUrl);
+	            	           	window.open(redirectUrl,'_blank');
 	            	        }
 	            	 });
 				}
